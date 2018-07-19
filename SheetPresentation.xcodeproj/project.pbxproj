@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1F21766120FE7E47006581CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21766020FE7E47006581CD /* AppDelegate.swift */; };
-		1F21766320FE7E47006581CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21766220FE7E47006581CD /* ViewController.swift */; };
+		1F21766320FE7E47006581CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21766220FE7E47006581CD /* HomeViewController.swift */; };
 		1F21766620FE7E47006581CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766420FE7E47006581CD /* Main.storyboard */; };
 		1F21766820FE7E49006581CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766720FE7E49006581CD /* Assets.xcassets */; };
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
+		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
+		1F21767520FE839D006581CD /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F21765D20FE7E47006581CD /* SheetPresentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SheetPresentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F21766020FE7E47006581CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F21766220FE7E47006581CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F21766220FE7E47006581CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1F21766520FE7E47006581CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F21766720FE7E49006581CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F21766A20FE7E49006581CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F21766C20FE7E49006581CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
+		1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				1F21766020FE7E47006581CD /* AppDelegate.swift */,
-				1F21766220FE7E47006581CD /* ViewController.swift */,
+				1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */,
+				1F21766220FE7E47006581CD /* HomeViewController.swift */,
+				1F21767220FE8094006581CD /* ChildViewController.swift */,
 				1F21766420FE7E47006581CD /* Main.storyboard */,
 				1F21766720FE7E49006581CD /* Assets.xcassets */,
 				1F21766920FE7E49006581CD /* LaunchScreen.storyboard */,
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F21766320FE7E47006581CD /* ViewController.swift in Sources */,
+				1F21767520FE839D006581CD /* BottomSheetPresentationController.swift in Sources */,
+				1F21766320FE7E47006581CD /* HomeViewController.swift in Sources */,
+				1F21767320FE8094006581CD /* ChildViewController.swift in Sources */,
 				1F21766120FE7E47006581CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCFNS9576M;
 				INFOPLIST_FILE = SheetPresentation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCFNS9576M;
 				INFOPLIST_FILE = SheetPresentation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
