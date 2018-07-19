@@ -22,9 +22,6 @@ class ChildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-
         view.translatesAutoresizingMaskIntoConstraints = false
         scrollView?.translatesAutoresizingMaskIntoConstraints = false
         contentView?.translatesAutoresizingMaskIntoConstraints = false

@@ -13,7 +13,7 @@
 		1F21766820FE7E49006581CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766720FE7E49006581CD /* Assets.xcassets */; };
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
 		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
-		1F21767520FE839D006581CD /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */; };
+		1F21767520FE839D006581CD /* BottomSheetPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		1F21766A20FE7E49006581CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F21766C20FE7E49006581CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
-		1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationController.swift; sourceTree = "<group>"; };
+		1F21767420FE839D006581CD /* BottomSheetPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				1F21766020FE7E47006581CD /* AppDelegate.swift */,
-				1F21767420FE839D006581CD /* BottomSheetPresentationController.swift */,
+				1F21767420FE839D006581CD /* BottomSheetPresentation.swift */,
 				1F21766220FE7E47006581CD /* HomeViewController.swift */,
 				1F21767220FE8094006581CD /* ChildViewController.swift */,
 				1F21766420FE7E47006581CD /* Main.storyboard */,
@@ -141,7 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F21767520FE839D006581CD /* BottomSheetPresentationController.swift in Sources */,
+				1F21767520FE839D006581CD /* BottomSheetPresentation.swift in Sources */,
 				1F21766320FE7E47006581CD /* HomeViewController.swift in Sources */,
 				1F21767320FE8094006581CD /* ChildViewController.swift in Sources */,
 				1F21766120FE7E47006581CD /* AppDelegate.swift in Sources */,

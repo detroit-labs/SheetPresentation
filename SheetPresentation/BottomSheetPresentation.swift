@@ -1,5 +1,5 @@
 //
-//  BottomSheetPresentationController.swift
+//  BottomSheetPresentation.swift
 //  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
@@ -44,6 +44,12 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Configuration Properties
 
+    /// The corner radius to use when displaying the presented view controller.
+    /// Defaults to `10`.
+    public var cornerRadius: CGFloat = 10 {
+        didSet { layoutContainer?.layer.cornerRadius = cornerRadius }
+    }
+
     /// The `alpha` value for the dimming view used behind the presented view
     /// controller. The color is black. Defaults to `0.25`.
     public var dimmingViewAlpha: CGFloat = 0.25 {
@@ -81,6 +87,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
     private lazy var layoutContainer: UIView? = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.layer.cornerRadius = cornerRadius
+        view.clipsToBounds = true
         return view
     }()
 
