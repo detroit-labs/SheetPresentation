@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SheetPresentation.xcodeproj">
+      location = "self:/Users/jeff/Desktop/SheetPresentation/BottomSheetPresentation.xcodeproj">
    </FileRef>
 </Workspace>

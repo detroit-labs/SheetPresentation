@@ -3,7 +3,7 @@
 //  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
-//  Copyright © 2018 Jeff Kelley. All rights reserved.
+//  Copyright © 2018 Detroit Labs, LLC. All rights reserved.
 //
 
 import UIKit
@@ -27,6 +27,10 @@ class ChildViewController: UIViewController {
         scrollView?.translatesAutoresizingMaskIntoConstraints = false
         contentView?.translatesAutoresizingMaskIntoConstraints = false
         stackView?.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
     }
 
 }

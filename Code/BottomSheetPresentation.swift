@@ -3,7 +3,7 @@
 //  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
-//  Copyright © 2018 Jeff Kelley. All rights reserved.
+//  Copyright © 2018 Detroit Labs, LLC. All rights reserved.
 //
 
 import UIKit
@@ -96,6 +96,10 @@ extension BottomSheetPresentationManager: UIAdaptivePresentationControllerDelega
 
     public func adaptivePresentationStyle(for controller: UIPresentationController,
                                           traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .overCurrentContext
+    }
+
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .overCurrentContext
     }
 
@@ -222,17 +226,22 @@ public final class BottomSheetPresentationController: UIPresentationController {
         animateDimmingViewDisappearing()
     }
 
+    public override var shouldPresentInFullscreen: Bool {
+        return false
+    }
+
     // MARK: - Private Implementation
 
     private var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
+        var insets = edgeInsets
+
         if #available(iOS 11.0, *) {
-            return containerView.bounds
-                .inset(by: edgeInsets.union(with: containerView.safeAreaInsets))
-        } else {
-            return containerView.bounds
+            insets.formUnion(with: containerView.safeAreaInsets)
         }
+
+        return containerView.bounds.inset(by: insets)
     }
 
     private func preferredPresentedViewControllerSize(in bounds: CGRect) -> CGSize {
@@ -263,14 +272,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         NSLayoutConstraint.activate([
             NSLayoutConstraint.constraints(withVisualFormat: "V:|[dimmingView]|",
-                                           options: [],
-                                           metrics: nil,
                                            views: views),
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[dimmingView]|",
-                                           options: [],
-                                           metrics: nil,
                                            views: views),
-            ].flatMap { $0 })
+            ])
     }
 
     private func layoutLayoutContainer() {
@@ -284,18 +289,12 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         NSLayoutConstraint.activate([
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-0@500-[presentedView]|",
-                                           options: [],
-                                           metrics: nil,
                                            views: views),
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=0)-[presentedView]|",
-                                           options: [],
-                                           metrics: nil,
                                            views: views),
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[presentedView]|",
-                                           options: [],
-                                           metrics: nil,
                                            views: views),
-            ].flatMap{ $0 })
+            ])
     }
 
     private func animateDimmingViewAppearing() {
@@ -326,12 +325,32 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
 }
 
-extension UIViewController {
+extension NSLayoutConstraint {
 
-    /// Returns `true` if the `width` and `height` of the view controller’s
-    /// `preferredContentSize` are both larger than `0`.
-    var hasPreferredContentSize: Bool {
-        return preferredContentSize.width > 0 && preferredContentSize.height > 0
+    /// Create an array of constraints using an ASCII art-like visual format string.
+    ///
+    /// - Parameters:
+    ///   - format: The visual format string.
+    ///   - views: A dictionary that maps view identifiers in `format` with
+    ///            view objects.
+    /// - Returns: An `Array` of `NSLayoutConstraint`s to satisfy the format.
+    public class func constraints(withVisualFormat format: String,
+                                  views: [String : Any]) -> [NSLayoutConstraint] {
+        return self.constraints(withVisualFormat: format,
+                                options: [],
+                                metrics: nil,
+                                views: views)
+    }
+
+    /// Convenience method that activates each constraint in the contained
+    /// arrays, in the same manner as setting `active=YES` on each constraint.
+    /// This is often more efficient than activating each constraint
+    /// individually.
+    ///
+    /// - Parameter constraintArrays: An array of arrays containing
+    ///                               `NSLayoutConstraint`s.
+    public class func activate(_ constraintArrays: [[NSLayoutConstraint]]) {
+        self.activate(constraintArrays.flatMap { $0 })
     }
 
 }
@@ -343,20 +362,31 @@ extension UIEdgeInsets {
     ///
     /// - Parameter constant: The constant value to use for all four dimensions.
     public init(constant: CGFloat) {
-        self.init(top: constant, left: constant, bottom: constant, right: constant)
+        self.init(top: constant,
+                  left: constant,
+                  bottom: constant,
+                  right: constant)
     }
 
     /// Forms a union with the given edge insets. Each value in the insets will
     /// be the larger of the two values.
     ///
     /// - Parameter otherInsets: The other insets with which to form a union.
-    /// - Returns: A `UIEdgeInsets` object that will inset a rect to accomodate
-    ///            both given edge insets.
-    public func union(with otherInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(top: max(top, otherInsets.top),
-                            left: max(left, otherInsets.left),
-                            bottom: max(bottom, otherInsets.bottom),
-                            right:  max(right, otherInsets.right))
+    public mutating func formUnion(with otherInsets: UIEdgeInsets) {
+        top = max(top, otherInsets.top)
+        left = max(left, otherInsets.left)
+        bottom = max(bottom, otherInsets.bottom)
+        right = max(bottom, otherInsets.bottom)
+    }
+
+}
+
+extension UIViewController {
+
+    /// Returns `true` if the `width` and `height` of the view controller’s
+    /// `preferredContentSize` are both larger than `0`.
+    var hasPreferredContentSize: Bool {
+        return preferredContentSize.width > 0 && preferredContentSize.height > 0
     }
 
 }

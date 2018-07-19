@@ -3,10 +3,11 @@
 //  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
-//  Copyright © 2018 Jeff Kelley. All rights reserved.
+//  Copyright © 2018 Detroit Labs, LLC. All rights reserved.
 //
 
 import UIKit
+import BottomSheetPresentation
 
 class HomeViewController: UIViewController {
 
@@ -17,6 +18,10 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         segue.destination.transitioningDelegate = bottomSheetPresentationManager
         segue.destination.modalPresentationStyle = .custom
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
     }
 
 }
