@@ -133,6 +133,15 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Initialization
 
+    /// Creates a `BottomSheetPresentationController` for a specific
+    /// presentation.
+    ///
+    /// - Parameters:
+    ///   - presented: The view controller being presented modally.
+    ///   - presenting: The view controller whose content represents the
+    ///                 starting point of the transition.
+    ///   - options: The presentation options to use for presenting view
+    ///              controllers.
     public init(forPresented presented: UIViewController,
                 presenting: UIViewController?,
                 presentationOptions options: BottomSheetPresentationOptions = .defaultOptions) {
