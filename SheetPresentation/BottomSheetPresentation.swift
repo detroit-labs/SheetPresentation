@@ -63,8 +63,9 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     /// The amount to inset the presented view controller from the presenting view
     /// controller. This is a minimum; there may be additional insets depending on
-    /// the safe area insets of the presenting view controller’s view.
-    public var edgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) {
+    /// the safe area insets of the presenting view controller’s view. Defaults to
+    /// 20 points on each side.
+    public var edgeInsets = UIEdgeInsets(constant: 20) {
         didSet {
             containerView?.setNeedsLayout()
         }
@@ -139,7 +140,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         animateDimmingViewDisappearing()
     }
 
-    // MARK: - Private UIPresentationController Implementation
+    // MARK: - Private Implementation
 
     private var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
@@ -248,6 +249,14 @@ extension UIViewController {
 }
 
 extension UIEdgeInsets {
+
+    /// Initializes a `UIEdgeInsets` with a constant value for `top`, `left`,
+    /// `bottom`, and `right`.
+    ///
+    /// - Parameter constant: The constant value to use for all four dimensions.
+    public init(constant: CGFloat) {
+        self.init(top: constant, left: constant, bottom: constant, right: constant)
+    }
 
     /// Forms a union with the given edge insets. Each value in the insets will be
     /// the larger of the two values.
