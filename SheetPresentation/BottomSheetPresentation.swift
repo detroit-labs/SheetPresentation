@@ -38,8 +38,8 @@ extension BottomSheetPresentationManager: UIAdaptivePresentationControllerDelega
 }
 
 /// A presentation controller for presenting a view controller over the bottom
-/// portion of the screen, automatically growing the view controller as needed based
-/// on either its `preferredContentSize` or Auto Layout.
+/// portion of the screen, automatically growing the view controller as needed
+/// based on either its `preferredContentSize` or Auto Layout.
 public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Configuration Properties
@@ -61,10 +61,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    /// The amount to inset the presented view controller from the presenting view
-    /// controller. This is a minimum; there may be additional insets depending on
-    /// the safe area insets of the presenting view controller’s view. Defaults to
-    /// 20 points on each side.
+    /// The amount to inset the presented view controller from the presenting
+    /// view controller. This is a minimum; there may be additional insets
+    /// depending on the safe area insets of the presenting view controller’s
+    /// view. Defaults to 20 points on each side.
     public var edgeInsets = UIEdgeInsets(constant: 20) {
         didSet {
             containerView?.setNeedsLayout()
@@ -108,12 +108,13 @@ public final class BottomSheetPresentationController: UIPresentationController {
         size.height = min(size.height, maximumBounds.height)
         size.width = min(size.width, maximumBounds.width)
 
-        // Position the rect at the bottom of the maximum bounds
         var frame = maximumBounds
-            .divided(atDistance: size.height, from: .maxYEdge)
-            .slice
 
-        // Center the rect inside the maxium bounds
+        // Position the rect vertically at the bottom of the maximum bounds
+        frame.origin.y = maximumBounds.maxY - size.height
+        frame.size.height = size.height
+
+        // Center the rect horizontally inside the maxium bounds
         frame.origin.x = (containerView.bounds.width - size.width) / 2.0
         frame.size.width = size.width
 
@@ -177,12 +178,18 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         containerView.insertSubview(dimmingView, at: 0)
 
+        let views = ["dimmingView": dimmingView]
+
         NSLayoutConstraint.activate([
-            dimmingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            dimmingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            dimmingView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            dimmingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-        ])
+            NSLayoutConstraint.constraints(withVisualFormat: "V:|[dimmingView]|",
+                                           options: [],
+                                           metrics: nil,
+                                           views: views),
+            NSLayoutConstraint.constraints(withVisualFormat: "H:|[dimmingView]|",
+                                           options: [],
+                                           metrics: nil,
+                                           views: views),
+            ].flatMap { $0 })
     }
 
     private func layoutLayoutContainer() {
@@ -192,7 +199,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         layoutContainer.addSubview(presentedVCView)
 
-        let views = [ "presentedView": presentedVCView ]
+        let views = ["presentedView": presentedVCView]
 
         NSLayoutConstraint.activate([
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-0@500-[presentedView]|",

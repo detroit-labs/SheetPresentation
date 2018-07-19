@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 class ChildViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView?
