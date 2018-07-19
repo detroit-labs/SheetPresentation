@@ -114,7 +114,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         frame.origin.y = maximumBounds.maxY - size.height
         frame.size.height = size.height
 
-        // Center the rect horizontally inside the maxium bounds
+        // Center the rect horizontally inside the container bounds
         frame.origin.x = (containerView.bounds.width - size.width) / 2.0
         frame.size.width = size.width
 
