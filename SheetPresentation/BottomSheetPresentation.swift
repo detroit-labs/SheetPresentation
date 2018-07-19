@@ -337,12 +337,12 @@ extension UIEdgeInsets {
         self.init(top: constant, left: constant, bottom: constant, right: constant)
     }
 
-    /// Forms a union with the given edge insets. Each value in the insets will be
-    /// the larger of the two values.
+    /// Forms a union with the given edge insets. Each value in the insets will
+    /// be the larger of the two values.
     ///
     /// - Parameter otherInsets: The other insets with which to form a union.
-    /// - Returns: A `UIEdgeInsets` object that will inset a rect to accomodate both
-    ///            given edge insets.
+    /// - Returns: A `UIEdgeInsets` object that will inset a rect to accomodate
+    ///            both given edge insets.
     public func union(with otherInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsets(top: max(top, otherInsets.top),
                             left: max(left, otherInsets.left),
