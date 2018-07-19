@@ -8,9 +8,72 @@
 
 import UIKit
 
+/// Options for presentation. These options are passed to created
+/// `BottomSheetPresentationController` objects upon creation.
+public struct BottomSheetPresentationOptions {
+
+    /// The corner radius to use when displaying the presented view controller.
+    public let cornerRadius: CGFloat
+
+    /// The `alpha` value for the dimming view used behind the presented
+    /// view controller. The color is black.
+    public let dimmingViewAlpha: CGFloat
+
+    /// The amount to inset the presented view controller from the
+    /// presenting view controller. This is a minimum; there may be
+    /// additional insets depending on the safe area insets of the
+    /// presenting view controller’s view.
+    public let edgeInsets: UIEdgeInsets
+
+    /// The default options that are used when calling `init()` on a
+    /// `BottomSheetPresentationManager` with no options. Uses a `cornerRadius`
+    /// of `10`, a `dimmingViewAlpha` of `0.5`, and an `edgeInsets` of `20`
+    /// points on each side.
+    public static let defaultOptions = BottomSheetPresentationOptions(
+        cornerRadius: 10,
+        dimmingViewAlpha: 0.5,
+        edgeInsets: UIEdgeInsets(constant: 20))
+}
+
 /// A manager object that creates instances of `BottomSheetPresentationController`
 /// when set as a view controller’s `transitioningDelegate`.
-public final class BottomSheetPresentationManager: NSObject {}
+@objcMembers public final class BottomSheetPresentationManager: NSObject {
+
+    private let presentationOptions: BottomSheetPresentationOptions
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options.
+    ///
+    /// - Parameter options: The options to use for presenting view controllers.
+    public init(options: BottomSheetPresentationOptions = .defaultOptions) {
+        presentationOptions = options
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options.
+    ///
+    /// - Parameters:
+    ///     - cornerRadius: The corner radius to use when displaying the
+    ///                     presented view controller.
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    public convenience init(cornerRadius: CGFloat,
+                            dimmingViewAlpha: CGFloat,
+                            edgeInsets: UIEdgeInsets) {
+        let options = BottomSheetPresentationOptions(
+            cornerRadius: cornerRadius,
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets)
+
+        self.init(options: options)
+    }
+
+}
 
 extension BottomSheetPresentationManager: UIViewControllerTransitioningDelegate {
 
@@ -18,8 +81,9 @@ extension BottomSheetPresentationManager: UIViewControllerTransitioningDelegate 
                                        presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
         let controller = BottomSheetPresentationController(
-            presentedViewController: presented,
-            presenting: presenting)
+            forPresented: presented,
+            presenting: presenting,
+            presentationOptions: presentationOptions)
 
         controller.delegate = self
 
@@ -42,17 +106,17 @@ extension BottomSheetPresentationManager: UIAdaptivePresentationControllerDelega
 /// based on either its `preferredContentSize` or Auto Layout.
 public final class BottomSheetPresentationController: UIPresentationController {
 
-    // MARK: - Configuration Properties
+    // MARK: - Presentation Options
 
-    /// The corner radius to use when displaying the presented view controller.
-    /// Defaults to `10`.
-    public var cornerRadius: CGFloat = 10 {
-        didSet { layoutContainer?.layer.cornerRadius = cornerRadius }
+    private var cornerRadius: CGFloat {
+        didSet {
+            if let layoutContainer = layoutContainer {
+                layoutContainer.layer.cornerRadius = cornerRadius
+            }
+        }
     }
 
-    /// The `alpha` value for the dimming view used behind the presented view
-    /// controller. The color is black. Defaults to `0.25`.
-    public var dimmingViewAlpha: CGFloat = 0.25 {
+    private var dimmingViewAlpha: CGFloat {
         didSet {
             if let dimmingView = dimmingView {
                 dimmingView.backgroundColor = dimmingView.backgroundColor?
@@ -61,14 +125,22 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    /// The amount to inset the presented view controller from the presenting
-    /// view controller. This is a minimum; there may be additional insets
-    /// depending on the safe area insets of the presenting view controller’s
-    /// view. Defaults to 20 points on each side.
-    public var edgeInsets = UIEdgeInsets(constant: 20) {
+    private var edgeInsets = UIEdgeInsets(constant: 20) {
         didSet {
             containerView?.setNeedsLayout()
         }
+    }
+
+    // MARK: - Initialization
+
+    public init(forPresented presented: UIViewController,
+                presenting: UIViewController?,
+                presentationOptions options: BottomSheetPresentationOptions = .defaultOptions) {
+        cornerRadius = options.cornerRadius
+        dimmingViewAlpha = options.dimmingViewAlpha
+        edgeInsets = options.edgeInsets
+
+        super.init(presentedViewController: presented, presenting: presenting)
     }
 
     // MARK: - Private Subviews
