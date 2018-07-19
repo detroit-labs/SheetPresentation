@@ -35,8 +35,8 @@ public struct BottomSheetPresentationOptions {
         edgeInsets: UIEdgeInsets(constant: 20))
 }
 
-/// A manager object that creates instances of `BottomSheetPresentationController`
-/// when set as a view controller’s `transitioningDelegate`.
+/// An object that creates instances of `BottomSheetPresentationController` when
+/// set as a view controller’s `transitioningDelegate`.
 @objcMembers public final class BottomSheetPresentationManager: NSObject {
 
     private let presentationOptions: BottomSheetPresentationOptions
