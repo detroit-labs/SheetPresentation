@@ -151,7 +151,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    internal var edgeInsets = UIEdgeInsets(constant: 20) {
+    internal var edgeInsets: UIEdgeInsets {
         didSet {
             containerView?.setNeedsLayout()
         }
@@ -398,7 +398,7 @@ extension UIEdgeInsets {
         top = max(top, otherInsets.top)
         left = max(left, otherInsets.left)
         bottom = max(bottom, otherInsets.bottom)
-        right = max(bottom, otherInsets.bottom)
+        right = max(right, otherInsets.right)
     }
 
 }

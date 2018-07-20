@@ -1,5 +1,5 @@
 version: "Apple Swift version 4.2 (swiftlang-1000.0.29.2 clang-1000.10.39)"
 options: "864a88a12b1caaab4baca1b812a7c669"
-build_time: [1532104609, 96737000]
+build_time: [1532109566, 374903000]
 inputs:
   "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift": [9223372036, 854775807]
