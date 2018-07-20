@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FDFAAFC210113CE00BBEE09"
-               BuildableName = "BottomSheetPresentation.framework"
-               BlueprintName = "BottomSheetPresentation"
+               BlueprintIdentifier = "1FDFAB1E21012C8800BBEE09"
+               BuildableName = "LegacyExample.app"
+               BlueprintName = "LegacyExample"
                ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,38 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FDFAAFC210113CE00BBEE09"
-            BuildableName = "BottomSheetPresentation.framework"
-            BlueprintName = "BottomSheetPresentation"
-            ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FDFAB04210113CE00BBEE09"
-               BuildableName = "BottomSheetPresentationTests.xctest"
-               BlueprintName = "BottomSheetPresentationTests"
-               ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FDFAAFC210113CE00BBEE09"
-            BuildableName = "BottomSheetPresentation.framework"
-            BlueprintName = "BottomSheetPresentation"
+            BlueprintIdentifier = "1FDFAB1E21012C8800BBEE09"
+            BuildableName = "LegacyExample.app"
+            BlueprintName = "LegacyExample"
             ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -74,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FDFAAFC210113CE00BBEE09"
-            BuildableName = "BottomSheetPresentation.framework"
-            BlueprintName = "BottomSheetPresentation"
+            BlueprintIdentifier = "1FDFAB1E21012C8800BBEE09"
+            BuildableName = "LegacyExample.app"
+            BlueprintName = "LegacyExample"
             ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -92,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FDFAAFC210113CE00BBEE09"
-            BuildableName = "BottomSheetPresentation.framework"
-            BlueprintName = "BottomSheetPresentation"
+            BlueprintIdentifier = "1FDFAB1E21012C8800BBEE09"
+            BuildableName = "LegacyExample.app"
+            BlueprintName = "LegacyExample"
             ReferencedContainer = "container:BottomSheetPresentation.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

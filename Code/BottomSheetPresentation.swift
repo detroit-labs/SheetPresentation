@@ -35,11 +35,13 @@ public struct BottomSheetPresentationOptions {
         edgeInsets: UIEdgeInsets(constant: 20))
 }
 
+extension BottomSheetPresentationOptions: Equatable {}
+
 /// An object that creates instances of `BottomSheetPresentationController` when
 /// set as a view controller’s `transitioningDelegate`.
 @objcMembers public final class BottomSheetPresentationManager: NSObject {
 
-    private let presentationOptions: BottomSheetPresentationOptions
+    internal let presentationOptions: BottomSheetPresentationOptions
 
     /// Creates a `BottomSheetPresentationManager` with specific presentation
     /// options.
@@ -112,7 +114,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
-    private var cornerRadius: CGFloat {
+    internal var cornerRadius: CGFloat {
         didSet {
             if let layoutContainer = layoutContainer {
                 layoutContainer.layer.cornerRadius = cornerRadius
@@ -120,7 +122,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    private var dimmingViewAlpha: CGFloat {
+    internal var dimmingViewAlpha: CGFloat {
         didSet {
             if let dimmingView = dimmingView {
                 dimmingView.backgroundColor = dimmingView.backgroundColor?
@@ -129,7 +131,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    private var edgeInsets = UIEdgeInsets(constant: 20) {
+    internal var edgeInsets = UIEdgeInsets(constant: 20) {
         didSet {
             containerView?.setNeedsLayout()
         }
@@ -158,7 +160,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Private Subviews
 
-    private lazy var dimmingView: UIView? = {
+    internal lazy var dimmingView: UIView? = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.black.withAlphaComponent(dimmingViewAlpha)
@@ -170,7 +172,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         return view
     }()
 
-    private lazy var layoutContainer: UIView? = {
+    internal lazy var layoutContainer: UIView? = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.layer.cornerRadius = cornerRadius
@@ -232,7 +234,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Private Implementation
 
-    private var maximumPresentedBoundsInContainerView: CGRect {
+    internal var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
         var insets = edgeInsets
@@ -244,7 +246,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         return containerView.bounds.inset(by: insets)
     }
 
-    private func preferredPresentedViewControllerSize(in bounds: CGRect) -> CGSize {
+    internal func preferredPresentedViewControllerSize(in bounds: CGRect) -> CGSize {
         guard let layoutContainer = layoutContainer else { return .zero }
 
         var fittingSize = bounds.size
@@ -261,7 +263,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    private func layoutDimmingView() {
+    internal func layoutDimmingView() {
         guard let containerView = containerView,
             let dimmingView = dimmingView
             else { return }
@@ -278,7 +280,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
             ])
     }
 
-    private func layoutLayoutContainer() {
+    internal func layoutLayoutContainer() {
         guard let layoutContainer = layoutContainer,
             let presentedVCView = presentedViewController.view
             else { return }
@@ -297,7 +299,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
             ])
     }
 
-    private func animateDimmingViewAppearing() {
+    internal func animateDimmingViewAppearing() {
         guard let dimmingView = dimmingView,
             let tc = presentedViewController.transitionCoordinator
             else { return }
@@ -308,7 +310,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
                    completion: nil)
     }
 
-    private func animateDimmingViewDisappearing() {
+    internal func animateDimmingViewDisappearing() {
         guard let dimmingView = dimmingView,
             let tc = presentedViewController.transitionCoordinator
             else { return }
@@ -319,7 +321,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - UI Interaction
 
-    @objc private func userTappedInDimmingArea(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc internal func userTappedInDimmingArea(_ gestureRecognizer: UITapGestureRecognizer) {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 
