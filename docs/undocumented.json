@@ -1,0 +1,68 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 82,
+      "symbol": "BottomSheetPresentationManager.presentationController(forPresented:presenting:source:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 99,
+      "symbol": "BottomSheetPresentationManager.adaptivePresentationStyle(for:traitCollection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 104,
+      "symbol": "BottomSheetPresentationManager.adaptivePresentationStyle(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 185,
+      "symbol": "BottomSheetPresentationController.presentedView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 187,
+      "symbol": "BottomSheetPresentationController.frameOfPresentedViewInContainerView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 211,
+      "symbol": "BottomSheetPresentationController.containerViewWillLayoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 217,
+      "symbol": "BottomSheetPresentationController.presentationTransitionWillBegin()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 226,
+      "symbol": "BottomSheetPresentationController.dismissalTransitionWillBegin()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/Code/BottomSheetPresentation.swift",
+      "line": 231,
+      "symbol": "BottomSheetPresentationController.shouldPresentInFullscreen",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/jeff/Projects/Open-Source/BottomSheetPresentation"
+}

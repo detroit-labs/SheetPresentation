@@ -1,0 +1,4 @@
+framework module BottomSheetPresentation {
+  header "BottomSheetPresentation-Swift.h"
+  requires objc
+}

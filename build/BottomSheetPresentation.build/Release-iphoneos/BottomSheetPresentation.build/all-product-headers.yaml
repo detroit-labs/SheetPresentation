@@ -1,0 +1,28 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/build/Release-iphoneos/BottomSheetPresentation.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "BottomSheetPresentation-Swift.h",
+          'external-contents': "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/build/Release-iphoneos/BottomSheetPresentation.framework/Headers/BottomSheetPresentation-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/build/Release-iphoneos/BottomSheetPresentation.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/jeff/Projects/Open-Source/BottomSheetPresentation/build/BottomSheetPresentation.build/Release-iphoneos/BottomSheetPresentation.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}
