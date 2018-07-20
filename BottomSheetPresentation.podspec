@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "BottomSheetPresentation"
   s.version      = "0.1.0"
-  s.summary      = "A UIPresentationController and attendant clases for iOS to present a view controller pinned to the bottom of the screen like an action sheet."
+  s.summary      = "A UIPresentationController for iOS to present a view controller pinned to the bottom of the screen."
 
   s.description  = <<-DESC
 A UIPresentationController and attendant clases for iOS to present a view controller pinned to the bottom of the screen like an action sheet. Integrates with the UIKit view controller presentation hooks to involve as little integration surface as possible.
