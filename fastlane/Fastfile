@@ -1,0 +1,27 @@
+default_platform(:ios)
+
+desc "Updates the project build number in the main project and in the examples."
+lane :increment_all_build_numbers do
+  increment_build_number(xcodeproj: "./BottomSheetPresentation.xcodeproj")
+end
+
+desc "Updates the project version number in the main project and its examples. Specify a `bump_type` of `major`, `minor`, or `patch` (the default)."
+lane :increment_all_version_numbers do |options|
+  increment_version_number(
+    bump_type: options[:bump_type],
+    xcodeproj: "./BottomSheetPresentation.xcodeproj",
+  )
+
+  version = get_version_number(
+    xcodeproj: "./BottomSheetPresentation.xcodeproj",
+    target: "BottomSheetPresentation"
+  )
+
+  version_bump_podspec(version_number: version)
+end
+
+desc "Generates documentation."
+lane :documentation do
+  jazzy(config: "./.jazzy.yaml")
+  sh("cp ../docs/badge.svg ../docs/docs/badge.svg")
+end
