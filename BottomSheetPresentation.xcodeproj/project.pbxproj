@@ -103,6 +103,10 @@
 		1FDFAB3021012C8900BBEE09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1FDFAB3A2101310800BBEE09 /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
 		1FDFAB3B2101310800BBEE09 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
+		1FEF8EE82102568800F8C36C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1FEF8EE92102568800F8C36C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1FEF8EEA2102568800F8C36C /* BottomSheetPresentation.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = BottomSheetPresentation.podspec; sourceTree = "<group>"; };
+		1FEF8EEB2102569B00F8C36C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,10 @@
 		1F21765420FE7E47006581CD = {
 			isa = PBXGroup;
 			children = (
+				1FEF8EEA2102568800F8C36C /* BottomSheetPresentation.podspec */,
+				1FEF8EEB2102569B00F8C36C /* CHANGELOG.md */,
+				1FEF8EE82102568800F8C36C /* LICENSE */,
+				1FEF8EE92102568800F8C36C /* README.md */,
 				1FDFAAF7210113AB00BBEE09 /* Code */,
 				1FDFAB09210113CE00BBEE09 /* Tests */,
 				1F21765F20FE7E47006581CD /* Example */,
