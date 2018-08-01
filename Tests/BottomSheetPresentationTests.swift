@@ -20,7 +20,8 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
         let presentationOptions = BottomSheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
-            edgeInsets: .zero)
+            edgeInsets: .zero,
+            direction: .bottom)
 
         let subject = BottomSheetPresentationManager(options: presentationOptions)
         XCTAssertEqual(subject.presentationOptions, presentationOptions)
@@ -30,11 +31,13 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
         let expectedPresentationOptions = BottomSheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
-            edgeInsets: .zero)
+            edgeInsets: .zero,
+            direction: .bottom)
 
         let subject = BottomSheetPresentationManager(cornerRadius: 42,
                                                      dimmingViewAlpha: 31,
-                                                     edgeInsets: .zero)
+                                                     edgeInsets: .zero,
+                                                     direction: .bottom)
 
         XCTAssertEqual(subject.presentationOptions, expectedPresentationOptions)
     }
@@ -48,7 +51,8 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
         let presentationOptions = BottomSheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
-            edgeInsets: .zero)
+            edgeInsets: .zero,
+            direction: .bottom)
 
         let subject = BottomSheetPresentationManager(options: presentationOptions)
 
@@ -66,6 +70,9 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
         XCTAssertEqual(presentationController.edgeInsets,
                        presentationOptions.edgeInsets)
 
+        XCTAssertEqual(presentationController.direction,
+                       presentationOptions.direction)
+
     }
 
 }
@@ -73,10 +80,12 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
 class BottomSheetPresentationManagerTests: XCTestCase {
 
     var subject: BottomSheetPresentationManager!
+    var customizedSheetManager: BottomSheetPresentationManager!
 
     override func setUp() {
         super.setUp()
         subject = BottomSheetPresentationManager()
+        customizedSheetManager = BottomSheetPresentationManager(options: BottomSheetPresentationOptions(cornerRadius: 10, dimmingViewAlpha: 10, edgeInsets: UIEdgeInsets(constant: 12), direction: .left))
     }
 
     func createPresentationControllerWithMockVCs() -> BottomSheetPresentationController {
@@ -96,6 +105,22 @@ class BottomSheetPresentationManagerUIViewControllerTransitioningDelegateTests: 
             createPresentationControllerWithMockVCs().delegate === subject
         )
 
+    }
+
+    func testAnimationControllerForPresentedReturnsNilForBottomDirection() {
+        XCTAssertNil(subject.animationController(forPresented: UIViewController(), presenting: UIViewController(), source: UIViewController()))
+    }
+
+    func testAnimationControllerForPresentedReturnsSheetPresentationAnimator() {
+        XCTAssertTrue(customizedSheetManager.animationController(forPresented: UIViewController(), presenting: UIViewController(), source: UIViewController()) is SheetPresentationAnimator)
+    }
+
+    func testAnimationControllerForDismissedReturnsNilForBottomDirection() {
+        XCTAssertNil(subject.animationController(forDismissed: UIViewController()))
+    }
+
+    func testAnimationControllerForDismissedReturnsSheetPresentationAnimator() {
+        XCTAssertTrue(customizedSheetManager.animationController(forDismissed: UIViewController()) is SheetPresentationAnimator)
     }
 
 }
@@ -156,6 +181,22 @@ class BottomSheetPresentationControllerTests: XCTestCase {
 
     func testThatTheLayoutContainerIsThePresentedView() {
         XCTAssertEqual(subject.presentedView, subject.layoutContainer)
+    }
+
+}
+
+class SheetPresentationAnimatorTests: XCTestCase {
+
+    var sut: SheetPresentationAnimator!
+
+    override func setUp() {
+        super.setUp()
+
+        sut = SheetPresentationAnimator(direction: .bottom, isPresentation: true)
+    }
+
+    func testTransitionDurationReturnsTimeInterval() {
+        XCTAssertTrue(sut.transitionDuration(using: nil) >= 0)
     }
 
 }
