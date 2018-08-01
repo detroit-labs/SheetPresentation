@@ -263,12 +263,14 @@ public final class BottomSheetPresentationController: UIPresentationController {
             frame.size.width = size.width
 
         case .right:
+            frame.origin.y = 0
             frame.origin.x = containerView.bounds.width * (0.68 / 3.0)
-            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: maximumBounds.height)
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: containerView.frame.height)
 
         case .left:
+            frame.origin.y = 0
             frame.origin.x = 0
-            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: maximumBounds.height)
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: containerView.frame.height)
         }
 
         return frame.integral
