@@ -19,10 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 @end

@@ -9,7 +9,7 @@
 import UIKit
 
 // The direction which the sheet will be presented from.
-public enum PresentationDirection {
+@objc public enum PresentationDirection: Int {
     case left, right, bottom
 }
 
@@ -288,7 +288,6 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         layoutDimmingView()
         layoutLayoutContainer()
-
         animateDimmingViewAppearing()
     }
 
@@ -350,9 +349,13 @@ public final class BottomSheetPresentationController: UIPresentationController {
     }
 
     internal func layoutLayoutContainer() {
+        if direction != .bottom { return }
+
         guard let layoutContainer = layoutContainer,
             let presentedVCView = presentedViewController.view
             else { return }
+
+        presentedVCView.translatesAutoresizingMaskIntoConstraints = false
 
         layoutContainer.addSubview(presentedVCView)
 
