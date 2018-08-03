@@ -8,6 +8,11 @@
 
 import UIKit
 
+// The direction which the sheet will be presented from.
+@objc public enum PresentationDirection: Int {
+    case left, right, bottom
+}
+
 /// Options for presentation. These options are passed to created
 /// `BottomSheetPresentationController` objects upon creation.
 public struct BottomSheetPresentationOptions {
@@ -25,12 +30,16 @@ public struct BottomSheetPresentationOptions {
     /// presenting view controller’s view.
     public let edgeInsets: UIEdgeInsets
 
+    // Direction view controller will be presented from
+    public let direction: PresentationDirection
+
     /// The default options that are used when calling `init()` on a
     /// `BottomSheetPresentationManager` with no options.
     public static let defaultOptions = BottomSheetPresentationOptions(
         cornerRadius: 10,
         dimmingViewAlpha: 0.5,
-        edgeInsets: UIEdgeInsets(constant: 20))
+        edgeInsets: UIEdgeInsets(constant: 20),
+        direction: .bottom)
 
     /// Creates a new `BottomSheetPresentationOptions` struct.
     ///
@@ -46,12 +55,16 @@ public struct BottomSheetPresentationOptions {
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
     ///                 each side.
+    ///   - direction: The direction the view controller will be presented from.
+    ///                Defaults to 'PresentationDirection.bottom'.
     public init(cornerRadius: CGFloat = 10,
                 dimmingViewAlpha: CGFloat = 0.5,
-                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20)) {
+                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
+                direction: PresentationDirection = .bottom) {
         self.cornerRadius = cornerRadius
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
+        self.direction = direction
     }
 }
 
@@ -84,13 +97,16 @@ extension BottomSheetPresentationOptions: Equatable {}
     ///                   the presenting view controller. This is a minimum;
     ///                   there may be additional insets depending on the safe
     ///                   area insets of the presenting view controller’s view.
+    ///     - direction: The direction the view controller will be presented from.
     public convenience init(cornerRadius: CGFloat,
                             dimmingViewAlpha: CGFloat,
-                            edgeInsets: UIEdgeInsets) {
+                            edgeInsets: UIEdgeInsets,
+                            direction: PresentationDirection) {
         let options = BottomSheetPresentationOptions(
             cornerRadius: cornerRadius,
             dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets)
+            edgeInsets: edgeInsets,
+            direction: direction)
 
         self.init(options: options)
     }
@@ -110,6 +126,24 @@ extension BottomSheetPresentationManager: UIViewControllerTransitioningDelegate 
         controller.delegate = self
 
         return controller
+    }
+
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch presentationOptions.direction {
+        case .bottom:
+            return nil
+        default:
+            return SheetPresentationAnimator(direction: presentationOptions.direction, isPresentation: true)
+        }
+    }
+
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch presentationOptions.direction {
+        case .bottom:
+            return nil
+        default:
+            return SheetPresentationAnimator(direction: presentationOptions.direction, isPresentation: false)
+        }
     }
 
 }
@@ -157,6 +191,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
+    internal var direction: PresentationDirection
+
     // MARK: - Initialization
 
     /// Creates a `BottomSheetPresentationController` for a specific
@@ -174,6 +210,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         cornerRadius = options.cornerRadius
         dimmingViewAlpha = options.dimmingViewAlpha
         edgeInsets = options.edgeInsets
+        direction = options.direction
 
         super.init(presentedViewController: presented, presenting: presenting)
     }
@@ -206,26 +243,38 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     override public var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
-        
+
         let maximumBounds = maximumPresentedBoundsInContainerView
-
         var size = preferredPresentedViewControllerSize(in: maximumBounds)
-
-        // Constrain the width and height to the safe area of the container view
-        size.height = min(size.height, maximumBounds.height)
-        size.width = min(size.width, maximumBounds.width)
-
         var frame = maximumBounds
 
-        // Position the rect vertically at the bottom of the maximum bounds
-        frame.origin.y = maximumBounds.maxY - size.height
-        frame.size.height = size.height
+        switch direction {
+        case .bottom:
+            // Constrain the width and height to the safe area of the container view
+            size.height = min(size.height, maximumBounds.height)
+            size.width = min(size.width, maximumBounds.width)
 
-        // Center the rect horizontally inside the container bounds
-        frame.origin.x = (containerView.bounds.width - size.width) / 2.0
-        frame.size.width = size.width
+            // Position the rect vertically at the bottom of the maximum bounds
+            frame.origin.y = maximumBounds.maxY - size.height
+            frame.size.height = size.height
+
+            // Center the rect horizontally inside the container bounds
+            frame.origin.x = (containerView.bounds.width - size.width) / 2.0
+            frame.size.width = size.width
+
+        case .right:
+            frame.origin.y = 0
+            frame.origin.x = containerView.bounds.width * (0.68 / 3.0)
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: containerView.frame.height)
+
+        case .left:
+            frame.origin.y = 0
+            frame.origin.x = 0
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0), height: containerView.frame.height)
+        }
 
         return frame.integral
+
     }
 
     override public func containerViewWillLayoutSubviews() {
@@ -239,7 +288,6 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         layoutDimmingView()
         layoutLayoutContainer()
-
         animateDimmingViewAppearing()
     }
 
@@ -301,9 +349,13 @@ public final class BottomSheetPresentationController: UIPresentationController {
     }
 
     internal func layoutLayoutContainer() {
+        if direction != .bottom { return }
+
         guard let layoutContainer = layoutContainer,
             let presentedVCView = presentedViewController.view
             else { return }
+
+        presentedVCView.translatesAutoresizingMaskIntoConstraints = false
 
         layoutContainer.addSubview(presentedVCView)
 
@@ -346,6 +398,58 @@ public final class BottomSheetPresentationController: UIPresentationController {
     }
 
 }
+
+public final class SheetPresentationAnimator: NSObject {
+
+    let direction: PresentationDirection
+    let isPresentation: Bool
+
+    init(direction: PresentationDirection, isPresentation: Bool) {
+        self.direction = direction
+        self.isPresentation = isPresentation
+        super.init()
+    }
+}
+
+extension SheetPresentationAnimator: UIViewControllerAnimatedTransitioning {
+
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.3
+    }
+
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let key = isPresentation ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from
+        let controller = transitionContext.viewController(forKey: key)!
+
+        if isPresentation {
+            transitionContext.containerView.addSubview(controller.view)
+        }
+
+        let presentedFrame = transitionContext.finalFrame(for: controller)
+        var dismissedFrame = presentedFrame
+
+        switch direction {
+        case .left:
+            dismissedFrame.origin.x = -presentedFrame.width
+        case .right:
+            dismissedFrame.origin.x = transitionContext.containerView.frame.size.width
+        case .bottom:
+            dismissedFrame.origin.y = transitionContext.containerView.frame.size.height
+        }
+
+        let initialFrame = isPresentation ? dismissedFrame : presentedFrame
+        let finalFrame = isPresentation ? presentedFrame : dismissedFrame
+
+        let animationDuration = transitionDuration(using: transitionContext)
+        controller.view.frame = initialFrame
+        UIView.animate(withDuration: animationDuration, animations: {
+            controller.view.frame = finalFrame
+        }) { finished in
+            transitionContext.completeTransition(finished)
+        }
+    }
+}
+
 
 extension NSLayoutConstraint {
 

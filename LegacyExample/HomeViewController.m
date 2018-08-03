@@ -23,11 +23,13 @@
 - (BottomSheetPresentationManager *)bottomSheetPresentationManager
 {
     if (_bottomSheetPresentationManager == nil) {
-        UIEdgeInsets edgeInsets = UIEdgeInsetsMake(20.0f, 16.0f, 20.0f, 16.0f);
+        UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
 
         _bottomSheetPresentationManager =
         [[BottomSheetPresentationManager alloc] initWithCornerRadius:20.0
-                                                    dimmingViewAlpha:0.25 edgeInsets:edgeInsets];
+                                                    dimmingViewAlpha:0.25
+                                                          edgeInsets:edgeInsets
+                                                           direction:PresentationDirectionRight];
     }
 
     return _bottomSheetPresentationManager;
