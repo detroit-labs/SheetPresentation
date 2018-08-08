@@ -158,4 +158,51 @@ class BottomSheetPresentationControllerTests: XCTestCase {
         XCTAssertEqual(subject.presentedView, subject.layoutContainer)
     }
 
+    func testTheDimmingViewDismissalBlockHandlerCallsABlockWithThePresentedViewController() {
+        var passedInViewController: UIViewController! = nil
+
+        let expect = expectation(description: "tap handler fired")
+
+        subject = BottomSheetPresentationController(
+            forPresented: UIViewController(),
+            presenting: UIViewController(),
+            dimmingViewTapHandler: .block({ (viewController) in
+                passedInViewController = viewController
+                expect.fulfill()
+            }))
+
+        let presentedViewController = subject.presentedViewController
+
+        // Manually fire the target/action for the gesture recognizer attached
+        // to the dimming view.
+        subject.userTappedInDimmingArea(UITapGestureRecognizer())
+
+        waitForExpectations(timeout: 2)
+
+        XCTAssertEqual(passedInViewController, presentedViewController)
+    }
+
+    var receivedViewController: UIViewController!
+
+    func receiveViewController(sender: UIViewController) {
+        receivedViewController = sender
+    }
+
+    func testTheDimmingViewDismissalTargetActionHandlerCallsTheActionWithThePresentedViewController() {
+
+        subject = BottomSheetPresentationController(
+            forPresented: UIViewController(),
+            presenting: UIViewController(),
+            dimmingViewTapHandler: .targetAction(self, #selector(receiveViewController(sender:))))
+
+        let presentedViewController = subject.presentedViewController
+
+        // Manually fire the target/action for the gesture recognizer attached
+        // to the dimming view.
+        subject.userTappedInDimmingArea(UITapGestureRecognizer())
+
+        XCTAssertEqual(receivedViewController, presentedViewController)
+
+    }
+
 }

@@ -27,7 +27,10 @@
 
         _bottomSheetPresentationManager =
         [[BottomSheetPresentationManager alloc] initWithCornerRadius:20.0
-                                                    dimmingViewAlpha:0.25 edgeInsets:edgeInsets];
+                                                    dimmingViewAlpha:0.25
+                                                          edgeInsets:edgeInsets
+                                                dimmingViewTapTarget:self
+                                                dimmingViewTapAction:@selector(dismissChild:)];
     }
 
     return _bottomSheetPresentationManager;
@@ -38,7 +41,9 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-- (IBAction)unwindToHome:(id)sender {}
+- (IBAction)unwindToHome:(id)sender {
+    NSLog(@"Dismissing child view controller from sender: %@", sender);
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -46,6 +51,12 @@
         segue.destinationViewController.transitioningDelegate = self.bottomSheetPresentationManager;
         segue.destinationViewController.modalPresentationStyle = UIModalPresentationCustom;
     }
+}
+
+- (void)dismissChild:(id)sender
+{
+    NSLog(@"Dismissing child view controller from sender: %@", sender);
+    [self dismissViewControllerAnimated:true completion:NULL];
 }
 
 @end
