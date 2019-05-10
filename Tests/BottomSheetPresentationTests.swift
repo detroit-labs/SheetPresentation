@@ -13,7 +13,7 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
 
     func testThatTheDefaultInitUsesDefaultPresentationOptions() {
         let subject = BottomSheetPresentationManager()
-        XCTAssertEqual(subject.presentationOptions, .defaultOptions)
+        XCTAssertEqual(subject.presentationOptions, .default)
     }
 
     func testThatInitWithPresentationOptionsUsesThoseOptions() {
@@ -22,7 +22,9 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
             dimmingViewAlpha: 31,
             edgeInsets: .zero)
 
-        let subject = BottomSheetPresentationManager(options: presentationOptions)
+        let subject = BottomSheetPresentationManager(
+            options: presentationOptions)
+
         XCTAssertEqual(subject.presentationOptions, presentationOptions)
     }
 
@@ -50,7 +52,8 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
             dimmingViewAlpha: 31,
             edgeInsets: .zero)
 
-        let subject = BottomSheetPresentationManager(options: presentationOptions)
+        let subject = BottomSheetPresentationManager(
+            options: presentationOptions)
 
         let presentationController = subject.presentationController(
             forPresented: presentedViewController,
@@ -79,7 +82,8 @@ class BottomSheetPresentationManagerTests: XCTestCase {
         subject = BottomSheetPresentationManager()
     }
 
-    func createPresentationControllerWithMockVCs() -> BottomSheetPresentationController {
+    func createPresentationControllerWithMockVCs(
+        ) -> BottomSheetPresentationController {
         return subject.presentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
@@ -88,7 +92,7 @@ class BottomSheetPresentationManagerTests: XCTestCase {
 
 }
 
-class BottomSheetPresentationManagerUIViewControllerTransitioningDelegateTests: BottomSheetPresentationManagerTests {
+class BSPMTransitioningDelegateTests: BottomSheetPresentationManagerTests {
 
     func testThatCreatedPresentationControllersHaveTheirDelegateSet() {
 
@@ -100,7 +104,7 @@ class BottomSheetPresentationManagerUIViewControllerTransitioningDelegateTests: 
 
 }
 
-class BottomSheetPresentationManagerUIAdaptivePresentationControllerDelegateTests: BottomSheetPresentationManagerTests {
+class BSPMAdaptivePCDelegateTests: BottomSheetPresentationManagerTests {
 
     func testThatAdaptivePresentationStyleIsOverCurrentContext() {
 
@@ -148,17 +152,29 @@ class BottomSheetPresentationControllerTests: XCTestCase {
     }
 
     func testThatUpdatingEdgeInsetsUpdatesLayout() {
+        class MockView: UIView {
+            var didNeedLayout = false
+
+            override func setNeedsLayout() {
+                super.setNeedsLayout()
+                didNeedLayout = true
+            }
+        }
+
+        let layoutContainer = MockView()
+        subject.layoutContainer = layoutContainer
+
         let edgeInsets = UIEdgeInsets(constant: 42)
         subject.edgeInsets = edgeInsets
 
-        // TODO: Test that container view gets setNeedsLayout() called
+        XCTAssertTrue(layoutContainer.didNeedLayout)
     }
 
     func testThatTheLayoutContainerIsThePresentedView() {
         XCTAssertEqual(subject.presentedView, subject.layoutContainer)
     }
 
-    func testTheDimmingViewDismissalBlockHandlerCallsABlockWithThePresentedViewController() {
+    func testCallingTheDimmingViewDismissalBlockHandler() {
         var passedInViewController: UIViewController! = nil
 
         let expect = expectation(description: "tap handler fired")
@@ -188,12 +204,13 @@ class BottomSheetPresentationControllerTests: XCTestCase {
         receivedViewController = sender
     }
 
-    func testTheDimmingViewDismissalTargetActionHandlerCallsTheActionWithThePresentedViewController() {
+    func testCallingTheDimmingViewDismissalTargetActionHandler() {
 
         subject = BottomSheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
-            dimmingViewTapHandler: .targetAction(self, #selector(receiveViewController(sender:))))
+            dimmingViewTapHandler: .targetAction(
+                self, #selector(receiveViewController(sender:))))
 
         let presentedViewController = subject.presentedViewController
 

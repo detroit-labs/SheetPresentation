@@ -12,7 +12,8 @@
 
 @interface HomeViewController ()
 
-@property (nonatomic, strong, readonly) BottomSheetPresentationManager *bottomSheetPresentationManager;
+@property (nonatomic, strong, readonly) BottomSheetPresentationManager
+    *bottomSheetPresentationManager;
 
 @end
 
@@ -26,11 +27,12 @@
         UIEdgeInsets edgeInsets = UIEdgeInsetsMake(20.0f, 16.0f, 20.0f, 16.0f);
 
         _bottomSheetPresentationManager =
-        [[BottomSheetPresentationManager alloc] initWithCornerRadius:20.0
-                                                    dimmingViewAlpha:0.25
-                                                          edgeInsets:edgeInsets
-                                                dimmingViewTapTarget:self
-                                                dimmingViewTapAction:@selector(dismissChild:)];
+        [[BottomSheetPresentationManager alloc]
+         initWithCornerRadius:20.0
+         dimmingViewAlpha:0.25
+         edgeInsets:edgeInsets
+         dimmingViewTapTarget:self
+         dimmingViewTapAction:@selector(dismissChild:)];
     }
 
     return _bottomSheetPresentationManager;
@@ -48,8 +50,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"presentChild"]) {
-        segue.destinationViewController.transitioningDelegate = self.bottomSheetPresentationManager;
-        segue.destinationViewController.modalPresentationStyle = UIModalPresentationCustom;
+        segue.destinationViewController.transitioningDelegate =
+        self.bottomSheetPresentationManager;
+
+        segue.destinationViewController.modalPresentationStyle =
+        UIModalPresentationCustom;
     }
 }
 

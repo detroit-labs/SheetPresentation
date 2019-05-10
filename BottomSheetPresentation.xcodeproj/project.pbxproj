@@ -13,9 +13,14 @@
 		1F21766820FE7E49006581CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766720FE7E49006581CD /* Assets.xcassets */; };
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
 		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
+		1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */; };
+		1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */; };
+		1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */; };
+		1F31A84222860A7B0086784C /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */; };
+		1F31A84422860A980086784C /* BottomSheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */; };
 		1FDFAB06210113CE00BBEE09 /* BottomSheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; };
 		1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */; };
-		1FDFAB152101142300BBEE09 /* BottomSheetPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentation.swift */; };
+		1FDFAB152101142300BBEE09 /* BottomSheetPresentationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */; };
 		1FDFAB162101143100BBEE09 /* BottomSheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; };
 		1FDFAB172101143100BBEE09 /* BottomSheetPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1FDFAB2321012C8800BBEE09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB2221012C8800BBEE09 /* AppDelegate.m */; };
@@ -87,7 +92,12 @@
 		1F21766A20FE7E49006581CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F21766C20FE7E49006581CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
-		1F21767420FE839D006581CD /* BottomSheetPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentation.swift; sourceTree = "<group>"; };
+		1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationOptions.swift; sourceTree = "<group>"; };
+		1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PreferredContentSize.swift"; sourceTree = "<group>"; };
+		1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsHelpers.swift; sourceTree = "<group>"; };
+		1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHelpers.swift; sourceTree = "<group>"; };
+		1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationController.swift; sourceTree = "<group>"; };
+		1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationManager.swift; sourceTree = "<group>"; };
 		1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BottomSheetPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB05210113CE00BBEE09 /* BottomSheetPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomSheetPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationTests.swift; sourceTree = "<group>"; };
@@ -187,7 +197,12 @@
 		1FDFAAF7210113AB00BBEE09 /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				1F21767420FE839D006581CD /* BottomSheetPresentation.swift */,
+				1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */,
+				1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */,
+				1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */,
+				1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */,
+				1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */,
+				1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F21766F20FE7E49006581CD /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				1FA6581722860C4F001210A3 /* SwiftLint */,
 				1F21765920FE7E47006581CD /* Sources */,
 				1F21765A20FE7E47006581CD /* Frameworks */,
 				1F21765B20FE7E47006581CD /* Resources */,
@@ -263,6 +279,7 @@
 			buildConfigurationList = 1FDFAB0E210113CE00BBEE09 /* Build configuration list for PBXNativeTarget "BottomSheetPresentation" */;
 			buildPhases = (
 				1FDFAAF8210113CE00BBEE09 /* Headers */,
+				1F31A83A228603F30086784C /* SwiftLint */,
 				1FDFAAF9210113CE00BBEE09 /* Sources */,
 				1FDFAAFA210113CE00BBEE09 /* Frameworks */,
 				1FDFAAFB210113CE00BBEE09 /* Resources */,
@@ -325,12 +342,15 @@
 				TargetAttributes = {
 					1F21765C20FE7E47006581CD = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					1FDFAAFC210113CE00BBEE09 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					1FDFAB04210113CE00BBEE09 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					1FDFAB1E21012C8800BBEE09 = {
 						CreatedOnToolsVersion = 10.0;
@@ -395,6 +415,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F31A83A228603F30086784C /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -n \"$(which swiftlint)\" ]; then\n  swiftlint\nfi\n";
+		};
+		1FA6581722860C4F001210A3 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -n \"$(which swiftlint)\" ]; then\n  swiftlint\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F21765920FE7E47006581CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -410,7 +469,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FDFAB152101142300BBEE09 /* BottomSheetPresentation.swift in Sources */,
+				1FDFAB152101142300BBEE09 /* BottomSheetPresentationOptions.swift in Sources */,
+				1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */,
+				1F31A84422860A980086784C /* BottomSheetPresentationManager.swift in Sources */,
+				1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */,
+				1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */,
+				1F31A84222860A7B0086784C /* BottomSheetPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentationExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -643,7 +707,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentationExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -671,7 +735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -700,7 +764,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -722,7 +786,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -743,7 +807,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

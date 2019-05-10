@@ -1,3 +1,9 @@
+# 0.4.0
+- Update Ruby to 2.6.3.
+- Update to Swift 5.
+- Add SwiftLint rules and correct issues.
+- Split the main interface into multiple files.
+
 # 0.3.1
 - Update Ruby to 2.6.1
 - Update copyright to 2019.

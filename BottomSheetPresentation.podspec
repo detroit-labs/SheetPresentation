@@ -24,6 +24,6 @@ A UIPresentationController and attendant clases for iOS to present a view contro
 
   s.framework  = "UIKit"
 
-  s.swift_version = "4.2"
+  s.swift_version = "5"
 
 end

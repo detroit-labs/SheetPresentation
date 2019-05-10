@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface HomeViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
