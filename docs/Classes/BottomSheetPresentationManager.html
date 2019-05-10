@@ -14,7 +14,7 @@
     <a title="BottomSheetPresentationManager Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">BottomSheetPresentation Docs</a> (71% documented)</p>
+        <p><a href="../index.html">BottomSheetPresentation Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Detroit-Labs/BottomSheetPresentation"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit%2Dlabs%2Egithub%2Eio%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -108,8 +108,10 @@ options and tap handler.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">defaultOptions</span><span class="p">,</span>
-            <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kt"><a href="../Enums/DimmingViewTapHandler.html">DimmingViewTapHandler</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">defaultHandler</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+    <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kt"><a href="../Enums/DimmingViewTapHandler.html">DimmingViewTapHandler</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span>
+    <span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -248,10 +250,12 @@ options and tap target/action.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
-                        <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
-                        <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
-                        <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+    <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -445,16 +449,19 @@ options.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks your delegate for the custom presentation controller to use for
+managing the view hierarchy when presenting a view controller.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">presentationController</span><span class="p">(</span><span class="n">forPresented</span> <span class="nv">presented</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
-                                   <span class="nv">presenting</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?,</span>
-                                   <span class="nv">source</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIPresentationController</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">presentationController</span><span class="p">(</span>
+    <span class="n">forPresented</span> <span class="nv">presented</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+    <span class="nv">presenting</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?,</span>
+    <span class="nv">source</span><span class="p">:</span> <span class="kt">UIViewController</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIPresentationController</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -478,15 +485,18 @@ options.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the delegate for the presentation style to use when the specified
+set of traits are active.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">adaptivePresentationStyle</span><span class="p">(</span><span class="k">for</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIPresentationController</span><span class="p">,</span>
-                                      <span class="nv">traitCollection</span><span class="p">:</span> <span class="kt">UITraitCollection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIModalPresentationStyle</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">adaptivePresentationStyle</span><span class="p">(</span>
+    <span class="k">for</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIPresentationController</span><span class="p">,</span>
+    <span class="nv">traitCollection</span><span class="p">:</span> <span class="kt">UITraitCollection</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIModalPresentationStyle</span></code></pre>
 
                         </div>
                       </div>
@@ -506,14 +516,16 @@ options.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the delegate for the new presentation style to use.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">adaptivePresentationStyle</span><span class="p">(</span><span class="k">for</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIPresentationController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIModalPresentationStyle</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">adaptivePresentationStyle</span><span class="p">(</span>
+    <span class="k">for</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIPresentationController</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIModalPresentationStyle</span></code></pre>
 
                         </div>
                       </div>
@@ -525,8 +537,8 @@ options.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2019-02-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2019-05-10)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

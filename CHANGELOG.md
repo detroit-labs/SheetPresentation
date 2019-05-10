@@ -3,6 +3,7 @@
 - Update to Swift 5.
 - Add SwiftLint rules and correct issues.
 - Split the main interface into multiple files.
+- Completed documentation.
 
 # 0.3.1
 - Update Ruby to 2.6.1

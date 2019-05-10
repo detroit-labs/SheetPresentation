@@ -150,6 +150,8 @@ public enum DimmingViewTapHandler {
 extension BottomSheetPresentationManager:
 UIViewControllerTransitioningDelegate {
 
+    /// Asks your delegate for the custom presentation controller to use for
+    /// managing the view hierarchy when presenting a view controller.
     public func presentationController(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
@@ -171,6 +173,8 @@ UIViewControllerTransitioningDelegate {
 extension BottomSheetPresentationManager:
 UIAdaptivePresentationControllerDelegate {
 
+    /// Asks the delegate for the presentation style to use when the specified
+    /// set of traits are active.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController,
         traitCollection: UITraitCollection
@@ -178,6 +182,7 @@ UIAdaptivePresentationControllerDelegate {
         return .overCurrentContext
     }
 
+    /// Asks the delegate for the new presentation style to use.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController
         ) -> UIModalPresentationStyle {

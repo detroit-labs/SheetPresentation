@@ -92,8 +92,11 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Public UIPresentationController Implementation
 
+    /// The view to be animated by the animator objects during a transition.
     override public var presentedView: UIView? { return layoutContainer }
 
+    /// The frame rectangle to assign to the presented view at the end of the
+    /// animations.
     override public var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
@@ -118,12 +121,16 @@ public final class BottomSheetPresentationController: UIPresentationController {
         return frame.integral
     }
 
+    /// Notifies the presentation controller that layout is about to begin on
+    /// the views of the container view.
     override public func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else { return }
         dimmingView?.frame = containerView.bounds
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
 
+    /// Notifies the presentation controller that the presentation animations
+    /// are about to start.
     override public func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
 
@@ -133,11 +140,15 @@ public final class BottomSheetPresentationController: UIPresentationController {
         animateDimmingViewAppearing()
     }
 
+    /// Notifies the presentation controller that the dismissal animations are
+    /// about to start.
     override public func dismissalTransitionWillBegin() {
         super.dismissalTransitionWillBegin()
         animateDimmingViewDisappearing()
     }
 
+    /// A Boolean value indicating whether the presentation covers the entire
+    /// screen.
     public override var shouldPresentInFullscreen: Bool {
         return false
     }
