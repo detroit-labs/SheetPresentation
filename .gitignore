@@ -1,3 +1,4 @@
+docs/**/undocumented.json
 build/
 xcuserdata/
 fastlane/report.xml
