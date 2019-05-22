@@ -164,7 +164,11 @@ public final class BottomSheetPresentationController: UIPresentationController {
             insets.formUnion(with: containerView.safeAreaInsets)
         }
 
+        #if swift(>=4.2)
         return containerView.bounds.inset(by: insets)
+        #else
+        return UIEdgeInsetsInsetRect(containerView.bounds, insets)
+        #endif
     }
 
     internal func preferredPresentedViewControllerSize(

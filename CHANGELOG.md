@@ -1,3 +1,6 @@
+# 0.4.1
+- Update CocoaPods syntax to include multiple Swift version support
+
 # 0.4.0
 - Update Ruby to 2.6.3.
 - Update to Swift 5.
