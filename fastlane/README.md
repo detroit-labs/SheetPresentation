@@ -30,6 +30,11 @@ Updates the project version number in the main project and its examples. Specify
 fastlane documentation
 ```
 Generates documentation.
+### prepare_release
+```
+fastlane prepare_release
+```
+Prepares a release: bumps the version numbers and generates documentation.
 
 ----
 

@@ -1,3 +1,7 @@
+# 0.5.1
+- Fixed Objective-C integration.
+- Fixed margin layout.
+
 # 0.5.0
 - Add the ability to ignore the safe area insets of the presnting view controller (requires iOS 11).
 - Add the ability to skip adding the dimming view.

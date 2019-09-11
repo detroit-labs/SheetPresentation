@@ -54,6 +54,30 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     internal var ignoredEdgesForMargins: UIView.Edge
 
+    internal var marginAdjustedEdgeInsets: UIEdgeInsets {
+        var insets = edgeInsets
+
+        if let containerView = containerView {
+            if !ignoredEdgesForMargins.contains(.top) {
+                insets.top = max(insets.top, containerView.layoutMargins.top)
+            }
+            if !ignoredEdgesForMargins.contains(.left) {
+                insets.left = max(insets.left,
+                                  containerView.layoutMargins.left)
+            }
+            if !ignoredEdgesForMargins.contains(.right) {
+                insets.right = max(insets.right,
+                                   containerView.layoutMargins.right)
+            }
+            if !ignoredEdgesForMargins.contains(.bottom) {
+                insets.bottom = max(insets.bottom,
+                                    containerView.layoutMargins.bottom)
+            }
+        }
+
+        return insets
+    }
+
     // MARK: - Interaction Options
 
     internal var dimmingViewTapHandler: DimmingViewTapHandler
@@ -133,8 +157,6 @@ public final class BottomSheetPresentationController: UIPresentationController {
     /// The frame rectangle to assign to the presented view at the end of the
     /// animations.
     override public var frameOfPresentedViewInContainerView: CGRect {
-        guard let containerView = containerView else { return .zero }
-
         let maximumBounds = maximumPresentedBoundsInContainerView
 
         var size = preferredPresentedViewControllerSize(in: maximumBounds)
@@ -149,8 +171,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
         frame.origin.y = maximumBounds.maxY - size.height
         frame.size.height = size.height
 
-        // Center the rect horizontally inside the container bounds
-        frame.origin.x = (containerView.bounds.width - size.width) / 2.0
+        // Center the rect horizontally inside the maximum bounds
+        frame.origin.x = maximumBounds.minX +
+            ((maximumBounds.width - size.width) / 2.0)
+
         frame.size.width = size.width
 
         return frame.integral
@@ -195,25 +219,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     internal var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
-        var insets = edgeInsets
-
-        if #available(iOS 11.0, *) {
-            if !ignoredEdgesForMargins.contains(.top) {
-                insets.top = max(insets.top, containerView.safeAreaInsets.top)
-            }
-            if !ignoredEdgesForMargins.contains(.left) {
-                insets.left = max(insets.left,
-                                  containerView.safeAreaInsets.left)
-            }
-            if !ignoredEdgesForMargins.contains(.right) {
-                insets.right = max(insets.right,
-                                   containerView.safeAreaInsets.right)
-            }
-            if !ignoredEdgesForMargins.contains(.bottom) {
-                insets.bottom = max(insets.bottom,
-                                    containerView.safeAreaInsets.bottom)
-            }
-        }
+        let insets = marginAdjustedEdgeInsets
 
         #if swift(>=4.2)
         return containerView.bounds.inset(by: insets)

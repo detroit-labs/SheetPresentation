@@ -25,3 +25,10 @@ lane :documentation do
   jazzy(config: "./.jazzy.yaml")
   sh("cp ../docs/badge.svg ../docs/docs/badge.svg")
 end
+
+desc "Prepares a release: bumps the version numbers and generates documentation."
+lane :prepare_release do |options|
+  increment_all_version_numbers(options)
+  increment_all_build_numbers
+  documentation
+end

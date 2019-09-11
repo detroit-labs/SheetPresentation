@@ -45,6 +45,9 @@ extension UIView {
         /// The bottom edge and both side edges of a view.
         public static let bottomEdges: Edge = [.left, .right, .bottom]
 
+        /// No edges.
+        public static let none: Edge = []
+
         // MARK: - NSObject Lifecycle
 
         /// Creates a new edge.
