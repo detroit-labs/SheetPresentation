@@ -23,6 +23,8 @@ class ChildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        contentView?.backgroundColor = .blue
+
         view.translatesAutoresizingMaskIntoConstraints = false
         scrollView?.translatesAutoresizingMaskIntoConstraints = false
         contentView?.translatesAutoresizingMaskIntoConstraints = false

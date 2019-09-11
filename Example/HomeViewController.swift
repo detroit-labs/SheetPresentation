@@ -11,7 +11,15 @@ import BottomSheetPresentation
 
 class HomeViewController: UIViewController {
 
-    lazy var bottomSheetPresentationManager = BottomSheetPresentationManager()
+    lazy var bottomSheetPresentationManager = BottomSheetPresentationManager(
+        options: BottomSheetPresentationOptions(
+            cornerRadius: 8,
+            maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
+            dimmingViewAlpha: nil,
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: .bottom
+        )
+    )
 
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}
 

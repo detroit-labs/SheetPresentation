@@ -13,6 +13,7 @@
 		1F21766820FE7E49006581CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766720FE7E49006581CD /* Assets.xcassets */; };
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
 		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
+		1F2F54212327FC790093D9AE /* ViewEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F54202327FC790093D9AE /* ViewEdge.swift */; };
 		1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */; };
 		1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */; };
 		1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */; };
@@ -32,6 +33,9 @@
 		1FDFAB3521012D5700BBEE09 /* BottomSheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; };
 		1FDFAB3621012D5700BBEE09 /* BottomSheetPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1FDFAB3C2101310800BBEE09 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB3B2101310800BBEE09 /* ChildViewController.m */; };
+		1FE9B739232968FF00EE050E /* ViewEdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE9B738232968FF00EE050E /* ViewEdgeTests.swift */; };
+		1FE9B73B23296C1700EE050E /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE9B73A23296C1700EE050E /* PassthroughView.swift */; };
+		1FE9B73D2329734300EE050E /* CACornerMaskHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE9B73C2329734300EE050E /* CACornerMaskHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,7 @@
 		1F21766C20FE7E49006581CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationOptions.swift; sourceTree = "<group>"; };
+		1F2F54202327FC790093D9AE /* ViewEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEdge.swift; sourceTree = "<group>"; };
 		1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PreferredContentSize.swift"; sourceTree = "<group>"; };
 		1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsHelpers.swift; sourceTree = "<group>"; };
 		1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHelpers.swift; sourceTree = "<group>"; };
@@ -113,6 +118,9 @@
 		1FDFAB3021012C8900BBEE09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1FDFAB3A2101310800BBEE09 /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
 		1FDFAB3B2101310800BBEE09 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
+		1FE9B738232968FF00EE050E /* ViewEdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEdgeTests.swift; sourceTree = "<group>"; };
+		1FE9B73A23296C1700EE050E /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
+		1FE9B73C2329734300EE050E /* CACornerMaskHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CACornerMaskHelpers.swift; sourceTree = "<group>"; };
 		1FEF8EE82102568800F8C36C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1FEF8EE92102568800F8C36C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1FEF8EEA2102568800F8C36C /* BottomSheetPresentation.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = BottomSheetPresentation.podspec; sourceTree = "<group>"; };
@@ -200,9 +208,12 @@
 				1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */,
 				1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */,
 				1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */,
+				1FE9B73C2329734300EE050E /* CACornerMaskHelpers.swift */,
 				1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */,
+				1FE9B73A23296C1700EE050E /* PassthroughView.swift */,
 				1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */,
 				1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */,
+				1F2F54202327FC790093D9AE /* ViewEdge.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -212,6 +223,7 @@
 			children = (
 				1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */,
 				1FDFAB0C210113CE00BBEE09 /* Info.plist */,
+				1FE9B738232968FF00EE050E /* ViewEdgeTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -469,12 +481,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FE9B73D2329734300EE050E /* CACornerMaskHelpers.swift in Sources */,
 				1FDFAB152101142300BBEE09 /* BottomSheetPresentationOptions.swift in Sources */,
 				1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */,
 				1F31A84422860A980086784C /* BottomSheetPresentationManager.swift in Sources */,
+				1FE9B73B23296C1700EE050E /* PassthroughView.swift in Sources */,
 				1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */,
 				1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */,
 				1F31A84222860A7B0086784C /* BottomSheetPresentationController.swift in Sources */,
+				1F2F54212327FC790093D9AE /* ViewEdge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */,
+				1FE9B739232968FF00EE050E /* ViewEdgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +750,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -763,6 +780,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.BottomSheetPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

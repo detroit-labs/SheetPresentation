@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UIEdgeInsets Extension Reference</title>
+    <title>UIView Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/UIEdgeInsets" class="dashAnchor"></a>
-    <a title="UIEdgeInsets Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/UIView" class="dashAnchor"></a>
+    <a title="UIView Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">BottomSheetPresentation Docs</a> (100% documented)</p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">BottomSheetPresentation Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UIEdgeInsets Extension Reference
+        UIView Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -81,10 +81,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UIEdgeInsets</h1>
+            <h1>UIView</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">UIEdgeInsets</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">UIView</span></code></pre>
 
                 </div>
               </div>
@@ -96,9 +96,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So12UIEdgeInsetsV23BottomSheetPresentationE8constantAB12CoreGraphics7CGFloatV_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(constant:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So12UIEdgeInsetsV23BottomSheetPresentationE8constantAB12CoreGraphics7CGFloatV_tcfc">init(constant:)</a>
+                    <a name="/s:So6UIViewC23BottomSheetPresentationE4EdgeC"></a>
+                    <a name="//apple_ref/swift/Class/Edge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So6UIViewC23BottomSheetPresentationE4EdgeC">Edge</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -106,83 +106,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes a <code>UIEdgeInsets</code> with a constant value for <code>top</code>, <code>left</code>,
-<code>bottom</code>, and <code>right</code>.</p>
+                        <p>A side of a view. Can include top, left, right, or bottom in any
+combination.</p>
 
+                        <a href="../Extensions/UIView/Edge.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constant</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">@objc(BSPViewEdge)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Edge</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">OptionSet</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>constant</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The constant value to use for all four dimensions.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So12UIEdgeInsetsV23BottomSheetPresentationE9formUnion4withyAB_tF"></a>
-                    <a name="//apple_ref/swift/Method/formUnion(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So12UIEdgeInsetsV23BottomSheetPresentationE9formUnion4withyAB_tF">formUnion(with:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Forms a union with the given edge insets. Each value in the insets will
-be the larger of the two values.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">formUnion</span><span class="p">(</span><span class="n">with</span> <span class="nv">otherInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>otherInsets</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The other insets with which to form a union.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
