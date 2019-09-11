@@ -52,10 +52,19 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/CACornerMask.html">CACornerMask</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSLayoutConstraint.html">NSLayoutConstraint</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/UIEdgeInsets.html">UIEdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView/Edge.html">– Edge</a>
               </li>
             </ul>
           </li>
@@ -116,9 +125,38 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation0abC7OptionsV16dimmingViewAlpha12CoreGraphics7CGFloatVvp"></a>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV13maskedCornersSo12CACornerMaskVvp"></a>
+                    <a name="//apple_ref/swift/Property/maskedCorners" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV13maskedCornersSo12CACornerMaskVvp">maskedCorners</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The corners to mask using the corner radius. Defaults to all four.
+Requires iOS 11 to function (on iOS 10 and below, all four corners will
+be rounded using the corner radius).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV16dimmingViewAlpha12CoreGraphics7CGFloatVSgvp"></a>
                     <a name="//apple_ref/swift/Property/dimmingViewAlpha" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV16dimmingViewAlpha12CoreGraphics7CGFloatVvp">dimmingViewAlpha</a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV16dimmingViewAlpha12CoreGraphics7CGFloatVSgvp">dimmingViewAlpha</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -127,14 +165,15 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>alpha</code> value for the dimming view used behind the presented
-view controller. The color is black.</p>
+view controller. The color is black. Use <code>nil</code> to avoid adding a dimming
+view behind the presented view controller.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -156,8 +195,9 @@ view controller. The color is black.</p>
                       <div class="abstract">
                         <p>The amount to inset the presented view controller from the
 presenting view controller. This is a minimum; there may be
-additional insets depending on the safe area insets of the
-presenting view controller’s view.</p>
+additional insets depending on the safe area insets and margins of the
+presenting view controller’s view. Use <code><a href="../Structs/BottomSheetPresentationOptions.html#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp">ignoredEdgesForMargins</a></code> to
+customize the margin behavior for each edge.</p>
 
                       </div>
                       <div class="declaration">
@@ -165,6 +205,35 @@ presenting view controller’s view.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp"></a>
+                    <a name="//apple_ref/swift/Property/ignoredEdgesForMargins" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp">ignoredEdgesForMargins</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Edges of the presenting view controller’s view for which its margins
+should be ignored for layout purposes. On iOS 11 and above, this
+includes the safe area.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">Edge</span></code></pre>
 
                         </div>
                       </div>
@@ -238,9 +307,9 @@ presenting view controller’s view.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius16dimmingViewAlpha10edgeInsetsAC12CoreGraphics7CGFloatV_AISo06UIEdgeK0Vtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(cornerRadius:dimmingViewAlpha:edgeInsets:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius16dimmingViewAlpha10edgeInsetsAC12CoreGraphics7CGFloatV_AISo06UIEdgeK0Vtcfc">init(cornerRadius:dimmingViewAlpha:edgeInsets:)</a>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo6UIViewCAAE4EdgeCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo6UIViewCAAE4EdgeCtcfc">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -256,8 +325,10 @@ presenting view controller’s view.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-            <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-            <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">))</span></code></pre>
+            <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span> <span class="o">=</span> <span class="o">.</span><span class="n">all</span><span class="p">,</span>
+            <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">Edge</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
 
                         </div>
                       </div>
@@ -281,6 +352,18 @@ presenting view controller’s view.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>maskedCorners</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The corners to mask using the <code><a href="../Structs/BottomSheetPresentationOptions.html#/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius12CoreGraphics7CGFloatVvp">cornerRadius</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>dimmingViewAlpha</em>
                                 </code>
                               </td>
@@ -288,7 +371,8 @@ presenting view controller’s view.</p>
                                 <div>
                                   <p>The <code>alpha</code> value for the dimming view used behind
               the presented view controller. The color is black.
-              Defaults to <code>0.5</code>.</p>
+              Defaults to <code>0.5</code>. Use <code>nil</code> to avoid using a
+              dimming view.</p>
                                 </div>
                               </td>
                             </tr>
@@ -309,6 +393,21 @@ presenting view controller’s view.</p>
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                    view for which its margins should be ignored
+                    for layout purposes. On iOS 11 and above,
+                    this includes the safe area.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -320,8 +419,8 @@ presenting view controller’s view.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2019-05-10)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2019-09-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

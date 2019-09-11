@@ -23,11 +23,25 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    internal var dimmingViewAlpha: CGFloat {
+    internal var maskedCorners: CACornerMask {
         didSet {
-            if let dimmingView = dimmingView {
+            if let layoutContainer = layoutContainer {
+                if #available(iOS 11.0, *) {
+                    layoutContainer.layer.maskedCorners = maskedCorners
+                }
+            }
+        }
+    }
+
+    internal var dimmingViewAlpha: CGFloat? {
+        didSet {
+            if let alpha = dimmingViewAlpha, let dimmingView = dimmingView {
                 dimmingView.backgroundColor = dimmingView.backgroundColor?
-                    .withAlphaComponent(dimmingViewAlpha)
+                    .withAlphaComponent(alpha)
+            }
+            else if dimmingViewAlpha == nil {
+                dimmingView?.removeFromSuperview()
+                dimmingView = nil
             }
         }
     }
@@ -37,6 +51,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
             (containerView ?? presentedView)?.setNeedsLayout()
         }
     }
+
+    internal var ignoredEdgesForMargins: UIView.Edge
 
     // MARK: - Interaction Options
 
@@ -60,8 +76,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
         cornerRadius = options.cornerRadius
+        maskedCorners = options.maskedCorners
         dimmingViewAlpha = options.dimmingViewAlpha
         edgeInsets = options.edgeInsets
+        ignoredEdgesForMargins = options.ignoredEdgesForMargins
         self.dimmingViewTapHandler = dimmingViewTapHandler
 
         super.init(presentedViewController: presented, presenting: presenting)
@@ -70,10 +88,12 @@ public final class BottomSheetPresentationController: UIPresentationController {
     // MARK: - Private Subviews
 
     internal lazy var dimmingView: UIView? = {
+        guard let alpha = dimmingViewAlpha else { return nil }
+
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.black
-            .withAlphaComponent(dimmingViewAlpha)
+            .withAlphaComponent(alpha)
 
         view.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
@@ -82,10 +102,25 @@ public final class BottomSheetPresentationController: UIPresentationController {
         return view
     }()
 
+    internal lazy var passthroughView: PassthroughView? = {
+        guard dimmingViewAlpha == nil else { return nil }
+
+        let view = PassthroughView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+
+        view.passthroughViews = [presentingViewController.view]
+
+        return view
+    }()
+
     internal lazy var layoutContainer: UIView? = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.layer.cornerRadius = cornerRadius
+        if #available(iOS 11.0, *) {
+            view.layer.maskedCorners = maskedCorners
+        }
         view.clipsToBounds = true
         return view
     }()
@@ -126,6 +161,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     override public func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else { return }
         dimmingView?.frame = containerView.bounds
+        passthroughView?.frame = containerView.bounds
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
 
@@ -135,7 +171,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
         super.presentationTransitionWillBegin()
 
         layoutDimmingView()
-        layoutLayoutContainer()
+        layoutPassthroughView()
+        layoutPresentedViewController()
 
         animateDimmingViewAppearing()
     }
@@ -161,7 +198,21 @@ public final class BottomSheetPresentationController: UIPresentationController {
         var insets = edgeInsets
 
         if #available(iOS 11.0, *) {
-            insets.formUnion(with: containerView.safeAreaInsets)
+            if !ignoredEdgesForMargins.contains(.top) {
+                insets.top = max(insets.top, containerView.safeAreaInsets.top)
+            }
+            if !ignoredEdgesForMargins.contains(.left) {
+                insets.left = max(insets.left,
+                                  containerView.safeAreaInsets.left)
+            }
+            if !ignoredEdgesForMargins.contains(.right) {
+                insets.right = max(insets.right,
+                                   containerView.safeAreaInsets.right)
+            }
+            if !ignoredEdgesForMargins.contains(.bottom) {
+                insets.bottom = max(insets.bottom,
+                                    containerView.safeAreaInsets.bottom)
+            }
         }
 
         #if swift(>=4.2)
@@ -191,7 +242,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
     }
 
     internal func layoutDimmingView() {
-        guard let containerView = containerView,
+        guard
+            let containerView = containerView,
             let dimmingView = dimmingView
             else { return }
 
@@ -209,7 +261,27 @@ public final class BottomSheetPresentationController: UIPresentationController {
             ])
     }
 
-    internal func layoutLayoutContainer() {
+    internal func layoutPassthroughView() {
+        guard
+            let containerView = containerView,
+            let passthroughView = passthroughView
+            else { return }
+
+        containerView.insertSubview(passthroughView, at: 0)
+
+        let views = ["passthroughView": passthroughView]
+
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[passthroughView]|",
+                views: views),
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|[passthroughView]|",
+                views: views)
+            ])
+    }
+
+    internal func layoutPresentedViewController() {
         guard let layoutContainer = layoutContainer,
             let presentedVCView = presentedViewController.view
             else { return }

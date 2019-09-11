@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DimmingViewTapHandler Enumeration Reference</title>
+    <title>CACornerMask Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/DimmingViewTapHandler" class="dashAnchor"></a>
-    <a title="DimmingViewTapHandler Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Extension/CACornerMask" class="dashAnchor"></a>
+    <a title="CACornerMask Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">BottomSheetPresentation Docs</a> (100% documented)</p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">BottomSheetPresentation Reference</a>
         <img id="carat" src="../img/carat.png" />
-        DimmingViewTapHandler Enumeration Reference
+        CACornerMask Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -81,16 +81,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>DimmingViewTapHandler</h1>
+            <h1>CACornerMask</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DimmingViewTapHandler</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CACornerMask</span></code></pre>
 
                 </div>
               </div>
-            <p>A handler that the presentation controller calls when the user taps on the
-dimming view.</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -98,9 +96,9 @@ dimming view.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation21DimmingViewTapHandlerO5blockyACySo16UIViewControllerCccACmF"></a>
-                    <a name="//apple_ref/swift/Element/block(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation21DimmingViewTapHandlerO5blockyACySo16UIViewControllerCccACmF">block(_:)</a>
+                    <a name="/s:So12CACornerMaskV23BottomSheetPresentationE3allABvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/all" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So12CACornerMaskV23BottomSheetPresentationE3allABvpZ">all</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -108,15 +106,14 @@ dimming view.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A block to call when the view is tapped. The parameter passed in to it
-will be the presented view controller.</p>
+                        <p>A mask of all four corners.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">block</span><span class="p">((</span><span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">all</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
 
                         </div>
                       </div>
@@ -126,9 +123,9 @@ will be the presented view controller.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation21DimmingViewTapHandlerO12targetActionyACSo8NSObject_p_10ObjectiveC8SelectorVtcACmF"></a>
-                    <a name="//apple_ref/swift/Element/targetAction(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation21DimmingViewTapHandlerO12targetActionyACSo8NSObject_p_10ObjectiveC8SelectorVtcACmF">targetAction(_:_:)</a>
+                    <a name="/s:So12CACornerMaskV23BottomSheetPresentationE3topABvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/top" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So12CACornerMaskV23BottomSheetPresentationE3topABvpZ">top</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -136,16 +133,14 @@ will be the presented view controller.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A target/action pair to call when the view is tapped. The action should
-allow for a <code>sender:</code> parameter, which will be the presented view
-controller.</p>
+                        <p>A mask of the top two corners.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">targetAction</span><span class="p">(</span><span class="kt">NSObjectProtocol</span><span class="p">,</span> <span class="kt">Selector</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">top</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
 
                         </div>
                       </div>
@@ -155,9 +150,9 @@ controller.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation21DimmingViewTapHandlerO07defaultG0ACvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/defaultHandler" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation21DimmingViewTapHandlerO07defaultG0ACvpZ">defaultHandler</a>
+                    <a name="/s:So12CACornerMaskV23BottomSheetPresentationE6bottomABvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/bottom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So12CACornerMaskV23BottomSheetPresentationE6bottomABvpZ">bottom</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -165,23 +160,14 @@ controller.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The default handler, which will dismiss the presented view controller
-upon tapping.</p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <ul>
-<li><code><a href="../Enums/DimmingViewTapHandler.html#/s:23BottomSheetPresentation21DimmingViewTapHandlerO7defaultACvpZ">DimmingViewTapHandler.default</a></code></li>
-</ul>
-
-</div>
+                        <p>A mask of the bottom two corners.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, renamed: "default")</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultHandler</span><span class="p">:</span> <span class="kt">DimmingViewTapHandler</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">bottom</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
 
                         </div>
                       </div>
@@ -191,9 +177,9 @@ upon tapping.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation21DimmingViewTapHandlerO7defaultACvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/default" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation21DimmingViewTapHandlerO7defaultACvpZ">default</a>
+                    <a name="/s:So12CACornerMaskV23BottomSheetPresentationE4leftABvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/left" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So12CACornerMaskV23BottomSheetPresentationE4leftABvpZ">left</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,15 +187,41 @@ upon tapping.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The default handler, which will dismiss the presented view controller
-upon tapping.</p>
+                        <p>A mask of the left two corners.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">let</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span><span class="p">:</span> <span class="kt">DimmingViewTapHandler</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">left</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So12CACornerMaskV23BottomSheetPresentationE5rightABvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/right" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So12CACornerMaskV23BottomSheetPresentationE5rightABvpZ">right</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A mask of the right two corners.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">right</span><span class="p">:</span> <span class="kt">CACornerMask</span></code></pre>
 
                         </div>
                       </div>
