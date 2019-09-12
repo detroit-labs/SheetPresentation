@@ -1,3 +1,6 @@
+# 0.5.2
+- Fixed Objective-C integration again.
+
 # 0.5.1
 - Fixed Objective-C integration.
 - Fixed margin layout.
