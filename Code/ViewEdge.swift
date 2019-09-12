@@ -56,7 +56,7 @@ extension UIView {
         }
 
         /// The hash value of the edge.
-        @nonobjc override public var hash: Int {
+        override public var hash: Int {
             return rawValue.hashValue
         }
 
@@ -64,8 +64,8 @@ extension UIView {
         ///
         /// - Parameter object: The other object
         /// - Returns: `true` if the other object is an `Edge` with the same
-        ///            `rawValue`.
-        @nonobjc public override func isEqual(_ object: Any?) -> Bool {
+        ///            `rawValue
+        public override func isEqual(_ object: Any?) -> Bool {
             guard let object = object as? Edge else { return false }
 
             return rawValue == object.rawValue

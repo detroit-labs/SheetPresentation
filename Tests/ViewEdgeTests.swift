@@ -24,6 +24,7 @@ class ViewEdgeTests: XCTestCase {
         XCTAssertTrue(UIView.Edge.all.contains(.right))
         XCTAssertTrue(UIView.Edge.all.contains(.bottom))
 
+        XCTAssertFalse(UIView.Edge.bottomEdges.contains(.top))
         XCTAssertTrue(UIView.Edge.bottomEdges.contains(.left))
         XCTAssertTrue(UIView.Edge.bottomEdges.contains(.right))
         XCTAssertTrue(UIView.Edge.bottomEdges.contains(.bottom))

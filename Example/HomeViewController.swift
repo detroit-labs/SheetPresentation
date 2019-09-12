@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
             maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
             dimmingViewAlpha: nil,
             edgeInsets: .zero,
-            ignoredEdgesForMargins: .bottom
+            ignoredEdgesForMargins: .bottomEdges
         )
     )
 

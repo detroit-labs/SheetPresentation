@@ -31,8 +31,10 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
     func testThatInitWithPresentationValuesUsesThoseValues() {
         let expectedPresentationOptions = BottomSheetPresentationOptions(
             cornerRadius: 42,
+            maskedCorners: .all,
             dimmingViewAlpha: 31,
-            edgeInsets: .zero)
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: .none)
 
         let subject = BottomSheetPresentationManager(cornerRadius: 42,
                                                      dimmingViewAlpha: 31,
