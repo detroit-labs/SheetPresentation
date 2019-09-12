@@ -12,22 +12,22 @@ import XCTest
 class ViewEdgeTests: XCTestCase {
 
     func testViewEdgesContainThemselves() {
-        XCTAssertTrue(UIView.Edge.top.contains(.top))
-        XCTAssertTrue(UIView.Edge.left.contains(.left))
-        XCTAssertTrue(UIView.Edge.right.contains(.right))
-        XCTAssertTrue(UIView.Edge.bottom.contains(.bottom))
+        XCTAssertTrue(ViewEdge.top.contains(.top))
+        XCTAssertTrue(ViewEdge.left.contains(.left))
+        XCTAssertTrue(ViewEdge.right.contains(.right))
+        XCTAssertTrue(ViewEdge.bottom.contains(.bottom))
     }
 
     func testStaticMembersContainIndividualItems() {
-        XCTAssertTrue(UIView.Edge.all.contains(.top))
-        XCTAssertTrue(UIView.Edge.all.contains(.left))
-        XCTAssertTrue(UIView.Edge.all.contains(.right))
-        XCTAssertTrue(UIView.Edge.all.contains(.bottom))
+        XCTAssertTrue(ViewEdge.all.contains(.top))
+        XCTAssertTrue(ViewEdge.all.contains(.left))
+        XCTAssertTrue(ViewEdge.all.contains(.right))
+        XCTAssertTrue(ViewEdge.all.contains(.bottom))
 
-        XCTAssertFalse(UIView.Edge.bottomEdges.contains(.top))
-        XCTAssertTrue(UIView.Edge.bottomEdges.contains(.left))
-        XCTAssertTrue(UIView.Edge.bottomEdges.contains(.right))
-        XCTAssertTrue(UIView.Edge.bottomEdges.contains(.bottom))
+        XCTAssertFalse(ViewEdge.bottomEdges.contains(.top))
+        XCTAssertTrue(ViewEdge.bottomEdges.contains(.left))
+        XCTAssertTrue(ViewEdge.bottomEdges.contains(.right))
+        XCTAssertTrue(ViewEdge.bottomEdges.contains(.bottom))
     }
 
 }

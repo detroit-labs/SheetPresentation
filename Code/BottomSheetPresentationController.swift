@@ -52,7 +52,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }
     }
 
-    internal var ignoredEdgesForMargins: UIView.Edge
+    internal var ignoredEdgesForMargins: ViewEdge
 
     internal var marginAdjustedEdgeInsets: UIEdgeInsets {
         var insets = edgeInsets

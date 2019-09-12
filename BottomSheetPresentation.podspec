@@ -20,7 +20,7 @@ A UIPresentationController and attendant clases for iOS to present a view contro
 
   s.source       = { :git => "https://github.com/Detroit-Labs/BottomSheetPresentation.git", :tag => "#{s.version}" }
 
-  s.source_files  = "Code/*.swift"
+  s.source_files  = "Code/*.{swift,h,m}"
 
   s.framework  = "UIKit"
 

@@ -37,7 +37,7 @@
          maskedCorners:maskedCorners
          dimmingViewAlpha:0.25
          edgeInsets:edgeInsets
-         ignoredEdgesForMargins: BSPViewEdge.none
+         ignoredEdgesForMargins: BSPViewEdgeNone
          dimmingViewTapTarget:self
          dimmingViewTapAction:@selector(dismissChild:)];
     }

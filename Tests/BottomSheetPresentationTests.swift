@@ -34,7 +34,7 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
             maskedCorners: .all,
             dimmingViewAlpha: 31,
             edgeInsets: .zero,
-            ignoredEdgesForMargins: .none)
+            ignoredEdgesForMargins: [])
 
         let subject = BottomSheetPresentationManager(cornerRadius: 42,
                                                      dimmingViewAlpha: 31,

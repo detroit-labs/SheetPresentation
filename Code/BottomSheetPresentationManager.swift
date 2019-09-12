@@ -81,7 +81,7 @@ public enum DimmingViewTapHandler {
                             maskedCorners: CACornerMask = .all,
                             dimmingViewAlpha: CGFloat?,
                             edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: UIView.Edge = []) {
+                            ignoredEdgesForMargins: ViewEdge = []) {
         let options = BottomSheetPresentationOptions(
             cornerRadius: cornerRadius,
             maskedCorners: maskedCorners,
@@ -117,7 +117,7 @@ public enum DimmingViewTapHandler {
         maskedCorners: CACornerMask,
         dimmingViewAlpha: CGFloat,
         edgeInsets: UIEdgeInsets,
-        ignoredEdgesForMargins: UIView.Edge = [],
+        ignoredEdgesForMargins: ViewEdge = [],
         dimmingViewTapHandler: @escaping (UIViewController) -> Void
         ) {
         let options = BottomSheetPresentationOptions(
@@ -156,7 +156,7 @@ public enum DimmingViewTapHandler {
                             maskedCorners: CACornerMask,
                             dimmingViewAlpha: CGFloat,
                             edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: UIView.Edge,
+                            ignoredEdgesForMargins: ViewEdge,
                             dimmingViewTapTarget target: NSObjectProtocol,
                             dimmingViewTapAction action: Selector) {
         let options = BottomSheetPresentationOptions(

@@ -35,7 +35,7 @@ public struct BottomSheetPresentationOptions {
     /// Edges of the presenting view controller’s view for which its margins
     /// should be ignored for layout purposes. On iOS 11 and above, this
     /// includes the safe area.
-    public let ignoredEdgesForMargins: UIView.Edge
+    public let ignoredEdgesForMargins: ViewEdge
 
     /// The default options that are used when calling `init()` on a
     /// `BottomSheetPresentationManager` with no options.
@@ -78,7 +78,7 @@ public struct BottomSheetPresentationOptions {
                 maskedCorners: CACornerMask = .all,
                 dimmingViewAlpha: CGFloat? = 0.5,
                 edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: UIView.Edge = []) {
+                ignoredEdgesForMargins: ViewEdge = []) {
         self.cornerRadius = cornerRadius
         self.maskedCorners = maskedCorners
         self.dimmingViewAlpha = dimmingViewAlpha

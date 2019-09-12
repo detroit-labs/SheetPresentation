@@ -13,12 +13,13 @@
 		1F21766820FE7E49006581CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766720FE7E49006581CD /* Assets.xcassets */; };
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
 		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
-		1F2F54212327FC790093D9AE /* ViewEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F54202327FC790093D9AE /* ViewEdge.swift */; };
 		1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */; };
 		1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */; };
 		1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */; };
 		1F31A84222860A7B0086784C /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */; };
 		1F31A84422860A980086784C /* BottomSheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */; };
+		1F6B1A6F2329DB0000A30FBC /* BSPViewEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6B1A6D2329DB0000A30FBC /* BSPViewEdge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F6B1A872329DD5400A30FBC /* BottomSheetPresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6B1A712329DC3800A30FBC /* BottomSheetPresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FDFAB06210113CE00BBEE09 /* BottomSheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; };
 		1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */; };
 		1FDFAB152101142300BBEE09 /* BottomSheetPresentationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */; };
@@ -97,12 +98,13 @@
 		1F21766C20FE7E49006581CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationOptions.swift; sourceTree = "<group>"; };
-		1F2F54202327FC790093D9AE /* ViewEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEdge.swift; sourceTree = "<group>"; };
 		1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PreferredContentSize.swift"; sourceTree = "<group>"; };
 		1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsHelpers.swift; sourceTree = "<group>"; };
 		1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHelpers.swift; sourceTree = "<group>"; };
 		1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationController.swift; sourceTree = "<group>"; };
 		1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationManager.swift; sourceTree = "<group>"; };
+		1F6B1A6D2329DB0000A30FBC /* BSPViewEdge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPViewEdge.h; sourceTree = "<group>"; };
+		1F6B1A712329DC3800A30FBC /* BottomSheetPresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomSheetPresentation.h; sourceTree = "<group>"; };
 		1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BottomSheetPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB05210113CE00BBEE09 /* BottomSheetPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomSheetPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationTests.swift; sourceTree = "<group>"; };
@@ -205,6 +207,8 @@
 		1FDFAAF7210113AB00BBEE09 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				1F6B1A6D2329DB0000A30FBC /* BSPViewEdge.h */,
+				1F6B1A712329DC3800A30FBC /* BottomSheetPresentation.h */,
 				1F31A84122860A7B0086784C /* BottomSheetPresentationController.swift */,
 				1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */,
 				1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */,
@@ -213,7 +217,6 @@
 				1FE9B73A23296C1700EE050E /* PassthroughView.swift */,
 				1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */,
 				1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */,
-				1F2F54202327FC790093D9AE /* ViewEdge.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -260,6 +263,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6B1A6F2329DB0000A30FBC /* BSPViewEdge.h in Headers */,
+				1F6B1A872329DD5400A30FBC /* BottomSheetPresentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +363,7 @@
 					};
 					1FDFAAFC210113CE00BBEE09 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1030;
 					};
 					1FDFAB04210113CE00BBEE09 = {
 						CreatedOnToolsVersion = 10.0;
@@ -489,7 +494,6 @@
 				1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */,
 				1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */,
 				1F31A84222860A7B0086784C /* BottomSheetPresentationController.swift in Sources */,
-				1F2F54212327FC790093D9AE /* ViewEdge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +736,7 @@
 		1FDFAB0F210113CE00BBEE09 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
@@ -752,6 +757,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -762,6 +768,7 @@
 		1FDFAB10210113CE00BBEE09 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
