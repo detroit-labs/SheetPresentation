@@ -60,12 +60,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIEdgeInsets.html">UIEdgeInsets</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html">UIView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView/Edge.html">– Edge</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -196,7 +190,7 @@ view behind the presented view controller.</p>
                         <p>The amount to inset the presented view controller from the
 presenting view controller. This is a minimum; there may be
 additional insets depending on the safe area insets and margins of the
-presenting view controller’s view. Use <code><a href="../Structs/BottomSheetPresentationOptions.html#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp">ignoredEdgesForMargins</a></code> to
+presenting view controller’s view. Use <code><a href="../Structs/BottomSheetPresentationOptions.html#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo11BSPViewEdgeVvp">ignoredEdgesForMargins</a></code> to
 customize the margin behavior for each edge.</p>
 
                       </div>
@@ -214,9 +208,9 @@ customize the margin behavior for each edge.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp"></a>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo11BSPViewEdgeVvp"></a>
                     <a name="//apple_ref/swift/Property/ignoredEdgesForMargins" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo6UIViewCAAE4EdgeCvp">ignoredEdgesForMargins</a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV22ignoredEdgesForMarginsSo11BSPViewEdgeVvp">ignoredEdgesForMargins</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -233,7 +227,7 @@ includes the safe area.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">Edge</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span></code></pre>
 
                         </div>
                       </div>
@@ -307,9 +301,9 @@ includes the safe area.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo6UIViewCAAE4EdgeCtcfc"></a>
+                    <a name="/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo6UIViewCAAE4EdgeCtcfc">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)</a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7OptionsV12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -328,7 +322,7 @@ includes the safe area.</p>
             <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span> <span class="o">=</span> <span class="o">.</span><span class="n">all</span><span class="p">,</span>
             <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
             <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">),</span>
-            <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">Edge</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
+            <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
 
                         </div>
                       </div>

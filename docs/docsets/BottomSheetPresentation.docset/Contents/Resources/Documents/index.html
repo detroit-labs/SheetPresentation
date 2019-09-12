@@ -13,7 +13,7 @@
     <a title="BottomSheetPresentation  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">BottomSheetPresentation Docs</a> (0% documented)</p>
+        <p><a href="index.html">BottomSheetPresentation Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Detroit-Labs/BottomSheetPresentation"><img src="img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit%2Dlabs%2Egithub%2Eio%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -28,6 +28,47 @@
     <div class="content-wrapper">
       <nav class="sidebar">
         <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/BottomSheetPresentationController.html">BottomSheetPresentationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BottomSheetPresentationManager.html">BottomSheetPresentationManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/DimmingViewTapHandler.html">DimmingViewTapHandler</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/CACornerMask.html">CACornerMask</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/NSLayoutConstraint.html">NSLayoutConstraint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UIEdgeInsets.html">UIEdgeInsets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -66,7 +107,7 @@ end
 <h1 id='using-bottomsheetpresentation' class='heading'>Using BottomSheetPresentation</h1>
 <h2 id='swift' class='heading'>Swift</h2>
 
-<p>To use BottomSheetPresentation, create a <code>BottomSheetPresentationManager</code> and set it as the <code>transitioningDelegate</code> of the view controller you want to present, then set the <code>modalPresentationStyle</code> of the view controller to <code>.custom</code>.</p>
+<p>To use BottomSheetPresentation, create a <code><a href="Classes/BottomSheetPresentationManager.html">BottomSheetPresentationManager</a></code> and set it as the <code>transitioningDelegate</code> of the view controller you want to present, then set the <code>modalPresentationStyle</code> of the view controller to <code>.custom</code>.</p>
 <pre class="highlight plaintext"><code>let manager = BottomSheetPresentationManager() // Save this reference somewhere
 let viewControllerToPresent = …
 viewControllerToPresent.transitioningDelegate = manager

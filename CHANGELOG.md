@@ -1,3 +1,6 @@
+# 0.5.3
+- Threw in the towel on fixing Objective-C integration, wrote the enum in question in Objective-C.
+
 # 0.5.2
 - Fixed Objective-C integration again.
 
