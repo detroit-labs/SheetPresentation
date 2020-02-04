@@ -12,24 +12,24 @@ public extension CACornerMask {
 
     /// A mask of all four corners.
     static let all: CACornerMask = [layerMaxXMaxYCorner,
-                                           layerMaxXMinYCorner,
-                                           layerMinXMaxYCorner,
-                                           layerMinXMinYCorner]
+                                    layerMaxXMinYCorner,
+                                    layerMinXMaxYCorner,
+                                    layerMinXMinYCorner]
 
     /// A mask of the top two corners.
     static let top: CACornerMask = [layerMinXMinYCorner,
-                                           layerMaxXMinYCorner]
+                                    layerMaxXMinYCorner]
 
     /// A mask of the bottom two corners.
     static let bottom: CACornerMask = [layerMinXMaxYCorner,
-                                              layerMaxXMaxYCorner]
+                                       layerMaxXMaxYCorner]
 
     /// A mask of the left two corners.
     static let left: CACornerMask = [layerMinXMinYCorner,
-                                            layerMinXMaxYCorner]
+                                     layerMinXMaxYCorner]
 
     /// A mask of the right two corners.
     static let right: CACornerMask = [layerMaxXMinYCorner,
-                                             layerMaxXMaxYCorner]
+                                      layerMaxXMaxYCorner]
 
 }
