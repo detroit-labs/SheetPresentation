@@ -39,6 +39,8 @@ public struct BottomSheetPresentationOptions {
     /// Edges of the presenting view controller’s view for which its margins
     /// should be ignored for layout purposes. On iOS 11 and above, this
     /// includes the safe area.
+    ///
+    /// - SeeAlso: `BSPViewEdge`
     public let ignoredEdgesForMargins: ViewEdge
 
     /// The default options that are used when calling `init()` on a

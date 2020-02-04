@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Enumerations  Reference</title>
+    <title>Constants  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Section/Enumerations" class="dashAnchor"></a>
-    <a title="Enumerations  Reference"></a>
+    <a name="//apple_ref/swift/Section/Constants" class="dashAnchor"></a>
+    <a title="Constants  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">BottomSheetPresentation Docs</a> (100% documented)</p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="index.html">BottomSheetPresentation Reference</a>
         <img id="carat" src="img/carat.png" />
-        Enumerations  Reference
+        Constants  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -95,8 +95,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Enumerations</h1>
-            <p>The following enumerations are available globally.</p>
+            <h1>Constants</h1>
+            <p>The following constants are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -105,9 +105,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@E@BSPViewEdge"></a>
-                    <a name="//apple_ref/swift/Enum/BSPViewEdge" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@E@BSPViewEdge">BSPViewEdge</a>
+                    <a name="/c:BSPViewEdge.h@BSPViewEdgeAll"></a>
+                    <a name="//apple_ref/swift/Constant/BSPViewEdgeAll" class="dashAnchor"></a>
+                    <a class="token" href="#/c:BSPViewEdge.h@BSPViewEdgeAll">BSPViewEdgeAll</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -115,15 +115,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An option type representing the sides of an on-screen view.</p>
+                        <p>All four edges of a view.</p>
 
-                        <a href="Enums/BSPViewEdge.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">enum</span> <span class="n">BSPViewEdge</span> <span class="p">{}</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">static</span> <span class="k">const</span> <span class="n"><a href="Enums/BSPViewEdge.html">BSPViewEdge</a></span> <span class="n">BSPViewEdgeAll</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">BSPViewEdgeTop</span> <span class="o">|</span> <span class="n">BSPViewEdgeLeft</span> <span class="o">|</span> <span class="n">BSPViewEdgeRight</span> <span class="o">|</span> <span class="n">BSPViewEdgeBottom</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -133,9 +133,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation21DimmingViewTapHandlerO"></a>
-                    <a name="//apple_ref/swift/Enum/DimmingViewTapHandler" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation21DimmingViewTapHandlerO">DimmingViewTapHandler</a>
+                    <a name="/c:BSPViewEdge.h@BSPViewEdgeBottomEdges"></a>
+                    <a name="//apple_ref/swift/Constant/BSPViewEdgeBottomEdges" class="dashAnchor"></a>
+                    <a class="token" href="#/c:BSPViewEdge.h@BSPViewEdgeBottomEdges">BSPViewEdgeBottomEdges</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -143,16 +143,69 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A handler that the presentation controller calls when the user taps on the
-dimming view.</p>
+                        <p>The bottom, left, and right edges of a view.</p>
 
-                        <a href="Enums/DimmingViewTapHandler.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DimmingViewTapHandler</span></code></pre>
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">static</span> <span class="k">const</span> <span class="n"><a href="Enums/BSPViewEdge.html">BSPViewEdge</a></span> <span class="n">BSPViewEdgeBottomEdges</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">BSPViewEdgeLeft</span> <span class="o">|</span> <span class="n">BSPViewEdgeRight</span> <span class="o">|</span> <span class="n">BSPViewEdgeBottom</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@BottomSheetPresentationVersionNumber"></a>
+                    <a name="//apple_ref/swift/Constant/BottomSheetPresentationVersionNumber" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@BottomSheetPresentationVersionNumber">BottomSheetPresentationVersionNumber</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Project version number for BottomSheetPresentation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">extern</span> <span class="kt">double</span> <span class="n">BottomSheetPresentationVersionNumber</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@BottomSheetPresentationVersionString"></a>
+                    <a name="//apple_ref/swift/Constant/BottomSheetPresentationVersionString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@BottomSheetPresentationVersionString">BottomSheetPresentationVersionString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Project version string for BottomSheetPresentation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">extern</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">BottomSheetPresentationVersionString</span><span class="p">[]</span></code></pre>
 
                         </div>
                       </div>

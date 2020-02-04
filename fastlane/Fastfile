@@ -22,8 +22,9 @@ end
 
 desc "Generates documentation."
 lane :documentation do
-  jazzy(config: "./.jazzy.yaml")
-  sh("cp ../docs/badge.svg ../docs/docs/badge.svg")
+  sh("sourcekitten doc -- -project ../BottomSheetPresentation.xcodeproj > SwiftDocs.json")
+  sh("sourcekitten doc --objc ../Sources/BottomSheetPresentationLegacySupport/include/BottomSheetPresentation.h -- -x objective-c -isysroot $(xcrun --show-sdk-path --sdk iphonesimulator) -I ../Sources/BottomSheetPresentationLegacySupport/include/ > ObjCDocs.json")
+  sh("cd ..; bundle exec jazzy --config .jazzy.yaml --sourcekitten-sourcefile fastlane/SwiftDocs.json,fastlane/ObjCDocs.json")
 end
 
 desc "Prepares a release: bumps the version numbers and generates documentation."

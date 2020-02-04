@@ -2,5 +2,7 @@ docs/**/undocumented.json
 .build/
 build/
 xcuserdata/
+fastlane/ObjCDocs.json
+fastlane/SwiftDocs.json
 fastlane/report.xml
 .DS_Store

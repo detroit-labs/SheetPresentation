@@ -20,6 +20,7 @@
 		1F31A84422860A980086784C /* BottomSheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* BottomSheetPresentationManager.swift */; };
 		1F6B1A6F2329DB0000A30FBC /* BSPViewEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6B1A6D2329DB0000A30FBC /* BSPViewEdge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F6B1A872329DD5400A30FBC /* BottomSheetPresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6B1A712329DC3800A30FBC /* BottomSheetPresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FD690A723E9E675009C29EF /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 1FD690A623E9E675009C29EF /* Fastfile */; };
 		1FDFAB06210113CE00BBEE09 /* BottomSheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */; };
 		1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */; };
 		1FDFAB152101142300BBEE09 /* BottomSheetPresentationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* BottomSheetPresentationOptions.swift */; };
@@ -107,6 +108,7 @@
 		1F6B1A712329DC3800A30FBC /* BottomSheetPresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomSheetPresentation.h; sourceTree = "<group>"; };
 		1FD6907D23E9D93F009C29EF /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		1FD6908123E9E145009C29EF /* dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dummy.m; sourceTree = "<group>"; };
+		1FD690A623E9E675009C29EF /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
 		1FDFAAFD210113CE00BBEE09 /* BottomSheetPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BottomSheetPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB05210113CE00BBEE09 /* BottomSheetPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomSheetPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationTests.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				1FEF8EEA2102568800F8C36C /* BottomSheetPresentation.podspec */,
 				1FEF8EEB2102569B00F8C36C /* CHANGELOG.md */,
+				1FD690A623E9E675009C29EF /* Fastfile */,
 				1FEF8EE82102568800F8C36C /* LICENSE */,
 				1FD6907D23E9D93F009C29EF /* Package.swift */,
 				1FEF8EE92102568800F8C36C /* README.md */,
@@ -446,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD690A723E9E675009C29EF /* Fastfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

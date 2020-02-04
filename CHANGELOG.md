@@ -1,5 +1,6 @@
 # 0.6.0
 - Added support for Swift Package Manager.
+- Added Objective-C option type documentation.
 - Update copyright to 2020.
 
 # 0.5.4
