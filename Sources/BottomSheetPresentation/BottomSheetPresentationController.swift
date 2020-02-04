@@ -8,6 +8,10 @@
 
 import UIKit
 
+#if SWIFT_PACKAGE
+import BottomSheetPresentationLegacySupport
+#endif
+
 /// A presentation controller for presenting a view controller over the bottom
 /// portion of the screen, automatically growing the view controller as needed
 /// based on either its `preferredContentSize` or Auto Layout.

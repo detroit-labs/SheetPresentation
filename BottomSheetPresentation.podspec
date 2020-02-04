@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BottomSheetPresentation"
-  s.version      = "0.5.4"
+  s.version      = "0.6.0"
   s.summary      = "A UIPresentationController for iOS to present a view controller pinned to the bottom of the screen."
 
   s.description  = <<-DESC
@@ -12,15 +12,17 @@ A UIPresentationController and attendant clases for iOS to present a view contro
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
-
   s.author             = { "Jeff Kelley" => "SlaunchaMan@gmail.com" }
   s.social_media_url   = "https://twitter.com/SlaunchaMan"
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/Detroit-Labs/BottomSheetPresentation.git", :tag => "#{s.version}" }
+  s.source       = {
+    :git => "https://github.com/Detroit-Labs/BottomSheetPresentation.git",
+    :tag => "#{s.version}"
+  }
 
-  s.source_files  = "Code/*.{swift,h,m}"
+  s.source_files  = "Sources/**/*.{swift,h}"
 
   s.framework  = "UIKit"
 

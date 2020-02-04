@@ -8,6 +8,10 @@
 
 import UIKit
 
+#if SWIFT_PACKAGE
+import BottomSheetPresentationLegacySupport
+#endif
+
 /// A handler that the presentation controller calls when the user taps on the
 /// dimming view.
 public enum DimmingViewTapHandler {

@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UIEdgeInsets {
+public extension UIEdgeInsets {
 
     /// Initializes a `UIEdgeInsets` with a constant value for `top`, `left`,
     /// `bottom`, and `right`.
     ///
     /// - Parameter constant: The constant value to use for all four dimensions.
-    public init(constant: CGFloat) {
+    init(constant: CGFloat) {
         self.init(top: constant,
                   left: constant,
                   bottom: constant,
@@ -25,7 +25,7 @@ extension UIEdgeInsets {
     /// be the larger of the two values.
     ///
     /// - Parameter otherInsets: The other insets with which to form a union.
-    public mutating func formUnion(with otherInsets: UIEdgeInsets) {
+    mutating func formUnion(with otherInsets: UIEdgeInsets) {
         top = max(top, otherInsets.top)
         left = max(left, otherInsets.left)
         bottom = max(bottom, otherInsets.bottom)

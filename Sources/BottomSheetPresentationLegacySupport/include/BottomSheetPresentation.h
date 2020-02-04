@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for BottomSheetPresentation.
+/// Project version number for BottomSheetPresentation.
 FOUNDATION_EXPORT double BottomSheetPresentationVersionNumber;
 
-//! Project version string for BottomSheetPresentation.
+/// Project version string for BottomSheetPresentation.
 FOUNDATION_EXPORT const unsigned char BottomSheetPresentationVersionString[];
 
-#import <BottomSheetPresentation/BSPViewEdge.h>
+#import "BSPViewEdge.h"

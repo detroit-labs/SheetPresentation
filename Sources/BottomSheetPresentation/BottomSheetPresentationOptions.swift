@@ -8,6 +8,10 @@
 
 import UIKit
 
+#if SWIFT_PACKAGE
+import BottomSheetPresentationLegacySupport
+#endif
+
 /// Options for presentation. These options are passed to created
 /// `BottomSheetPresentationController` objects upon creation.
 public struct BottomSheetPresentationOptions {
@@ -85,6 +89,7 @@ public struct BottomSheetPresentationOptions {
         self.edgeInsets = edgeInsets
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
     }
+
 }
 
 extension BottomSheetPresentationOptions: Equatable {}

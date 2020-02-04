@@ -10,6 +10,10 @@ A `UIPresentationController` and attendant clases for iOS to present a view cont
 
 # Installation
 
+## Swift Package Manager
+
+To use BottomSheetPresentation with the [Swift Package Manager](https://swift.org/package-manager/), add it as a dependency to your project from within Xcode or as a dependency in your `Package.swift` file. 
+
 ## CocoaPods
 
 To use BottomSheetPresentation with [CocoaPods](https://cocoapods.org), add a dependency to your `Podfile`:

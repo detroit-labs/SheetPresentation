@@ -1,4 +1,6 @@
 docs/**/undocumented.json
+.build/
 build/
 xcuserdata/
 fastlane/report.xml
+.DS_Store

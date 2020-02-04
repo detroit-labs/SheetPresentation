@@ -1,3 +1,6 @@
+# 0.6.0
+- Added support for Swift Package Manager.
+
 # 0.5.4
 - Modified the access control of the `CACornerMask` helper extension.
   - Implemented in [#3](https://github.com/detroit-labs/BottomSheetPresentation/pull/3) by [@MarcSteven](https://github.com/MarcSteven)

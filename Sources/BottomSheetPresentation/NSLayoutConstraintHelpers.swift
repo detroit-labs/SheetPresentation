@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NSLayoutConstraint {
+public extension NSLayoutConstraint {
 
     /// Create an array of constraints using an ASCII art-like visual format
     /// string.
@@ -18,10 +18,8 @@ extension NSLayoutConstraint {
     ///   - views: A dictionary that maps view identifiers in `format` with
     ///            view objects.
     /// - Returns: An `Array` of `NSLayoutConstraint`s to satisfy the format.
-    public class func constraints(
-        withVisualFormat format: String,
-        views: [String: Any]
-        ) -> [NSLayoutConstraint] {
+    class func constraints(withVisualFormat format: String,
+                           views: [String: Any]) -> [NSLayoutConstraint] {
         return self.constraints(withVisualFormat: format,
                                 options: [],
                                 metrics: nil,
@@ -35,7 +33,7 @@ extension NSLayoutConstraint {
     ///
     /// - Parameter constraintArrays: An array of arrays containing
     ///                               `NSLayoutConstraint`s.
-    public class func activate(_ constraintArrays: [[NSLayoutConstraint]]) {
+    class func activate(_ constraintArrays: [[NSLayoutConstraint]]) {
         self.activate(constraintArrays.flatMap { $0 })
     }
 

@@ -8,9 +8,9 @@
 
 import UIKit
 
-internal class PassthroughView: UIView {
+class PassthroughView: UIView {
 
-    internal var passthroughViews: [UIView] = []
+    var passthroughViews: [UIView] = []
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         var hit = super.hitTest(point, with: event)
