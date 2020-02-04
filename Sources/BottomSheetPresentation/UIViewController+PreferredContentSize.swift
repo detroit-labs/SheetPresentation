@@ -3,7 +3,7 @@
 //  BottomSheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
-//  Copyright © 2019 Detroit Labs. All rights reserved.
+//  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
 import UIKit

@@ -1,5 +1,6 @@
 # 0.6.0
 - Added support for Swift Package Manager.
+- Update copyright to 2020.
 
 # 0.5.4
 - Modified the access control of the `CACornerMask` helper extension.

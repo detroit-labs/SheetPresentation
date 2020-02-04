@@ -3,7 +3,7 @@
 //  BottomSheetPresentationTests
 //
 //  Created by Jeff Kelley on 7/19/18.
-//  Copyright © 2019 Detroit Labs, LLC. All rights reserved.
+//  Copyright © 2020 Detroit Labs, LLC. All rights reserved.
 //
 
 import XCTest
