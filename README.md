@@ -5,6 +5,7 @@ A `UIPresentationController` and attendant clases for iOS to present a view cont
 [![Version](https://img.shields.io/cocoapods/v/BottomSheetPresentation.svg?style=flat)](https://cocoapods.org/pods/BottomSheetPresentation)
 [![Documentation](docs/badge.svg)](https://detroit-labs.github.io/BottomSheetPresentation/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-orange.svg)](https://swift.org/package-manager)
 [![License](https://img.shields.io/cocoapods/l/BottomSheetPresentation.svg?style=flat)](https://github.com/detroit-labs/BottomSheetPresentation/blob/master/LICENSE)
 ![Platform](https://img.shields.io/cocoapods/p/BottomSheetPresentation.svg?style=flat)
 
