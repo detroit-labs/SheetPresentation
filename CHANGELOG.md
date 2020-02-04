@@ -1,3 +1,7 @@
+# 0.5.4
+- Modified the access control of the `CACornerMask` helper extension.
+  - Implemented in [#3](https://github.com/detroit-labs/BottomSheetPresentation/pull/3) by [@MarcSteven](https://github.com/MarcSteven)
+
 # 0.5.3
 - Threw in the towel on fixing Objective-C integration, wrote the enum in question in Objective-C.
 
