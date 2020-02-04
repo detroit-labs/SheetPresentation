@@ -8,28 +8,28 @@
 
 import UIKit
 
-extension CACornerMask {
+public extension CACornerMask {
 
     /// A mask of all four corners.
-    public static let all: CACornerMask = [layerMaxXMaxYCorner,
+    static let all: CACornerMask = [layerMaxXMaxYCorner,
                                            layerMaxXMinYCorner,
                                            layerMinXMaxYCorner,
                                            layerMinXMinYCorner]
 
     /// A mask of the top two corners.
-    public static let top: CACornerMask = [layerMinXMinYCorner,
+    static let top: CACornerMask = [layerMinXMinYCorner,
                                            layerMaxXMinYCorner]
 
     /// A mask of the bottom two corners.
-    public static let bottom: CACornerMask = [layerMinXMaxYCorner,
+    static let bottom: CACornerMask = [layerMinXMaxYCorner,
                                               layerMaxXMaxYCorner]
 
     /// A mask of the left two corners.
-    public static let left: CACornerMask = [layerMinXMinYCorner,
+    static let left: CACornerMask = [layerMinXMinYCorner,
                                             layerMinXMaxYCorner]
 
     /// A mask of the right two corners.
-    public static let right: CACornerMask = [layerMaxXMinYCorner,
+    static let right: CACornerMask = [layerMaxXMinYCorner,
                                              layerMaxXMaxYCorner]
 
 }
