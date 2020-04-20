@@ -31,13 +31,11 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
     func testThatInitWithPresentationValuesUsesThoseValues() {
         let expectedPresentationOptions = BottomSheetPresentationOptions(
             cornerRadius: 42,
-            maskedCorners: .all,
             dimmingViewAlpha: 31,
             edgeInsets: .zero,
             ignoredEdgesForMargins: [])
 
         let subject = BottomSheetPresentationManager(cornerRadius: 42,
-                                                     maskedCorners: .all,
                                                      dimmingViewAlpha: 31,
                                                      edgeInsets: .zero)
 
@@ -154,6 +152,10 @@ class BottomSheetPresentationControllerTests: XCTestCase {
     }
 
     func testThatSettingMaskedCornerRadiusUpdatesLayoutContainer() throws {
+        guard #available(iOS 11.0, *) else {
+           throw XCTSkip()
+        }
+
         subject.cornerOptions = .roundSomeCorners(radius: 42, corners: .top)
 
         let layoutContainer = try XCTUnwrap(subject.layoutContainer)
@@ -162,9 +164,7 @@ class BottomSheetPresentationControllerTests: XCTestCase {
                        42)
         XCTAssertTrue(layoutContainer.clipsToBounds)
 
-        if #available(iOS 11.0, *) {
-            XCTAssertEqual(layoutContainer.layer.maskedCorners, .top)
-        }
+        XCTAssertEqual(layoutContainer.layer.maskedCorners, .top)
     }
 
     func testThatRoundingNoCornersDoesNotMaskLayoutContainer() throws {
