@@ -37,6 +37,7 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
             ignoredEdgesForMargins: [])
 
         let subject = BottomSheetPresentationManager(cornerRadius: 42,
+                                                     maskedCorners: .all,
                                                      dimmingViewAlpha: 31,
                                                      edgeInsets: .zero)
 
@@ -62,8 +63,8 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
             presenting: presentingViewController,
             source: source) as! BottomSheetPresentationController
 
-        XCTAssertEqual(presentationController.cornerRadius,
-                       presentationOptions.cornerRadius)
+        XCTAssertEqual(presentationController.cornerOptions,
+                       presentationOptions.cornerOptions)
 
         XCTAssertEqual(presentationController.dimmingViewAlpha,
                        presentationOptions.dimmingViewAlpha)
@@ -138,10 +139,45 @@ class BottomSheetPresentationControllerTests: XCTestCase {
             presenting: UIViewController())
     }
 
-    func testThatSettingCornerRadiusUpdatesLayoutContainer() {
-        subject.cornerRadius = 42
-        XCTAssertEqual(subject.layoutContainer?.layer.cornerRadius,
+    func testThatSettingCornerRadiusUpdatesLayoutContainer() throws {
+        subject.cornerOptions = .roundAllCorners(radius: 42)
+
+        let layoutContainer = try XCTUnwrap(subject.layoutContainer)
+
+        XCTAssertEqual(layoutContainer.layer.cornerRadius,
                        42)
+        XCTAssertTrue(layoutContainer.clipsToBounds)
+
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
+        }
+    }
+
+    func testThatSettingMaskedCornerRadiusUpdatesLayoutContainer() throws {
+        subject.cornerOptions = .roundSomeCorners(radius: 42, corners: .top)
+
+        let layoutContainer = try XCTUnwrap(subject.layoutContainer)
+
+        XCTAssertEqual(layoutContainer.layer.cornerRadius,
+                       42)
+        XCTAssertTrue(layoutContainer.clipsToBounds)
+
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(layoutContainer.layer.maskedCorners, .top)
+        }
+    }
+
+    func testThatRoundingNoCornersDoesNotMaskLayoutContainer() throws {
+        subject.cornerOptions = .none
+
+        let layoutContainer = try XCTUnwrap(subject.layoutContainer)
+
+        XCTAssertEqual(layoutContainer.layer.cornerRadius, 0)
+        XCTAssertFalse(layoutContainer.clipsToBounds)
+
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
+        }
     }
 
     func testThatSettingDimmingViewAlphaUpdatesDimmingView() {
