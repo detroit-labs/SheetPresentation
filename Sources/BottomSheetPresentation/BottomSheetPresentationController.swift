@@ -19,20 +19,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
-    internal var cornerRadius: CGFloat {
+    internal var cornerOptions: BottomSheetPresentationOptions.CornerOptions {
         didSet {
             if let layoutContainer = layoutContainer {
-                layoutContainer.layer.cornerRadius = cornerRadius
-            }
-        }
-    }
-
-    internal var maskedCorners: CACornerMask {
-        didSet {
-            if let layoutContainer = layoutContainer {
-                if #available(iOS 11.0, *) {
-                    layoutContainer.layer.maskedCorners = maskedCorners
-                }
+                cornerOptions.apply(to: layoutContainer)
             }
         }
     }
@@ -103,8 +93,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         presentationOptions options: BottomSheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
-        cornerRadius = options.cornerRadius
-        maskedCorners = options.maskedCorners
+        cornerOptions = options.cornerOptions
         dimmingViewAlpha = options.dimmingViewAlpha
         edgeInsets = options.edgeInsets
         ignoredEdgesForMargins = options.ignoredEdgesForMargins
@@ -145,11 +134,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     internal lazy var layoutContainer: UIView? = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.layer.cornerRadius = cornerRadius
-        if #available(iOS 11.0, *) {
-            view.layer.maskedCorners = maskedCorners
-        }
-        view.clipsToBounds = true
+        cornerOptions.apply(to: view)
         return view
     }()
 

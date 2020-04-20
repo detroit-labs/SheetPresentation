@@ -6,6 +6,8 @@
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
 
 #if SWIFT_PACKAGE
@@ -67,6 +69,62 @@ public enum DimmingViewTapHandler {
     /// options and the default tap handler.
     ///
     /// - Parameters:
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black. Use `nil` to avoid using a dimmming
+    ///                         view.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    public convenience init(dimmingViewAlpha: CGFloat?,
+                            edgeInsets: UIEdgeInsets,
+                            ignoredEdgesForMargins: ViewEdge = []) {
+        let options = BottomSheetPresentationOptions(
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options)
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options and the default tap handler.
+    ///
+    /// - Parameters:
+    ///     - cornerRadius: The corner radius to use when displaying the
+    ///                     presented view controller.
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black. Use `nil` to avoid using a dimmming
+    ///                         view.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    public convenience init(cornerRadius: CGFloat,
+                            dimmingViewAlpha: CGFloat?,
+                            edgeInsets: UIEdgeInsets,
+                            ignoredEdgesForMargins: ViewEdge = []) {
+        let options = BottomSheetPresentationOptions(
+            cornerRadius: cornerRadius,
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options)
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options and the default tap handler.
+    ///
+    /// - Parameters:
     ///     - cornerRadius: The corner radius to use when displaying the
     ///                     presented view controller.
     ///     - maskedCorners: The corners to mask using the `cornerRadius`.
@@ -81,6 +139,7 @@ public enum DimmingViewTapHandler {
     ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                               view for which its margins should be
     ///                               ignored for layout purposes.
+    @available(iOS 11.0, *)
     public convenience init(cornerRadius: CGFloat,
                             maskedCorners: CACornerMask = .all,
                             dimmingViewAlpha: CGFloat?,
@@ -94,6 +153,74 @@ public enum DimmingViewTapHandler {
             ignoredEdgesForMargins: ignoredEdgesForMargins)
 
         self.init(options: options)
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options and tap target/action.
+    ///
+    /// - Parameters:
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - dimmingViewTapHandler: A block to be called when the dimming view
+    ///                              is tapped. Its argument is the presented
+    ///                              `UIViewController`.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    public convenience init(
+        dimmingViewAlpha: CGFloat,
+        edgeInsets: UIEdgeInsets,
+        ignoredEdgesForMargins: ViewEdge = [],
+        dimmingViewTapHandler: @escaping (UIViewController) -> Void
+        ) {
+        let options = BottomSheetPresentationOptions(
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options,
+                  dimmingViewTapHandler: .block(dimmingViewTapHandler))
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options and tap target/action.
+    ///
+    /// - Parameters:
+    ///     - cornerRadius: The corner radius to use when displaying the
+    ///                     presented view controller.
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - dimmingViewTapHandler: A block to be called when the dimming view
+    ///                              is tapped. Its argument is the presented
+    ///                              `UIViewController`.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    public convenience init(
+        cornerRadius: CGFloat,
+        dimmingViewAlpha: CGFloat,
+        edgeInsets: UIEdgeInsets,
+        ignoredEdgesForMargins: ViewEdge = [],
+        dimmingViewTapHandler: @escaping (UIViewController) -> Void
+        ) {
+        let options = BottomSheetPresentationOptions(
+            cornerRadius: cornerRadius,
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options,
+                  dimmingViewTapHandler: .block(dimmingViewTapHandler))
     }
 
     /// Creates a `BottomSheetPresentationManager` with specific presentation
@@ -116,6 +243,7 @@ public enum DimmingViewTapHandler {
     ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                               view for which its margins should be
     ///                               ignored for layout purposes.
+    @available(iOS 11.0, *)
     public convenience init(
         cornerRadius: CGFloat,
         maskedCorners: CACornerMask,
@@ -139,6 +267,74 @@ public enum DimmingViewTapHandler {
     /// options.
     ///
     /// - Parameters:
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    ///     - target: The target to call when the dimming view is
+    ///                             tapped.
+    ///     - action: The action selector to call on the target
+    ///                             when the dimming view is tapped.
+    public convenience init(dimmingViewAlpha: CGFloat,
+                            edgeInsets: UIEdgeInsets,
+                            ignoredEdgesForMargins: ViewEdge,
+                            dimmingViewTapTarget target: NSObjectProtocol,
+                            dimmingViewTapAction action: Selector) {
+        let options = BottomSheetPresentationOptions(
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options,
+                  dimmingViewTapHandler: .targetAction(target, action))
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options.
+    ///
+    /// - Parameters:
+    ///     - cornerRadius: The corner radius to use when displaying the
+    ///                     presented view controller.
+    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
+    ///                         behind the presented view controller. The color
+    ///                         is black.
+    ///     - edgeInsets: The amount to inset the presented view controller from
+    ///                   the presenting view controller. This is a minimum;
+    ///                   there may be additional insets depending on the safe
+    ///                   area insets of the presenting view controller’s view.
+    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                               view for which its margins should be
+    ///                               ignored for layout purposes.
+    ///     - target: The target to call when the dimming view is
+    ///                             tapped.
+    ///     - action: The action selector to call on the target
+    ///                             when the dimming view is tapped.
+    public convenience init(cornerRadius: CGFloat,
+                            dimmingViewAlpha: CGFloat,
+                            edgeInsets: UIEdgeInsets,
+                            ignoredEdgesForMargins: ViewEdge,
+                            dimmingViewTapTarget target: NSObjectProtocol,
+                            dimmingViewTapAction action: Selector) {
+        let options = BottomSheetPresentationOptions(
+            cornerRadius: cornerRadius,
+            dimmingViewAlpha: dimmingViewAlpha,
+            edgeInsets: edgeInsets,
+            ignoredEdgesForMargins: ignoredEdgesForMargins)
+
+        self.init(options: options,
+                  dimmingViewTapHandler: .targetAction(target, action))
+    }
+
+    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// options.
+    ///
+    /// - Parameters:
     ///     - cornerRadius: The corner radius to use when displaying the
     ///                     presented view controller.
     ///     - maskedCorners: The corners to mask using the `cornerRadius`.
@@ -156,6 +352,7 @@ public enum DimmingViewTapHandler {
     ///                             tapped.
     ///     - action: The action selector to call on the target
     ///                             when the dimming view is tapped.
+    @available(iOS 11.0, *)
     public convenience init(cornerRadius: CGFloat,
                             maskedCorners: CACornerMask,
                             dimmingViewAlpha: CGFloat,
