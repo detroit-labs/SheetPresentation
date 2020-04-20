@@ -1,6 +1,7 @@
 # BottomSheetPresentation
 
-A `UIPresentationController` and attendant clases for iOS to present a view controller pinned to the bottom of the screen like an action sheet.
+A `UIPresentationController` and attendant clases for iOS to present a view
+controller pinned to the bottom of the screen like an action sheet.
 
 [![Version](https://img.shields.io/cocoapods/v/BottomSheetPresentation.svg?style=flat)](https://cocoapods.org/pods/BottomSheetPresentation)
 [![Documentation](docs/badge.svg)](https://detroit-labs.github.io/BottomSheetPresentation/)
@@ -13,11 +14,15 @@ A `UIPresentationController` and attendant clases for iOS to present a view cont
 
 ## Swift Package Manager
 
-To use BottomSheetPresentation with the [Swift Package Manager](https://swift.org/package-manager/), add it as a dependency to your project from within Xcode or as a dependency in your `Package.swift` file. 
+To use BottomSheetPresentation with the
+[Swift Package Manager](https://swift.org/package-manager/), add it as a
+dependency to your project from within Xcode or as a dependency in your
+`Package.swift` file. 
 
 ## CocoaPods
 
-To use BottomSheetPresentation with [CocoaPods](https://cocoapods.org), add a dependency to your `Podfile`:
+To use BottomSheetPresentation with [CocoaPods](https://cocoapods.org), add a
+dependency to your `Podfile`:
 
 ```Ruby
 target 'MyAwesomeApp' do
@@ -25,27 +30,31 @@ target 'MyAwesomeApp' do
 end
 ```
 
-Then run `pod install` and use the generated `.xcworkspace` to open your project.
+Then run `pod install` and use the generated `.xcworkspace` to open your
+project.
 
 ## Carthage
 
-To use BottomSheetPresentation with [Carthage](https://github.com/Carthage/Carthage), add a dependency to your `Cartfile`:
+To use BottomSheetPresentation with
+[Carthage](https://github.com/Carthage/Carthage), add a dependency to your
+`Cartfile`:
 
 ```
 github "Detroit-Labs/BottomSheetPresentation"
 ```
 
-Run `carthage update` to build the framework. Then follow the rest of the steps in [Carthage’s README](https://github.com/Carthage/Carthage#getting-started) to add the framework to your project, configure a Run Script build phase, etc.
-
-## Manually
-
-To integrate BottomSheetPresentation manually into your project, drag `BottomSheetPresentation.swift` into your Xcode project.
+Run `carthage update` to build the framework. Then follow the rest of the steps
+in [Carthage’s README](https://github.com/Carthage/Carthage#getting-started) to
+add the framework to your project, configure a Run Script build phase, etc.
 
 # Using BottomSheetPresentation
 
 ## Swift
 
-To use BottomSheetPresentation, create a `BottomSheetPresentationManager` and set it as the `transitioningDelegate` of the view controller you want to present, then set the `modalPresentationStyle` of the view controller to `.custom`.
+To use BottomSheetPresentation, create a `BottomSheetPresentationManager` and
+set it as the `transitioningDelegate` of the view controller you want to
+present, then set the `modalPresentationStyle` of the view controller to
+`.custom`.
 
 ```Swift
 let manager = BottomSheetPresentationManager() // Save this reference somewhere
@@ -74,4 +83,7 @@ viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
 
 ## Requirements
 
-To correctly compute the height of the presented view controller, it must either satisfy Auto Layout constraints for a height using `systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)` or have a non-zero `preferredContentSize`.
+To correctly compute the height of the presented view controller, it must either
+satisfy Auto Layout constraints for a height using
+`systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)` or have a non-zero
+`preferredContentSize`.
