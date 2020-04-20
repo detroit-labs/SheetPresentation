@@ -88,6 +88,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BottomSheetPresentationOptions/CornerOptions.html">– CornerOptions</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -119,7 +122,7 @@ set as a view controller’s <code>transitioningDelegate</code>.</p>
                     <code>
                     <a name="/s:23BottomSheetPresentation0abC7ManagerC7options21dimmingViewTapHandlerAcA0abC7OptionsV_AA07DimmingghI0Otcfc"></a>
                     <a name="//apple_ref/swift/Method/init(options:dimmingViewTapHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC7options21dimmingViewTapHandlerAcA0abC7OptionsV_AA07DimmingghI0Otcfc">init(options:dimmingViewTapHandler:)</a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC7options21dimmingViewTapHandlerAcA0abC7OptionsV_AA07DimmingghI0Otcfc">init(options:<wbr>dimmingViewTapHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -180,9 +183,90 @@ options and tap handler.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)</a>
+                    <a name="/s:23BottomSheetPresentation0abC7ManagerC16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatVSg_So06UIEdgeI0VSo11BSPViewEdgeVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatVSg_So06UIEdgeI0VSo11BSPViewEdgeVtcfc">init(dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options and the default tap handler.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?,</span>
+                        <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+                        <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black. Use <code>nil</code> to avoid using a dimmming
+                view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_AJSgSo06UIEdgeK0VSo11BSPViewEdgeVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_AJSgSo06UIEdgeK0VSo11BSPViewEdgeVtcfc">init(cornerRadius:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -199,6 +283,102 @@ options and the default tap handler.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                        <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?,</span>
+                        <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+                        <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cornerRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The corner radius to use when displaying the
+            presented view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black. Use <code>nil</code> to avoid using a dimmming
+                view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:23BottomSheetPresentation0abC7ManagerC12cornerRadius13maskedCorners16dimmingViewAlpha10edgeInsets22ignoredEdgesForMarginsAC12CoreGraphics7CGFloatV_So12CACornerMaskVAKSgSo06UIEdgeM0VSo11BSPViewEdgeVtcfc">init(cornerRadius:<wbr>maskedCorners:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options and the default tap handler.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
                         <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span> <span class="o">=</span> <span class="o">.</span><span class="n">all</span><span class="p">,</span>
                         <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?,</span>
                         <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
@@ -288,9 +468,9 @@ options and the default tap handler.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:"></a>
-                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:)</a>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithDimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:"></a>
+                    <a name="//apple_ref/swift/Method/init(dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithDimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:">init(dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,6 +487,215 @@ options and tap target/action.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+    <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewTapHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block to be called when the dimming view
+                     is tapped. Its argument is the presented
+                     <code>UIViewController</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:">init(cornerRadius:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapHandler:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options and tap target/action.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+    <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">dimmingViewTapHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cornerRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The corner radius to use when displaying the
+            presented view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewTapHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block to be called when the dimming view
+                     is tapped. Its argument is the presented
+                     <code>UIViewController</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapHandler:">init(cornerRadius:<wbr>maskedCorners:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapHandler:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options and tap target/action.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
     <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span><span class="p">,</span>
     <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
@@ -412,9 +801,117 @@ options and tap target/action.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:"></a>
-                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:">init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:)</a>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithDimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:"></a>
+                    <a name="//apple_ref/swift/Method/init(dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithDimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:">init(dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapTarget:<wbr>dimmingViewTapAction:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                        <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+                        <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span><span class="p">,</span>
+                        <span class="n">dimmingViewTapTarget</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span><span class="p">,</span>
+                        <span class="n">dimmingViewTapAction</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target to call when the dimming view is
+                    tapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The action selector to call on the target
+                    when the dimming view is tapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:">init(cornerRadius:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapTarget:<wbr>dimmingViewTapAction:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -431,6 +928,129 @@ options.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                        <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                        <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
+                        <span class="nv">ignoredEdgesForMargins</span><span class="p">:</span> <span class="kt">ViewEdge</span><span class="p">,</span>
+                        <span class="n">dimmingViewTapTarget</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span><span class="p">,</span>
+                        <span class="n">dimmingViewTapAction</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cornerRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The corner radius to use when displaying the
+            presented view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dimmingViewAlpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>alpha</code> value for the dimming view used
+                behind the presented view controller. The color
+                is black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edgeInsets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to inset the presented view controller from
+          the presenting view controller. This is a minimum;
+          there may be additional insets depending on the safe
+          area insets of the presenting view controller’s view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoredEdgesForMargins</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edges of the presenting view controller’s
+                      view for which its margins should be
+                      ignored for layout purposes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target to call when the dimming view is
+                    tapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The action selector to call on the target
+                    when the dimming view is tapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:"></a>
+                    <a name="//apple_ref/swift/Method/init(cornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)initWithCornerRadius:maskedCorners:dimmingViewAlpha:edgeInsets:ignoredEdgesForMargins:dimmingViewTapTarget:dimmingViewTapAction:">init(cornerRadius:<wbr>maskedCorners:<wbr>dimmingViewAlpha:<wbr>edgeInsets:<wbr>ignoredEdgesForMargins:<wbr>dimmingViewTapTarget:<wbr>dimmingViewTapAction:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>BottomSheetPresentationManager</code> with specific presentation
+options.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 11.0, *)</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
                         <span class="nv">maskedCorners</span><span class="p">:</span> <span class="kt">CACornerMask</span><span class="p">,</span>
                         <span class="nv">dimmingViewAlpha</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
                         <span class="nv">edgeInsets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">,</span>
@@ -549,7 +1169,7 @@ options.</p>
                     <code>
                     <a name="/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)presentationControllerForPresentedViewController:presentingViewController:sourceViewController:"></a>
                     <a name="//apple_ref/swift/Method/presentationController(forPresented:presenting:source:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)presentationControllerForPresentedViewController:presentingViewController:sourceViewController:">presentationController(forPresented:presenting:source:)</a>
+                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)presentationControllerForPresentedViewController:presentingViewController:sourceViewController:">presentationController(forPresented:<wbr>presenting:<wbr>source:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -581,7 +1201,7 @@ managing the view hierarchy when presenting a view controller.</p>
                     <code>
                     <a name="/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:traitCollection:"></a>
                     <a name="//apple_ref/swift/Method/adaptivePresentationStyle(for:traitCollection:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:traitCollection:">adaptivePresentationStyle(for:traitCollection:)</a>
+                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:traitCollection:">adaptivePresentationStyle(for:<wbr>traitCollection:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -612,7 +1232,7 @@ set of traits are active.</p>
                     <code>
                     <a name="/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:"></a>
                     <a name="//apple_ref/swift/Method/adaptivePresentationStyle(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:">adaptivePresentationStyle(for:)</a>
+                    <a class="token" href="#/c:@CM@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager(im)adaptivePresentationStyleForPresentationController:">adaptivePresentationStyle(for:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -641,8 +1261,8 @@ set of traits are active.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-02-04)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-04-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

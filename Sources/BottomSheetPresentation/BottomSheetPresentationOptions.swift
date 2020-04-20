@@ -16,13 +16,23 @@ import BottomSheetPresentationLegacySupport
 /// `BottomSheetPresentationController` objects upon creation.
 public struct BottomSheetPresentationOptions {
 
-    /// The corner radius to use when displaying the presented view controller.
-    public let cornerRadius: CGFloat
+    /// Options for the corners of the presented view controller.
+    public enum CornerOptions: Equatable {
 
-    /// The corners to mask using the corner radius. Defaults to all four.
-    /// Requires iOS 11 to function (on iOS 10 and below, all four corners will
-    /// be rounded using the corner radius).
-    public let maskedCorners: CACornerMask
+        /// Rounds all corners by the given `radius`.
+        case roundAllCorners(radius: CGFloat)
+
+        /// Rounds the corners specified in `corners` by the given `radius`.
+        @available(iOS 11.0, *)
+        case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
+
+        /// Does not round corners.
+        case none
+    }
+
+    /// The corner radius (or lack thereof) to use when displaying the presented
+    /// view controller.
+    public let cornerOptions: CornerOptions
 
     /// The `alpha` value for the dimming view used behind the presented
     /// view controller. The color is black. Use `nil` to avoid adding a dimming
@@ -55,12 +65,68 @@ public struct BottomSheetPresentationOptions {
     /// `BottomSheetPresentationManager` with no options.
     public static let `default` = BottomSheetPresentationOptions(
         cornerRadius: 10,
-        maskedCorners: .all,
         dimmingViewAlpha: 0.5,
         edgeInsets: UIEdgeInsets(constant: 20),
         ignoredEdgesForMargins: [])
 
     /// Creates a new `BottomSheetPresentationOptions` struct.
+    ///
+    /// - Parameters:
+    ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
+    ///                       the presented view controller. The color is black.
+    ///                       Defaults to `0.5`. Use `nil` to avoid using a
+    ///                       dimming view.
+    ///   - edgeInsets: The amount to inset the presented view controller from
+    ///                 the presenting view controller. This is a minimum; there
+    ///                 may be additional insets depending on the safe area
+    ///                 insets of the presenting view controller’s view (iOS 11
+    ///                 and later). Defaults to edge insets of `20` points on
+    ///                 each side.
+    ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                             view for which its margins should be ignored
+    ///                             for layout purposes. On iOS 11 and above,
+    ///                             this includes the safe area.
+    public init(dimmingViewAlpha: CGFloat? = 0.5,
+                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
+                ignoredEdgesForMargins: ViewEdge = []) {
+        self.cornerOptions = .none
+        self.dimmingViewAlpha = dimmingViewAlpha
+        self.edgeInsets = edgeInsets
+        self.ignoredEdgesForMargins = ignoredEdgesForMargins
+    }
+
+    /// Creates a new `BottomSheetPresentationOptions` struct with rounded
+    /// corners.
+    ///
+    /// - Parameters:
+    ///   - cornerRadius: The corner radius to use when displaying the presented
+    ///                   view controller. Defaults to `10`.
+    ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
+    ///                       the presented view controller. The color is black.
+    ///                       Defaults to `0.5`. Use `nil` to avoid using a
+    ///                       dimming view.
+    ///   - edgeInsets: The amount to inset the presented view controller from
+    ///                 the presenting view controller. This is a minimum; there
+    ///                 may be additional insets depending on the safe area
+    ///                 insets of the presenting view controller’s view (iOS 11
+    ///                 and later). Defaults to edge insets of `20` points on
+    ///                 each side.
+    ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                             view for which its margins should be ignored
+    ///                             for layout purposes. On iOS 11 and above,
+    ///                             this includes the safe area.
+    public init(cornerRadius: CGFloat = 10,
+                dimmingViewAlpha: CGFloat? = 0.5,
+                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
+                ignoredEdgesForMargins: ViewEdge = []) {
+        self.cornerOptions = .roundAllCorners(radius: cornerRadius)
+        self.dimmingViewAlpha = dimmingViewAlpha
+        self.edgeInsets = edgeInsets
+        self.ignoredEdgesForMargins = ignoredEdgesForMargins
+    }
+
+    /// Creates a new `BottomSheetPresentationOptions` struct with some rounded
+    /// corners.
     ///
     /// - Parameters:
     ///   - cornerRadius: The corner radius to use when displaying the presented
@@ -80,13 +146,14 @@ public struct BottomSheetPresentationOptions {
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
     ///                             this includes the safe area.
+    @available(iOS 11.0, *)
     public init(cornerRadius: CGFloat = 10,
                 maskedCorners: CACornerMask = .all,
                 dimmingViewAlpha: CGFloat? = 0.5,
                 edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
                 ignoredEdgesForMargins: ViewEdge = []) {
-        self.cornerRadius = cornerRadius
-        self.maskedCorners = maskedCorners
+        self.cornerOptions = .roundSomeCorners(radius: cornerRadius,
+                                               corners: maskedCorners)
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
@@ -95,3 +162,31 @@ public struct BottomSheetPresentationOptions {
 }
 
 extension BottomSheetPresentationOptions: Equatable {}
+
+extension BottomSheetPresentationOptions.CornerOptions {
+
+    func apply(to view: UIView) {
+        switch self {
+        case .roundAllCorners(radius: let radius):
+            view.layer.cornerRadius = radius
+            view.clipsToBounds = true
+
+            if #available(iOS 11.0, *) {
+                view.layer.maskedCorners = .all
+            }
+
+        case let .roundSomeCorners(radius: radius, corners: corners):
+            view.layer.cornerRadius = radius
+            view.clipsToBounds = true
+
+            if #available(iOS 11.0, *) {
+                view.layer.maskedCorners = corners
+            }
+
+        case .none:
+            view.layer.cornerRadius = 0
+            view.clipsToBounds = false
+        }
+    }
+
+}

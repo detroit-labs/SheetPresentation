@@ -26,15 +26,9 @@
     if (_bottomSheetPresentationManager == nil) {
         UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 20.0f);
         
-        CACornerMask maskedCorners = (kCALayerMinXMinYCorner |
-                                      kCALayerMinXMaxYCorner |
-                                      kCALayerMaxXMinYCorner |
-                                      kCALayerMaxXMaxYCorner);
-
         _bottomSheetPresentationManager =
         [[BottomSheetPresentationManager alloc]
          initWithCornerRadius:20.0
-         maskedCorners:maskedCorners
          dimmingViewAlpha:0.25
          edgeInsets:edgeInsets
          ignoredEdgesForMargins: BSPViewEdgeNone

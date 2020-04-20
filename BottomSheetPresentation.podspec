@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BottomSheetPresentation"
-  s.version      = "0.6.0"
+  s.version      = "0.7.0"
   s.summary      = "A UIPresentationController for iOS to present a view controller pinned to the bottom of the screen."
 
   s.description  = <<-DESC
@@ -26,6 +26,11 @@ A UIPresentationController and attendant clases for iOS to present a view contro
 
   s.framework  = "UIKit"
 
-  s.swift_versions = ['4.0', '4.1', '4.2', '5.0']
+  s.swift_versions = ['4.0', '4.1', '4.2', '5.0', '5.1', '5.2']
+
+  s.test_spec 'BottomSheetPresentationTests' do |ts|
+    ts.platform = :ios, '8.0'
+    ts.source_files = 'Tests/**/*.swift'
+  end
 
 end

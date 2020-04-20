@@ -6,3 +6,4 @@ fastlane/ObjCDocs.json
 fastlane/SwiftDocs.json
 fastlane/report.xml
 .DS_Store
+Brewfile.lock.json
