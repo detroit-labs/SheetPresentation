@@ -1,3 +1,8 @@
+# 0.7.0
+- Updated options to allow for the layout container to prevent clipping to its
+  bounds for cases where you aren’t rounding the corners but are adding shadows.
+- Added a Brewfile for development.
+
 # 0.6.0
 - Added support for Swift Package Manager.
 - Added Objective-C option type documentation.

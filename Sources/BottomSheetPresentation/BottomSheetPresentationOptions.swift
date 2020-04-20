@@ -16,12 +16,17 @@ import BottomSheetPresentationLegacySupport
 /// `BottomSheetPresentationController` objects upon creation.
 public struct BottomSheetPresentationOptions {
 
+    /// Options for the corners of the presented view controller.
     public enum CornerOptions: Equatable {
+
+        /// Rounds all corners by the given `radius`.
         case roundAllCorners(radius: CGFloat)
 
+        /// Rounds the corners specified in `corners` by the given `radius`.
         @available(iOS 11.0, *)
         case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
 
+        /// Does not round corners.
         case none
     }
 
