@@ -1,3 +1,6 @@
+# 0.8.0
+- Modified the access control of the `UIViewController` helper extension.
+
 # 0.7.0
 - Updated options to allow for the layout container to prevent clipping to its
   bounds for cases where you aren’t rounding the corners but are adding shadows.
