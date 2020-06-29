@@ -15,11 +15,11 @@ import BottomSheetPresentationLegacySupport
 /// A presentation controller for presenting a view controller over the bottom
 /// portion of the screen, automatically growing the view controller as needed
 /// based on either its `preferredContentSize` or Auto Layout.
-public final class BottomSheetPresentationController: UIPresentationController {
+public final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
-    internal var cornerOptions: BottomSheetPresentationOptions.CornerOptions {
+    internal var cornerOptions: SheetPresentationOptions.CornerOptions {
         didSet {
             if let layoutContainer = layoutContainer {
                 cornerOptions.apply(to: layoutContainer)
@@ -90,7 +90,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     public init(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
-        presentationOptions options: BottomSheetPresentationOptions = .default,
+        presentationOptions options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
         cornerOptions = options.cornerOptions

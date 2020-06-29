@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import BottomSheetPresentation
+@testable import SheetPresentation
 
-class ViewEdgeTests: XCTestCase {
+final class ViewEdgeTests: XCTestCase {
 
     func testViewEdgesContainThemselves() {
         XCTAssertTrue(ViewEdge.top.contains(.top))

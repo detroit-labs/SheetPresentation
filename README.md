@@ -1,7 +1,7 @@
-# BottomSheetPresentation
+# SheetPresentation
 
 A `UIPresentationController` and attendant clases for iOS to present a view
-controller pinned to the bottom of the screen like an action sheet.
+controller pinned to a side of screen like an action sheet.
 
 [![Version](https://img.shields.io/cocoapods/v/BottomSheetPresentation.svg?style=flat)](https://cocoapods.org/pods/BottomSheetPresentation)
 [![Documentation](docs/badge.svg)](https://detroit-labs.github.io/BottomSheetPresentation/)
@@ -14,7 +14,7 @@ controller pinned to the bottom of the screen like an action sheet.
 
 ## Swift Package Manager
 
-To use BottomSheetPresentation with the
+To use SheetPresentation with the
 [Swift Package Manager](https://swift.org/package-manager/), add it as a
 dependency to your project from within Xcode or as a dependency in your
 `Package.swift` file. 

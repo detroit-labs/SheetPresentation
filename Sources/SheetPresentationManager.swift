@@ -29,14 +29,6 @@ public enum DimmingViewTapHandler {
 
     /// The default handler, which will dismiss the presented view controller
     /// upon tapping.
-    ///
-    /// - SeeAlso:
-    ///   - `DimmingViewTapHandler.default`
-    @available(*, deprecated, renamed: "default")
-    public static let defaultHandler: DimmingViewTapHandler = .default
-
-    /// The default handler, which will dismiss the presented view controller
-    /// upon tapping.
     public static let `default` = DimmingViewTapHandler.block({
         $0.dismiss(animated: true, completion: nil)}
     )
@@ -45,9 +37,9 @@ public enum DimmingViewTapHandler {
 
 /// An object that creates instances of `BottomSheetPresentationController` when
 /// set as a view controller’s `transitioningDelegate`.
-@objcMembers public final class BottomSheetPresentationManager: NSObject {
+@objcMembers public final class SheetPresentationManager: NSObject {
 
-    internal let presentationOptions: BottomSheetPresentationOptions
+    internal let presentationOptions: SheetPresentationOptions
     internal let dimmingViewTapHandler: DimmingViewTapHandler
 
     /// Creates a `BottomSheetPresentationManager` with specific presentation
@@ -58,7 +50,7 @@ public enum DimmingViewTapHandler {
     ///     - dimmingViewTapHandler: A handler to be called when tapping the
     ///                              dimming view.
     public init(
-        options: BottomSheetPresentationOptions = .default,
+        options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
         presentationOptions = options
@@ -83,7 +75,7 @@ public enum DimmingViewTapHandler {
     public convenience init(dimmingViewAlpha: CGFloat?,
                             edgeInsets: UIEdgeInsets,
                             ignoredEdgesForMargins: ViewEdge = []) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
             ignoredEdgesForMargins: ignoredEdgesForMargins)
@@ -112,7 +104,7 @@ public enum DimmingViewTapHandler {
                             dimmingViewAlpha: CGFloat?,
                             edgeInsets: UIEdgeInsets,
                             ignoredEdgesForMargins: ViewEdge = []) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
@@ -139,13 +131,12 @@ public enum DimmingViewTapHandler {
     ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                               view for which its margins should be
     ///                               ignored for layout purposes.
-    @available(iOS 11.0, *)
     public convenience init(cornerRadius: CGFloat,
                             maskedCorners: CACornerMask = .all,
                             dimmingViewAlpha: CGFloat?,
                             edgeInsets: UIEdgeInsets,
                             ignoredEdgesForMargins: ViewEdge = []) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             maskedCorners: maskedCorners,
             dimmingViewAlpha: dimmingViewAlpha,
@@ -178,7 +169,7 @@ public enum DimmingViewTapHandler {
         ignoredEdgesForMargins: ViewEdge = [],
         dimmingViewTapHandler: @escaping (UIViewController) -> Void
         ) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
             ignoredEdgesForMargins: ignoredEdgesForMargins)
@@ -213,7 +204,7 @@ public enum DimmingViewTapHandler {
         ignoredEdgesForMargins: ViewEdge = [],
         dimmingViewTapHandler: @escaping (UIViewController) -> Void
         ) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
@@ -243,7 +234,6 @@ public enum DimmingViewTapHandler {
     ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                               view for which its margins should be
     ///                               ignored for layout purposes.
-    @available(iOS 11.0, *)
     public convenience init(
         cornerRadius: CGFloat,
         maskedCorners: CACornerMask,
@@ -252,7 +242,7 @@ public enum DimmingViewTapHandler {
         ignoredEdgesForMargins: ViewEdge = [],
         dimmingViewTapHandler: @escaping (UIViewController) -> Void
         ) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             maskedCorners: maskedCorners,
             dimmingViewAlpha: dimmingViewAlpha,
@@ -286,7 +276,7 @@ public enum DimmingViewTapHandler {
                             ignoredEdgesForMargins: ViewEdge,
                             dimmingViewTapTarget target: NSObjectProtocol,
                             dimmingViewTapAction action: Selector) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
             ignoredEdgesForMargins: ignoredEdgesForMargins)
@@ -321,7 +311,7 @@ public enum DimmingViewTapHandler {
                             ignoredEdgesForMargins: ViewEdge,
                             dimmingViewTapTarget target: NSObjectProtocol,
                             dimmingViewTapAction action: Selector) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             dimmingViewAlpha: dimmingViewAlpha,
             edgeInsets: edgeInsets,
@@ -352,7 +342,6 @@ public enum DimmingViewTapHandler {
     ///                             tapped.
     ///     - action: The action selector to call on the target
     ///                             when the dimming view is tapped.
-    @available(iOS 11.0, *)
     public convenience init(cornerRadius: CGFloat,
                             maskedCorners: CACornerMask,
                             dimmingViewAlpha: CGFloat,
@@ -360,7 +349,7 @@ public enum DimmingViewTapHandler {
                             ignoredEdgesForMargins: ViewEdge,
                             dimmingViewTapTarget target: NSObjectProtocol,
                             dimmingViewTapAction action: Selector) {
-        let options = BottomSheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: cornerRadius,
             maskedCorners: maskedCorners,
             dimmingViewAlpha: dimmingViewAlpha,
@@ -373,7 +362,7 @@ public enum DimmingViewTapHandler {
 
 }
 
-extension BottomSheetPresentationManager:
+extension SheetPresentationManager:
 UIViewControllerTransitioningDelegate {
 
     /// Asks your delegate for the custom presentation controller to use for
@@ -383,7 +372,7 @@ UIViewControllerTransitioningDelegate {
         presenting: UIViewController?,
         source: UIViewController
         ) -> UIPresentationController? {
-        let controller = BottomSheetPresentationController(
+        let controller = SheetPresentationController(
             forPresented: presented,
             presenting: presenting,
             presentationOptions: presentationOptions,
@@ -396,7 +385,7 @@ UIViewControllerTransitioningDelegate {
 
 }
 
-extension BottomSheetPresentationManager:
+extension SheetPresentationManager:
 UIAdaptivePresentationControllerDelegate {
 
     /// Asks the delegate for the presentation style to use when the specified

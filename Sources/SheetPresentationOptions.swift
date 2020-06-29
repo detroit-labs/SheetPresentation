@@ -14,7 +14,7 @@ import BottomSheetPresentationLegacySupport
 
 /// Options for presentation. These options are passed to created
 /// `BottomSheetPresentationController` objects upon creation.
-public struct BottomSheetPresentationOptions {
+public struct SheetPresentationOptions {
 
     /// Options for the corners of the presented view controller.
     public enum CornerOptions: Equatable {
@@ -23,7 +23,6 @@ public struct BottomSheetPresentationOptions {
         case roundAllCorners(radius: CGFloat)
 
         /// Rounds the corners specified in `corners` by the given `radius`.
-        @available(iOS 11.0, *)
         case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
 
         /// Does not round corners.
@@ -55,15 +54,7 @@ public struct BottomSheetPresentationOptions {
 
     /// The default options that are used when calling `init()` on a
     /// `BottomSheetPresentationManager` with no options.
-    ///
-    /// - SeeAlso:
-    ///   - `BottomSheetPresentationOptions.default`
-    @available(*, deprecated, renamed: "default")
-    public static let defaultOptions: BottomSheetPresentationOptions = .default
-
-    /// The default options that are used when calling `init()` on a
-    /// `BottomSheetPresentationManager` with no options.
-    public static let `default` = BottomSheetPresentationOptions(
+    public static let `default` = SheetPresentationOptions(
         cornerRadius: 10,
         dimmingViewAlpha: 0.5,
         edgeInsets: UIEdgeInsets(constant: 20),
@@ -146,7 +137,6 @@ public struct BottomSheetPresentationOptions {
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
     ///                             this includes the safe area.
-    @available(iOS 11.0, *)
     public init(cornerRadius: CGFloat = 10,
                 maskedCorners: CACornerMask = .all,
                 dimmingViewAlpha: CGFloat? = 0.5,
@@ -161,27 +151,21 @@ public struct BottomSheetPresentationOptions {
 
 }
 
-extension BottomSheetPresentationOptions: Equatable {}
+extension SheetPresentationOptions: Equatable {}
 
-extension BottomSheetPresentationOptions.CornerOptions {
+extension SheetPresentationOptions.CornerOptions {
 
     func apply(to view: UIView) {
         switch self {
         case .roundAllCorners(radius: let radius):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-
-            if #available(iOS 11.0, *) {
-                view.layer.maskedCorners = .all
-            }
+            view.layer.maskedCorners = .all
 
         case let .roundSomeCorners(radius: radius, corners: corners):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-
-            if #available(iOS 11.0, *) {
-                view.layer.maskedCorners = corners
-            }
+            view.layer.maskedCorners = corners
 
         case .none:
             view.layer.cornerRadius = 0

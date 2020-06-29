@@ -1,26 +1,19 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
-    name: "BottomSheetPresentation",
-    platforms: [.iOS(.v8)],
+    name: "SheetPresentation",
+    platforms: [.iOS(.v11)],
     products: [
-        .library(name: "BottomSheetPresentation",
-                 targets: ["BottomSheetPresentation"]),
-        .library(name: "BottomSheetPresentationLegacySupport",
-                 targets: ["BottomSheetPresentationLegacySupport"])
+        .library(name: "SheetPresentation",
+                 targets: ["SheetPresentation"])
     ],
     targets: [
-        .target(name: "BottomSheetPresentationLegacySupport",
-                dependencies: []),
-        .target(name: "BottomSheetPresentation",
-                dependencies: ["BottomSheetPresentationLegacySupport"]),
-        .testTarget(name: "BottomSheetPresentationTests",
-                    dependencies: ["BottomSheetPresentation"])
+        .target(name: "SheetPresentation",
+                path: "Sources"),
+        .testTarget(name: "SheetPresentationTests",
+                    dependencies: ["SheetPresentation"],
+                    path: "Tests")
     ],
-    swiftLanguageVersions: [
-        .version("4"),
-        .version("4.2"),
-        .version("5")
-    ]
+    swiftLanguageVersions: [.version("5")]
 )
