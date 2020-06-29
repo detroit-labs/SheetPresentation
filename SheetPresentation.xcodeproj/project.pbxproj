@@ -20,7 +20,7 @@
 		1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* SheetPresentationManager.swift */; };
 		1FD690A723E9E675009C29EF /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 1FD690A623E9E675009C29EF /* Fastfile */; };
 		1FDFAB06210113CE00BBEE09 /* SheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */; };
-		1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */; };
+		1FDFAB0B210113CE00BBEE09 /* SheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* SheetPresentationTests.swift */; };
 		1FDFAB152101142300BBEE09 /* SheetPresentationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* SheetPresentationOptions.swift */; };
 		1FDFAB162101143100BBEE09 /* SheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */; };
 		1FDFAB172101143100BBEE09 /* SheetPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -80,7 +80,7 @@
 		1FD690A623E9E675009C29EF /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
 		1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SheetPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDFAB05210113CE00BBEE09 /* SheetPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SheetPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationTests.swift; sourceTree = "<group>"; };
+		1FDFAB0A210113CE00BBEE09 /* SheetPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationTests.swift; sourceTree = "<group>"; };
 		1FDFAB0C210113CE00BBEE09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE9B738232968FF00EE050E /* ViewEdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEdgeTests.swift; sourceTree = "<group>"; };
 		1FE9B73A23296C1700EE050E /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
@@ -150,11 +150,11 @@
 			isa = PBXGroup;
 			children = (
 				1F21766020FE7E47006581CD /* AppDelegate.swift */,
-				1F21766220FE7E47006581CD /* HomeViewController.swift */,
-				1F21767220FE8094006581CD /* ChildViewController.swift */,
-				1F21766420FE7E47006581CD /* Main.storyboard */,
 				1F21766720FE7E49006581CD /* Assets.xcassets */,
+				1F21767220FE8094006581CD /* ChildViewController.swift */,
+				1F21766220FE7E47006581CD /* HomeViewController.swift */,
 				1F21766920FE7E49006581CD /* LaunchScreen.storyboard */,
+				1F21766420FE7E47006581CD /* Main.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -178,8 +178,8 @@
 		1FDFAB09210113CE00BBEE09 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1FDFAB0A210113CE00BBEE09 /* BottomSheetPresentationTests.swift */,
 				1FDFAB0C210113CE00BBEE09 /* Info.plist */,
+				1FDFAB0A210113CE00BBEE09 /* SheetPresentationTests.swift */,
 				1FE9B738232968FF00EE050E /* ViewEdgeTests.swift */,
 			);
 			path = Tests;
@@ -406,7 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FDFAB0B210113CE00BBEE09 /* BottomSheetPresentationTests.swift in Sources */,
+				1FDFAB0B210113CE00BBEE09 /* SheetPresentationTests.swift in Sources */,
 				1FE9B739232968FF00EE050E /* ViewEdgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
