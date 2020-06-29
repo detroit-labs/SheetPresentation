@@ -1,6 +1,6 @@
 //
-//  BottomSheetPresentationManager.swift
-//  BottomSheetPresentation
+//  SheetPresentationManager.swift
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.
@@ -9,10 +9,6 @@
 // swiftlint:disable file_length
 
 import UIKit
-
-#if SWIFT_PACKAGE
-import BottomSheetPresentationLegacySupport
-#endif
 
 /// A handler that the presentation controller calls when the user taps on the
 /// dimming view.
@@ -35,14 +31,14 @@ public enum DimmingViewTapHandler {
 
 }
 
-/// An object that creates instances of `BottomSheetPresentationController` when
+/// An object that creates instances of `SheetPresentationController` when
 /// set as a view controller’s `transitioningDelegate`.
 @objcMembers public final class SheetPresentationManager: NSObject {
 
     internal let presentationOptions: SheetPresentationOptions
     internal let dimmingViewTapHandler: DimmingViewTapHandler
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap handler.
     ///
     /// - Parameters:
@@ -57,7 +53,7 @@ public enum DimmingViewTapHandler {
         self.dimmingViewTapHandler = dimmingViewTapHandler
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and the default tap handler.
     ///
     /// - Parameters:
@@ -83,7 +79,7 @@ public enum DimmingViewTapHandler {
         self.init(options: options)
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and the default tap handler.
     ///
     /// - Parameters:
@@ -113,7 +109,7 @@ public enum DimmingViewTapHandler {
         self.init(options: options)
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and the default tap handler.
     ///
     /// - Parameters:
@@ -146,7 +142,7 @@ public enum DimmingViewTapHandler {
         self.init(options: options)
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap target/action.
     ///
     /// - Parameters:
@@ -178,7 +174,7 @@ public enum DimmingViewTapHandler {
                   dimmingViewTapHandler: .block(dimmingViewTapHandler))
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap target/action.
     ///
     /// - Parameters:
@@ -214,7 +210,7 @@ public enum DimmingViewTapHandler {
                   dimmingViewTapHandler: .block(dimmingViewTapHandler))
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap target/action.
     ///
     /// - Parameters:
@@ -253,7 +249,7 @@ public enum DimmingViewTapHandler {
                   dimmingViewTapHandler: .block(dimmingViewTapHandler))
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options.
     ///
     /// - Parameters:
@@ -285,7 +281,7 @@ public enum DimmingViewTapHandler {
                   dimmingViewTapHandler: .targetAction(target, action))
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options.
     ///
     /// - Parameters:
@@ -321,7 +317,7 @@ public enum DimmingViewTapHandler {
                   dimmingViewTapHandler: .targetAction(target, action))
     }
 
-    /// Creates a `BottomSheetPresentationManager` with specific presentation
+    /// Creates a `SheetPresentationManager` with specific presentation
     /// options.
     ///
     /// - Parameters:

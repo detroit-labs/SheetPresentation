@@ -1,6 +1,6 @@
 //
 //  CACornerMaskHelpers.swift
-//  BottomSheetPresentation
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 9/11/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.

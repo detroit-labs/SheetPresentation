@@ -1,6 +1,6 @@
 //
-//  BottomSheetPresentationOptions.swift
-//  BottomSheetPresentation
+//  SheetPresentationOptions.swift
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
 //  Copyright © 2020 Detroit Labs, LLC. All rights reserved.
@@ -8,12 +8,8 @@
 
 import UIKit
 
-#if SWIFT_PACKAGE
-import BottomSheetPresentationLegacySupport
-#endif
-
 /// Options for presentation. These options are passed to created
-/// `BottomSheetPresentationController` objects upon creation.
+/// `SheetPresentationController` objects upon creation.
 public struct SheetPresentationOptions {
 
     /// Options for the corners of the presented view controller.
@@ -48,19 +44,17 @@ public struct SheetPresentationOptions {
     /// Edges of the presenting view controller’s view for which its margins
     /// should be ignored for layout purposes. On iOS 11 and above, this
     /// includes the safe area.
-    ///
-    /// - SeeAlso: `BSPViewEdge`
     public let ignoredEdgesForMargins: ViewEdge
 
     /// The default options that are used when calling `init()` on a
-    /// `BottomSheetPresentationManager` with no options.
+    /// `SheetPresentationManager` with no options.
     public static let `default` = SheetPresentationOptions(
         cornerRadius: 10,
         dimmingViewAlpha: 0.5,
         edgeInsets: UIEdgeInsets(constant: 20),
         ignoredEdgesForMargins: [])
 
-    /// Creates a new `BottomSheetPresentationOptions` struct.
+    /// Creates a new `SheetPresentationOptions` struct.
     ///
     /// - Parameters:
     ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
@@ -86,7 +80,7 @@ public struct SheetPresentationOptions {
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
     }
 
-    /// Creates a new `BottomSheetPresentationOptions` struct with rounded
+    /// Creates a new `SheetPresentationOptions` struct with rounded
     /// corners.
     ///
     /// - Parameters:
@@ -116,7 +110,7 @@ public struct SheetPresentationOptions {
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
     }
 
-    /// Creates a new `BottomSheetPresentationOptions` struct with some rounded
+    /// Creates a new `SheetPresentationOptions` struct with some rounded
     /// corners.
     ///
     /// - Parameters:

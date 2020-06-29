@@ -1,16 +1,12 @@
 //
-//  BottomSheetPresentationController.swift
-//  BottomSheetPresentation
+//  SheetPresentationController.swift
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
 import UIKit
-
-#if SWIFT_PACKAGE
-import BottomSheetPresentationLegacySupport
-#endif
 
 /// A presentation controller for presenting a view controller over the bottom
 /// portion of the screen, automatically growing the view controller as needed
@@ -78,7 +74,7 @@ public final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Initialization
 
-    /// Creates a `BottomSheetPresentationController` for a specific
+    /// Creates a `SheetPresentationController` for a specific
     /// presentation.
     ///
     /// - Parameters:

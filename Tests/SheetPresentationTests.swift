@@ -1,6 +1,6 @@
 //
-//  BottomSheetPresentationTests.swift
-//  BottomSheetPresentationTests
+//  SheetPresentationTests.swift
+//  SheetPresentationTests
 //
 //  Created by Jeff Kelley on 7/19/18.
 //  Copyright © 2020 Detroit Labs, LLC. All rights reserved.
@@ -74,7 +74,7 @@ final class SheetPresentationOptionsTests: XCTestCase {
 
 }
 
-class BottomSheetPresentationManagerTests: XCTestCase {
+class SheetPresentationManagerTests: XCTestCase {
 
     var subject: SheetPresentationManager!
 
@@ -93,7 +93,7 @@ class BottomSheetPresentationManagerTests: XCTestCase {
 
 }
 
-class BSPMTransitioningDelegateTests: BottomSheetPresentationManagerTests {
+final class SPMTransitioningDelegateTests: SheetPresentationManagerTests {
 
     func testThatCreatedPresentationControllersHaveTheirDelegateSet() {
 
@@ -105,7 +105,7 @@ class BSPMTransitioningDelegateTests: BottomSheetPresentationManagerTests {
 
 }
 
-class BSPMAdaptivePCDelegateTests: BottomSheetPresentationManagerTests {
+final class SPMAdaptivePCDelegateTests: SheetPresentationManagerTests {
 
     func testThatAdaptivePresentationStyleIsOverCurrentContext() {
 
@@ -125,7 +125,7 @@ class BSPMAdaptivePCDelegateTests: BottomSheetPresentationManagerTests {
 
 }
 
-class BottomSheetPresentationControllerTests: XCTestCase {
+final class SheetPresentationControllerTests: XCTestCase {
 
     var subject: SheetPresentationController!
 

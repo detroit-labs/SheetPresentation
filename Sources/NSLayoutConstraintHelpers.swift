@@ -1,6 +1,6 @@
 //
 //  NSLayoutConstraintHelpers.swift
-//  BottomSheetPresentation
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.
