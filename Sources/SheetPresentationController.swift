@@ -204,13 +204,7 @@ public final class SheetPresentationController: UIPresentationController {
     internal var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
-        let insets = marginAdjustedEdgeInsets
-
-        #if swift(>=4.2)
-        return containerView.bounds.inset(by: insets)
-        #else
-        return UIEdgeInsetsInsetRect(containerView.bounds, insets)
-        #endif
+        return containerView.bounds.inset(by: marginAdjustedEdgeInsets)
     }
 
     internal func preferredPresentedViewControllerSize(
