@@ -1,15 +1,15 @@
 //
 //  ViewEdgeTests.swift
-//  BottomSheetPresentationTests
+//  SheetPresentationTests
 //
 //  Created by Jeff Kelley on 9/11/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
 import XCTest
-@testable import BottomSheetPresentation
+@testable import SheetPresentation
 
-class ViewEdgeTests: XCTestCase {
+final class ViewEdgeTests: XCTestCase {
 
     func testViewEdgesContainThemselves() {
         XCTAssertTrue(ViewEdge.top.contains(.top))

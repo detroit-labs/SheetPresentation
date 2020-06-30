@@ -1,6 +1,6 @@
 //
-//  BottomSheetPresentationController.swift
-//  BottomSheetPresentation
+//  SheetPresentationController.swift
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
 //  Copyright © 2020 Detroit Labs. All rights reserved.
@@ -8,18 +8,14 @@
 
 import UIKit
 
-#if SWIFT_PACKAGE
-import BottomSheetPresentationLegacySupport
-#endif
-
 /// A presentation controller for presenting a view controller over the bottom
 /// portion of the screen, automatically growing the view controller as needed
 /// based on either its `preferredContentSize` or Auto Layout.
-public final class BottomSheetPresentationController: UIPresentationController {
+public final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
-    internal var cornerOptions: BottomSheetPresentationOptions.CornerOptions {
+    internal var cornerOptions: SheetPresentationOptions.CornerOptions {
         didSet {
             if let layoutContainer = layoutContainer {
                 cornerOptions.apply(to: layoutContainer)
@@ -78,7 +74,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     // MARK: - Initialization
 
-    /// Creates a `BottomSheetPresentationController` for a specific
+    /// Creates a `SheetPresentationController` for a specific
     /// presentation.
     ///
     /// - Parameters:
@@ -90,7 +86,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     public init(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
-        presentationOptions options: BottomSheetPresentationOptions = .default,
+        presentationOptions options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
         cornerOptions = options.cornerOptions
@@ -208,13 +204,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
     internal var maximumPresentedBoundsInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
 
-        let insets = marginAdjustedEdgeInsets
-
-        #if swift(>=4.2)
-        return containerView.bounds.inset(by: insets)
-        #else
-        return UIEdgeInsetsInsetRect(containerView.bounds, insets)
-        #endif
+        return containerView.bounds.inset(by: marginAdjustedEdgeInsets)
     }
 
     internal func preferredPresentedViewControllerSize(

@@ -7,32 +7,18 @@
 //
 
 import UIKit
-import BottomSheetPresentation
+import SheetPresentation
 
 class HomeViewController: UIViewController {
 
-    lazy var bottomSheetPresentationManager: BottomSheetPresentationManager = {
-        let options: BottomSheetPresentationOptions
-
-        if #available(iOS 11.0, *) {
-            options = BottomSheetPresentationOptions(
-                cornerRadius: 8,
-                maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
-                dimmingViewAlpha: nil,
-                edgeInsets: .zero,
-                ignoredEdgesForMargins: .bottomEdges
-            )
-        }
-        else {
-            options = BottomSheetPresentationOptions(
-                cornerRadius: 8,
-                dimmingViewAlpha: nil,
-                edgeInsets: .zero,
-                ignoredEdgesForMargins: .bottomEdges
-            )
-        }
-
-        return BottomSheetPresentationManager(options: options)
+    lazy var bottomSheetPresentationManager: SheetPresentationManager = {
+        SheetPresentationManager(options: SheetPresentationOptions(
+            cornerRadius: 8,
+            maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
+            dimmingViewAlpha: nil,
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: .bottomEdges
+        ))
     }()
 
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}

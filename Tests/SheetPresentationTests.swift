@@ -1,43 +1,43 @@
 //
-//  BottomSheetPresentationTests.swift
-//  BottomSheetPresentationTests
+//  SheetPresentationTests.swift
+//  SheetPresentationTests
 //
 //  Created by Jeff Kelley on 7/19/18.
 //  Copyright © 2020 Detroit Labs, LLC. All rights reserved.
 //
 
 import XCTest
-@testable import BottomSheetPresentation
+@testable import SheetPresentation
 
-class BottomSheetPresentationOptionsTests: XCTestCase {
+final class SheetPresentationOptionsTests: XCTestCase {
 
     func testThatTheDefaultInitUsesDefaultPresentationOptions() {
-        let subject = BottomSheetPresentationManager()
+        let subject = SheetPresentationManager()
         XCTAssertEqual(subject.presentationOptions, .default)
     }
 
     func testThatInitWithPresentationOptionsUsesThoseOptions() {
-        let presentationOptions = BottomSheetPresentationOptions(
+        let presentationOptions = SheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
             edgeInsets: .zero)
 
-        let subject = BottomSheetPresentationManager(
+        let subject = SheetPresentationManager(
             options: presentationOptions)
 
         XCTAssertEqual(subject.presentationOptions, presentationOptions)
     }
 
     func testThatInitWithPresentationValuesUsesThoseValues() {
-        let expectedPresentationOptions = BottomSheetPresentationOptions(
+        let expectedPresentationOptions = SheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
             edgeInsets: .zero,
             ignoredEdgesForMargins: [])
 
-        let subject = BottomSheetPresentationManager(cornerRadius: 42,
-                                                     dimmingViewAlpha: 31,
-                                                     edgeInsets: .zero)
+        let subject = SheetPresentationManager(cornerRadius: 42,
+                                               dimmingViewAlpha: 31,
+                                               edgeInsets: .zero)
 
         XCTAssertEqual(subject.presentationOptions, expectedPresentationOptions)
     }
@@ -48,18 +48,18 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
         let presentedViewController = UIViewController()
         let source = UIViewController()
 
-        let presentationOptions = BottomSheetPresentationOptions(
+        let presentationOptions = SheetPresentationOptions(
             cornerRadius: 42,
             dimmingViewAlpha: 31,
             edgeInsets: .zero)
 
-        let subject = BottomSheetPresentationManager(
+        let subject = SheetPresentationManager(
             options: presentationOptions)
 
         let presentationController = subject.presentationController(
             forPresented: presentedViewController,
             presenting: presentingViewController,
-            source: source) as! BottomSheetPresentationController
+            source: source) as! SheetPresentationController
 
         XCTAssertEqual(presentationController.cornerOptions,
                        presentationOptions.cornerOptions)
@@ -74,26 +74,26 @@ class BottomSheetPresentationOptionsTests: XCTestCase {
 
 }
 
-class BottomSheetPresentationManagerTests: XCTestCase {
+class SheetPresentationManagerTests: XCTestCase {
 
-    var subject: BottomSheetPresentationManager!
+    var subject: SheetPresentationManager!
 
     override func setUp() {
         super.setUp()
-        subject = BottomSheetPresentationManager()
+        subject = SheetPresentationManager()
     }
 
     func createPresentationControllerWithMockVCs(
-        ) -> BottomSheetPresentationController {
+        ) -> SheetPresentationController {
         return subject.presentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
-            source: UIViewController()) as! BottomSheetPresentationController
+            source: UIViewController()) as! SheetPresentationController
     }
 
 }
 
-class BSPMTransitioningDelegateTests: BottomSheetPresentationManagerTests {
+final class SPMTransitioningDelegateTests: SheetPresentationManagerTests {
 
     func testThatCreatedPresentationControllersHaveTheirDelegateSet() {
 
@@ -105,7 +105,7 @@ class BSPMTransitioningDelegateTests: BottomSheetPresentationManagerTests {
 
 }
 
-class BSPMAdaptivePCDelegateTests: BottomSheetPresentationManagerTests {
+final class SPMAdaptivePCDelegateTests: SheetPresentationManagerTests {
 
     func testThatAdaptivePresentationStyleIsOverCurrentContext() {
 
@@ -125,14 +125,14 @@ class BSPMAdaptivePCDelegateTests: BottomSheetPresentationManagerTests {
 
 }
 
-class BottomSheetPresentationControllerTests: XCTestCase {
+final class SheetPresentationControllerTests: XCTestCase {
 
-    var subject: BottomSheetPresentationController!
+    var subject: SheetPresentationController!
 
     override func setUp() {
         super.setUp()
 
-        subject = BottomSheetPresentationController(
+        subject = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController())
     }
@@ -146,16 +146,10 @@ class BottomSheetPresentationControllerTests: XCTestCase {
                        42)
         XCTAssertTrue(layoutContainer.clipsToBounds)
 
-        if #available(iOS 11.0, *) {
-            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
-        }
+        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
     }
 
     func testThatSettingMaskedCornerRadiusUpdatesLayoutContainer() throws {
-        guard #available(iOS 11.0, *) else {
-           throw XCTSkip()
-        }
-
         subject.cornerOptions = .roundSomeCorners(radius: 42, corners: .top)
 
         let layoutContainer = try XCTUnwrap(subject.layoutContainer)
@@ -175,9 +169,7 @@ class BottomSheetPresentationControllerTests: XCTestCase {
         XCTAssertEqual(layoutContainer.layer.cornerRadius, 0)
         XCTAssertFalse(layoutContainer.clipsToBounds)
 
-        if #available(iOS 11.0, *) {
-            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
-        }
+        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
     }
 
     func testThatSettingDimmingViewAlphaUpdatesDimmingView() {
@@ -217,7 +209,7 @@ class BottomSheetPresentationControllerTests: XCTestCase {
 
         let expect = expectation(description: "tap handler fired")
 
-        subject = BottomSheetPresentationController(
+        subject = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
             dimmingViewTapHandler: .block({ (viewController) in
@@ -244,7 +236,7 @@ class BottomSheetPresentationControllerTests: XCTestCase {
 
     func testCallingTheDimmingViewDismissalTargetActionHandler() {
 
-        subject = BottomSheetPresentationController(
+        subject = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
             dimmingViewTapHandler: .targetAction(

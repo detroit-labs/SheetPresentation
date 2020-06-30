@@ -1,6 +1,6 @@
 //
-//  BottomSheetPresentationOptions.swift
-//  BottomSheetPresentation
+//  SheetPresentationOptions.swift
+//  SheetPresentation
 //
 //  Created by Jeff Kelley on 7/17/18.
 //  Copyright © 2020 Detroit Labs, LLC. All rights reserved.
@@ -8,13 +8,9 @@
 
 import UIKit
 
-#if SWIFT_PACKAGE
-import BottomSheetPresentationLegacySupport
-#endif
-
 /// Options for presentation. These options are passed to created
-/// `BottomSheetPresentationController` objects upon creation.
-public struct BottomSheetPresentationOptions {
+/// `SheetPresentationController` objects upon creation.
+public struct SheetPresentationOptions {
 
     /// Options for the corners of the presented view controller.
     public enum CornerOptions: Equatable {
@@ -23,7 +19,6 @@ public struct BottomSheetPresentationOptions {
         case roundAllCorners(radius: CGFloat)
 
         /// Rounds the corners specified in `corners` by the given `radius`.
-        @available(iOS 11.0, *)
         case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
 
         /// Does not round corners.
@@ -49,27 +44,17 @@ public struct BottomSheetPresentationOptions {
     /// Edges of the presenting view controller’s view for which its margins
     /// should be ignored for layout purposes. On iOS 11 and above, this
     /// includes the safe area.
-    ///
-    /// - SeeAlso: `BSPViewEdge`
     public let ignoredEdgesForMargins: ViewEdge
 
     /// The default options that are used when calling `init()` on a
-    /// `BottomSheetPresentationManager` with no options.
-    ///
-    /// - SeeAlso:
-    ///   - `BottomSheetPresentationOptions.default`
-    @available(*, deprecated, renamed: "default")
-    public static let defaultOptions: BottomSheetPresentationOptions = .default
-
-    /// The default options that are used when calling `init()` on a
-    /// `BottomSheetPresentationManager` with no options.
-    public static let `default` = BottomSheetPresentationOptions(
+    /// `SheetPresentationManager` with no options.
+    public static let `default` = SheetPresentationOptions(
         cornerRadius: 10,
         dimmingViewAlpha: 0.5,
         edgeInsets: UIEdgeInsets(constant: 20),
         ignoredEdgesForMargins: [])
 
-    /// Creates a new `BottomSheetPresentationOptions` struct.
+    /// Creates a new `SheetPresentationOptions` struct.
     ///
     /// - Parameters:
     ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
@@ -81,7 +66,7 @@ public struct BottomSheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
@@ -95,7 +80,7 @@ public struct BottomSheetPresentationOptions {
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
     }
 
-    /// Creates a new `BottomSheetPresentationOptions` struct with rounded
+    /// Creates a new `SheetPresentationOptions` struct with rounded
     /// corners.
     ///
     /// - Parameters:
@@ -110,7 +95,7 @@ public struct BottomSheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
@@ -125,7 +110,7 @@ public struct BottomSheetPresentationOptions {
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
     }
 
-    /// Creates a new `BottomSheetPresentationOptions` struct with some rounded
+    /// Creates a new `SheetPresentationOptions` struct with some rounded
     /// corners.
     ///
     /// - Parameters:
@@ -141,12 +126,11 @@ public struct BottomSheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
     ///                             this includes the safe area.
-    @available(iOS 11.0, *)
     public init(cornerRadius: CGFloat = 10,
                 maskedCorners: CACornerMask = .all,
                 dimmingViewAlpha: CGFloat? = 0.5,
@@ -161,27 +145,21 @@ public struct BottomSheetPresentationOptions {
 
 }
 
-extension BottomSheetPresentationOptions: Equatable {}
+extension SheetPresentationOptions: Equatable {}
 
-extension BottomSheetPresentationOptions.CornerOptions {
+extension SheetPresentationOptions.CornerOptions {
 
     func apply(to view: UIView) {
         switch self {
         case .roundAllCorners(radius: let radius):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-
-            if #available(iOS 11.0, *) {
-                view.layer.maskedCorners = .all
-            }
+            view.layer.maskedCorners = .all
 
         case let .roundSomeCorners(radius: radius, corners: corners):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-
-            if #available(iOS 11.0, *) {
-                view.layer.maskedCorners = corners
-            }
+            view.layer.maskedCorners = corners
 
         case .none:
             view.layer.cornerRadius = 0
