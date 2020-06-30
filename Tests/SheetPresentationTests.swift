@@ -36,8 +36,8 @@ final class SheetPresentationOptionsTests: XCTestCase {
             ignoredEdgesForMargins: [])
 
         let subject = SheetPresentationManager(cornerRadius: 42,
-                                                     dimmingViewAlpha: 31,
-                                                     edgeInsets: .zero)
+                                               dimmingViewAlpha: 31,
+                                               edgeInsets: .zero)
 
         XCTAssertEqual(subject.presentationOptions, expectedPresentationOptions)
     }

@@ -358,8 +358,7 @@ public enum DimmingViewTapHandler {
 
 }
 
-extension SheetPresentationManager:
-UIViewControllerTransitioningDelegate {
+extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
 
     /// Asks your delegate for the custom presentation controller to use for
     /// managing the view hierarchy when presenting a view controller.
@@ -381,8 +380,7 @@ UIViewControllerTransitioningDelegate {
 
 }
 
-extension SheetPresentationManager:
-UIAdaptivePresentationControllerDelegate {
+extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
 
     /// Asks the delegate for the presentation style to use when the specified
     /// set of traits are active.

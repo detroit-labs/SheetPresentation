@@ -8,6 +8,7 @@
 
 /// An `OptionSet` representing the edges of an on-screen view.
 public struct ViewEdge: OptionSet {
+
     /// All four edges of a view.
     public static let all: ViewEdge = [.top, .left, .right, .bottom]
     /// The bottom, left, and right edges of a view.
@@ -22,4 +23,5 @@ public struct ViewEdge: OptionSet {
     public let rawValue: UInt
 
     public init(rawValue: UInt) { self.rawValue = rawValue }
+
 }
