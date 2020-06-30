@@ -6,7 +6,7 @@
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
-/// An `OptionSet` representing the sides of an on-screen view.
+/// An `OptionSet` representing the edges of an on-screen view.
 public struct ViewEdge: OptionSet {
     /// All four edges of a view.
     public static let all: ViewEdge = [.top, .left, .right, .bottom]

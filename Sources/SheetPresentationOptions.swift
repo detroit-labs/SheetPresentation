@@ -66,7 +66,7 @@ public struct SheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
@@ -95,7 +95,7 @@ public struct SheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
@@ -126,7 +126,7 @@ public struct SheetPresentationOptions {
     ///                 may be additional insets depending on the safe area
     ///                 insets of the presenting view controller’s view (iOS 11
     ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
+    ///                 each edge.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
     ///                             for layout purposes. On iOS 11 and above,
