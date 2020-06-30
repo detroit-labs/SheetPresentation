@@ -1,7 +1,7 @@
 # SheetPresentation
 
 A `UIPresentationController` and attendant clases for iOS to present a view
-controller pinned to an edge of screen like an action sheet.
+controller pinned to an edge of the screen like an action sheet.
 
 [![Version](https://img.shields.io/cocoapods/v/BottomSheetPresentation.svg?style=flat)](https://cocoapods.org/pods/BottomSheetPresentation)
 [![Documentation](docs/badge.svg)](https://detroit-labs.github.io/BottomSheetPresentation/)
