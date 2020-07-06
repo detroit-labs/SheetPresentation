@@ -18,7 +18,6 @@
 		1F31A84022860A370086784C /* NSLayoutConstraintHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83F22860A370086784C /* NSLayoutConstraintHelpers.swift */; };
 		1F31A84222860A7B0086784C /* SheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84122860A7B0086784C /* SheetPresentationController.swift */; };
 		1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* SheetPresentationManager.swift */; };
-		1FD690A723E9E675009C29EF /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 1FD690A623E9E675009C29EF /* Fastfile */; };
 		1FDFAB06210113CE00BBEE09 /* SheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */; };
 		1FDFAB0B210113CE00BBEE09 /* SheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* SheetPresentationTests.swift */; };
 		1FDFAB152101142300BBEE09 /* SheetPresentationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767420FE839D006581CD /* SheetPresentationOptions.swift */; };
@@ -323,7 +322,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FD690A723E9E675009C29EF /* Fastfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

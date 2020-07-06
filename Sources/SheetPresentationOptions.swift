@@ -11,6 +11,9 @@ import UIKit
 /// Options for presentation. These options are passed to created
 /// `SheetPresentationController` objects upon creation.
 public struct SheetPresentationOptions {
+    public enum PresentationEdge: Equatable {
+        case leading, trailing, bottom
+    }
 
     /// Options for the corners of the presented view controller.
     public enum CornerOptions: Equatable {
@@ -42,75 +45,17 @@ public struct SheetPresentationOptions {
     public let edgeInsets: UIEdgeInsets
 
     /// Edges of the presenting view controller’s view for which its margins
-    /// should be ignored for layout purposes. On iOS 11 and above, this
-    /// includes the safe area.
+    /// should be ignored for layout purposes, including the safe area.
     public let ignoredEdgesForMargins: ViewEdge
+
+    /// Side of the screen from which to present.
+    public let presentationEdge: PresentationEdge
 
     /// The default options that are used when calling `init()` on a
     /// `SheetPresentationManager` with no options.
-    public static let `default` = SheetPresentationOptions(
-        cornerRadius: 10,
-        dimmingViewAlpha: 0.5,
-        edgeInsets: UIEdgeInsets(constant: 20),
-        ignoredEdgesForMargins: [])
+    public static let `default` = SheetPresentationOptions()
 
-    /// Creates a new `SheetPresentationOptions` struct.
-    ///
-    /// - Parameters:
-    ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
-    ///                       the presented view controller. The color is black.
-    ///                       Defaults to `0.5`. Use `nil` to avoid using a
-    ///                       dimming view.
-    ///   - edgeInsets: The amount to inset the presented view controller from
-    ///                 the presenting view controller. This is a minimum; there
-    ///                 may be additional insets depending on the safe area
-    ///                 insets of the presenting view controller’s view (iOS 11
-    ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
-    ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                             view for which its margins should be ignored
-    ///                             for layout purposes. On iOS 11 and above,
-    ///                             this includes the safe area.
-    public init(dimmingViewAlpha: CGFloat? = 0.5,
-                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: ViewEdge = []) {
-        self.cornerOptions = .none
-        self.dimmingViewAlpha = dimmingViewAlpha
-        self.edgeInsets = edgeInsets
-        self.ignoredEdgesForMargins = ignoredEdgesForMargins
-    }
-
-    /// Creates a new `SheetPresentationOptions` struct with rounded
-    /// corners.
-    ///
-    /// - Parameters:
-    ///   - cornerRadius: The corner radius to use when displaying the presented
-    ///                   view controller. Defaults to `10`.
-    ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
-    ///                       the presented view controller. The color is black.
-    ///                       Defaults to `0.5`. Use `nil` to avoid using a
-    ///                       dimming view.
-    ///   - edgeInsets: The amount to inset the presented view controller from
-    ///                 the presenting view controller. This is a minimum; there
-    ///                 may be additional insets depending on the safe area
-    ///                 insets of the presenting view controller’s view (iOS 11
-    ///                 and later). Defaults to edge insets of `20` points on
-    ///                 each side.
-    ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                             view for which its margins should be ignored
-    ///                             for layout purposes. On iOS 11 and above,
-    ///                             this includes the safe area.
-    public init(cornerRadius: CGFloat = 10,
-                dimmingViewAlpha: CGFloat? = 0.5,
-                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: ViewEdge = []) {
-        self.cornerOptions = .roundAllCorners(radius: cornerRadius)
-        self.dimmingViewAlpha = dimmingViewAlpha
-        self.edgeInsets = edgeInsets
-        self.ignoredEdgesForMargins = ignoredEdgesForMargins
-    }
-
-    /// Creates a new `SheetPresentationOptions` struct with some rounded
+    /// Creates a new `SheetPresentationOptions` value with some rounded
     /// corners.
     ///
     /// - Parameters:
@@ -129,18 +74,22 @@ public struct SheetPresentationOptions {
     ///                 each side.
     ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
     ///                             view for which its margins should be ignored
-    ///                             for layout purposes. On iOS 11 and above,
-    ///                             this includes the safe area.
+    ///                             for layout purposes, including the safe
+    ///                             area.
+    ///   - presentationSide: Side of the screen from which to present. Defaults
+    ///                       to `.bottom`.
     public init(cornerRadius: CGFloat = 10,
                 maskedCorners: CACornerMask = .all,
                 dimmingViewAlpha: CGFloat? = 0.5,
                 edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: ViewEdge = []) {
+                ignoredEdgesForMargins: ViewEdge = [],
+                presentationEdge: PresentationEdge = .bottom) {
         self.cornerOptions = .roundSomeCorners(radius: cornerRadius,
                                                corners: maskedCorners)
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
+        self.presentationEdge = presentationEdge
     }
 
 }

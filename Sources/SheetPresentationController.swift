@@ -8,60 +8,46 @@
 
 import UIKit
 
-/// A presentation controller for presenting a view controller over the bottom
-/// portion of the screen, automatically growing the view controller as needed
+/// A presentation controller for presenting a view controller over a side of
+/// the screen, automatically growing the view controller as needed
 /// based on either its `preferredContentSize` or Auto Layout.
 public final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
+    internal let options: SheetPresentationOptions
+
     internal var cornerOptions: SheetPresentationOptions.CornerOptions {
-        didSet {
-            if let layoutContainer = layoutContainer {
-                cornerOptions.apply(to: layoutContainer)
-            }
-        }
+        options.cornerOptions
     }
 
-    internal var dimmingViewAlpha: CGFloat? {
-        didSet {
-            if let alpha = dimmingViewAlpha, let dimmingView = dimmingView {
-                dimmingView.backgroundColor = dimmingView.backgroundColor?
-                    .withAlphaComponent(alpha)
-            }
-            else if dimmingViewAlpha == nil {
-                dimmingView?.removeFromSuperview()
-                dimmingView = nil
-            }
-        }
-    }
+    internal var dimmingViewAlpha: CGFloat? { options.dimmingViewAlpha }
 
-    internal var edgeInsets: UIEdgeInsets {
-        didSet {
-            (containerView ?? presentedView)?.setNeedsLayout()
-        }
-    }
+    internal var edgeInsets: UIEdgeInsets { options.edgeInsets }
 
-    internal var ignoredEdgesForMargins: ViewEdge
+    internal var ignoredEdgesForMargins: ViewEdge {
+        options.ignoredEdgesForMargins
+    }
 
     internal var marginAdjustedEdgeInsets: UIEdgeInsets {
         var insets = edgeInsets
 
         if let containerView = containerView {
             if !ignoredEdgesForMargins.contains(.top) {
-                insets.top = max(insets.top, containerView.layoutMargins.top)
+                insets.top = max(insets.top,
+                                 containerView.safeAreaInsets.top)
             }
             if !ignoredEdgesForMargins.contains(.left) {
                 insets.left = max(insets.left,
-                                  containerView.layoutMargins.left)
+                                  containerView.safeAreaInsets.left)
             }
             if !ignoredEdgesForMargins.contains(.right) {
                 insets.right = max(insets.right,
-                                   containerView.layoutMargins.right)
+                                   containerView.safeAreaInsets.right)
             }
             if !ignoredEdgesForMargins.contains(.bottom) {
                 insets.bottom = max(insets.bottom,
-                                    containerView.layoutMargins.bottom)
+                                    containerView.safeAreaInsets.bottom)
             }
         }
 
@@ -89,10 +75,7 @@ public final class SheetPresentationController: UIPresentationController {
         presentationOptions options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
         ) {
-        cornerOptions = options.cornerOptions
-        dimmingViewAlpha = options.dimmingViewAlpha
-        edgeInsets = options.edgeInsets
-        ignoredEdgesForMargins = options.ignoredEdgesForMargins
+        self.options = options
         self.dimmingViewTapHandler = dimmingViewTapHandler
 
         super.init(presentedViewController: presented, presenting: presenting)
@@ -137,7 +120,7 @@ public final class SheetPresentationController: UIPresentationController {
     // MARK: - Public UIPresentationController Implementation
 
     /// The view to be animated by the animator objects during a transition.
-    override public var presentedView: UIView? { return layoutContainer }
+    override public var presentedView: UIView? { layoutContainer }
 
     /// The frame rectangle to assign to the presented view at the end of the
     /// animations.
@@ -152,15 +135,29 @@ public final class SheetPresentationController: UIPresentationController {
 
         var frame = maximumBounds
 
-        // Position the rect vertically at the bottom of the maximum bounds
-        frame.origin.y = maximumBounds.maxY - size.height
-        frame.size.height = size.height
+        switch options.presentationEdge {
+        case .leading:
+            frame.origin.y = maximumBounds.minY // Calculate top safe area.
+            frame.origin.x = maximumBounds.minX
+            // Calculate height to bottom safe area.
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0),
+                                height: frame.height)
+        case .trailing:
+            frame.origin.y = maximumBounds.minY
+            frame.origin.x = frame.width * (0.68 / 3.0)
+            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0),
+                                height: frame.height)
+        case .bottom:
+            // Position the rect vertically at the bottom of the maximum bounds
+            frame.origin.y = maximumBounds.maxY - size.height
+            frame.size.height = size.height
 
-        // Center the rect horizontally inside the maximum bounds
-        frame.origin.x = maximumBounds.minX +
-            ((maximumBounds.width - size.width) / 2.0)
+            // Center the rect horizontally inside the maximum bounds
+            frame.origin.x = maximumBounds.minX +
+                ((maximumBounds.width - size.width) / 2.0)
 
-        frame.size.width = size.width
+            frame.size.width = size.width
+        }
 
         return frame.integral
     }
@@ -195,9 +192,7 @@ public final class SheetPresentationController: UIPresentationController {
 
     /// A Boolean value indicating whether the presentation covers the entire
     /// screen.
-    public override var shouldPresentInFullscreen: Bool {
-        return false
-    }
+    public override var shouldPresentInFullscreen: Bool { false }
 
     // MARK: - Private Implementation
 
@@ -206,11 +201,7 @@ public final class SheetPresentationController: UIPresentationController {
 
         let insets = marginAdjustedEdgeInsets
 
-        #if swift(>=4.2)
         return containerView.bounds.inset(by: insets)
-        #else
-        return UIEdgeInsetsInsetRect(containerView.bounds, insets)
-        #endif
     }
 
     internal func preferredPresentedViewControllerSize(
@@ -219,7 +210,7 @@ public final class SheetPresentationController: UIPresentationController {
         guard let layoutContainer = layoutContainer else { return .zero }
 
         var fittingSize = bounds.size
-        fittingSize.height = 0
+        fittingSize.height = UIView.layoutFittingCompressedSize.height
 
         if presentedViewController.hasPreferredContentSize {
             return presentedViewController.preferredContentSize
@@ -291,7 +282,8 @@ public final class SheetPresentationController: UIPresentationController {
             NSLayoutConstraint.constraints(
                 withVisualFormat: "H:|[presentedView]|",
                 views: views)
-            ])
+        ])
+
     }
 
     internal func animateDimmingViewAppearing() {

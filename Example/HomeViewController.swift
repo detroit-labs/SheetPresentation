@@ -14,23 +14,39 @@ class HomeViewController: UIViewController {
     lazy var bottomSheetPresentationManager: SheetPresentationManager = {
         let options: SheetPresentationOptions
 
-        if #available(iOS 11.0, *) {
-            options = SheetPresentationOptions(
-                cornerRadius: 8,
-                maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
-                dimmingViewAlpha: nil,
-                edgeInsets: .zero,
-                ignoredEdgesForMargins: .bottomEdges
-            )
-        }
-        else {
-            options = SheetPresentationOptions(
-                cornerRadius: 8,
-                dimmingViewAlpha: nil,
-                edgeInsets: .zero,
-                ignoredEdgesForMargins: .bottomEdges
-            )
-        }
+        options = SheetPresentationOptions(
+            cornerRadius: 8,
+            maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
+            dimmingViewAlpha: nil,
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: .bottomEdges
+        )
+
+        return SheetPresentationManager(options: options)
+    }()
+
+    lazy var leadingSheetPresentationManager: SheetPresentationManager = {
+        let options: SheetPresentationOptions
+
+        options = SheetPresentationOptions(
+            dimmingViewAlpha: nil,
+            edgeInsets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50),
+            ignoredEdgesForMargins: .bottomEdges,
+            presentationEdge: .leading
+        )
+
+        return SheetPresentationManager(options: options)
+    }()
+
+    lazy var trailingSheetPresentationManager: SheetPresentationManager = {
+        let options: SheetPresentationOptions
+
+        options = SheetPresentationOptions(
+            dimmingViewAlpha: nil,
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: [.top, .right, .bottom],
+            presentationEdge: .trailing
+        )
 
         return SheetPresentationManager(options: options)
     }()
@@ -38,7 +54,20 @@ class HomeViewController: UIViewController {
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        segue.destination.transitioningDelegate = bottomSheetPresentationManager
+        switch segue.identifier {
+        case "presentLeading":
+            segue.destination.transitioningDelegate =
+                leadingSheetPresentationManager
+        case "presentTrailing":
+            segue.destination.transitioningDelegate =
+                trailingSheetPresentationManager
+        case "presentBottom":
+            segue.destination.transitioningDelegate =
+                bottomSheetPresentationManager
+        default:
+            fatalError("Unrecognized segue identifier.")
+        }
+
         segue.destination.modalPresentationStyle = .custom
     }
 
