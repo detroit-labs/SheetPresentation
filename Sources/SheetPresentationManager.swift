@@ -147,8 +147,7 @@ public final class SheetAnimationController:
     }
 }
 
-extension SheetPresentationManager:
-UIViewControllerTransitioningDelegate {
+extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
 
     public func presentationController(
         forPresented presented: UIViewController,
@@ -194,8 +193,7 @@ UIViewControllerTransitioningDelegate {
 
 }
 
-extension SheetPresentationManager:
-UIAdaptivePresentationControllerDelegate {
+extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
 
     public func adaptivePresentationStyle(
         for controller: UIPresentationController,

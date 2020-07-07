@@ -36,8 +36,8 @@ final class SheetPresentationOptionsTests: XCTestCase {
             ignoredEdgesForMargins: [])
 
         let subject = SheetPresentationManager(cornerRadius: 42,
-                                                     dimmingViewAlpha: 31,
-                                                     edgeInsets: .zero)
+                                               dimmingViewAlpha: 31,
+                                               edgeInsets: .zero)
 
         XCTAssertEqual(subject.presentationOptions, expectedPresentationOptions)
     }
@@ -146,16 +146,10 @@ final class SheetPresentationControllerTests: XCTestCase {
                        42)
         XCTAssertTrue(layoutContainer.clipsToBounds)
 
-        if #available(iOS 11.0, *) {
-            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
-        }
+        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
     }
 
     func testThatSettingMaskedCornerRadiusUpdatesLayoutContainer() throws {
-        guard #available(iOS 11.0, *) else {
-           throw XCTSkip()
-        }
-
         subject.cornerOptions = .roundSomeCorners(radius: 42, corners: .top)
 
         let layoutContainer = try XCTUnwrap(subject.layoutContainer)
@@ -175,9 +169,7 @@ final class SheetPresentationControllerTests: XCTestCase {
         XCTAssertEqual(layoutContainer.layer.cornerRadius, 0)
         XCTAssertFalse(layoutContainer.clipsToBounds)
 
-        if #available(iOS 11.0, *) {
-            XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
-        }
+        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
     }
 
     func testThatSettingDimmingViewAlphaUpdatesDimmingView() {
