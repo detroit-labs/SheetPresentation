@@ -37,14 +37,23 @@
                                     <segue destination="46w-GG-pqK" kind="presentation" identifier="presentTrailing" id="Ta2-zg-GzI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxV-Ku-kcR">
+                                <rect key="frame" x="135.66666666666666" y="467" width="104" height="30"/>
+                                <state key="normal" title="Present Modal!"/>
+                                <connections>
+                                    <action selector="presentModally:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3dI-99-fxh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3e4-tA-8Wl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="17o-lN-DOZ"/>
                             <constraint firstItem="B89-RW-GaK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8DO-XE-uMH"/>
+                            <constraint firstItem="HxV-Ku-kcR" firstAttribute="top" secondItem="egd-pu-6fV" secondAttribute="bottom" constant="8" symbolic="YES" id="AmN-bT-OmT"/>
                             <constraint firstItem="egd-pu-6fV" firstAttribute="top" secondItem="B89-RW-GaK" secondAttribute="bottom" constant="8" symbolic="YES" id="CSF-D1-2HQ"/>
                             <constraint firstItem="B89-RW-GaK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QO4-wb-kSX"/>
+                            <constraint firstItem="HxV-Ku-kcR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gdd-8l-XqY"/>
                             <constraint firstItem="B89-RW-GaK" firstAttribute="top" secondItem="3e4-tA-8Wl" secondAttribute="bottom" constant="8" symbolic="YES" id="oJs-4T-lu7"/>
                             <constraint firstItem="egd-pu-6fV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r7m-Li-N2w"/>
                         </constraints>
@@ -57,7 +66,7 @@
         <!--Child View Controller-->
         <scene sceneID="UD5-wP-3lz">
             <objects>
-                <viewController id="46w-GG-pqK" customClass="ChildViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChildViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="46w-GG-pqK" customClass="ChildViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pl7-Vp-zPc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                         <subviews>

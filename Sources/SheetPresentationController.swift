@@ -137,15 +137,14 @@ public final class SheetPresentationController: UIPresentationController {
 
         switch options.presentationEdge {
         case .leading:
-            frame.origin.y = maximumBounds.minY // Calculate top safe area.
+            frame.origin.y = maximumBounds.minY
             frame.origin.x = maximumBounds.minX
-            // Calculate height to bottom safe area.
-            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0),
+            frame.size = CGSize(width: frame.width - 100,
                                 height: frame.height)
         case .trailing:
             frame.origin.y = maximumBounds.minY
-            frame.origin.x = frame.width * (0.68 / 3.0)
-            frame.size = CGSize(width: maximumBounds.width * (2.32 / 3.0),
+            frame.origin.x = 100
+            frame.size = CGSize(width: frame.width - 100,
                                 height: frame.height)
         case .bottom:
             // Position the rect vertically at the bottom of the maximum bounds
@@ -272,17 +271,28 @@ public final class SheetPresentationController: UIPresentationController {
 
         let views = ["presentedView": presentedVCView]
 
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-0@500-[presentedView]|",
-                views: views),
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-(>=0)-[presentedView]|",
-                views: views),
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|[presentedView]|",
-                views: views)
-        ])
+        if options.presentationEdge == .bottom {
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|-0@500-[presentedView]|",
+                    views: views),
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|-(>=0)-[presentedView]|",
+                    views: views),
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|[presentedView]|",
+                    views: views)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|-0@500-[presentedView]|",
+                    views: views),
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|-0@500-[presentedView]|",
+                    views: views)
+            ])
+        }
 
     }
 

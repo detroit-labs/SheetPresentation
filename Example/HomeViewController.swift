@@ -25,6 +25,21 @@ class HomeViewController: UIViewController {
         return SheetPresentationManager(options: options)
     }()
 
+    lazy var modalPresentationManager: SheetPresentationManager = {
+        let options: SheetPresentationOptions
+
+        options = SheetPresentationOptions(
+            cornerRadius: 0,
+            maskedCorners: [],
+            dimmingViewAlpha: 0,
+            edgeInsets: .zero,
+            ignoredEdgesForMargins: [.top, .bottom],
+            presentationEdge: .trailing
+        )
+
+        return SheetPresentationManager(options: options)
+    }()
+
     lazy var leadingSheetPresentationManager: SheetPresentationManager = {
         let options: SheetPresentationOptions
 
@@ -69,6 +84,16 @@ class HomeViewController: UIViewController {
         }
 
         segue.destination.modalPresentationStyle = .custom
+    }
+
+    @IBAction func presentModally(_ sender: Any) {
+        let controller = UIStoryboard(name: "Main", bundle: .main)
+            .instantiateViewController(withIdentifier: "ChildViewController")
+        controller.transitioningDelegate = modalPresentationManager
+        controller.modalPresentationStyle = .custom
+        controller.modalTransitionStyle = .coverVertical
+
+        present(controller, animated: true, completion: nil)
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -53,7 +53,10 @@ public final class SheetPresentationManager: NSObject {
 
 }
 
-public final class SheetAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+// swiftlint:disable:next colon
+public final class SheetAnimationController:
+    NSObject, UIViewControllerAnimatedTransitioning {
+
     private let duration = 0.3
 
     private let isPresenting: Bool
@@ -97,19 +100,11 @@ public final class SheetAnimationController: NSObject, UIViewControllerAnimatedT
             fatalError("Destination view not found during transition.")
         }
 
-//        guard
-//        let controller = transitionContext.viewController(forKey: key) else {
-//            fatalError("Controller not found during transition.")
-//        }
-
         if isPresenting {
             transitionContext.containerView.addSubview(view)
         }
 
         let presentedFrame = transitionContext.finalFrame(for: controller)
-//        controller.view.translatesAutoresizingMaskIntoConstraints = false
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        var dismissedFrame = presentedFrame
 
         let translationTransform: CGAffineTransform
         switch edge {
@@ -117,23 +112,14 @@ public final class SheetAnimationController: NSObject, UIViewControllerAnimatedT
             translationTransform = .init(
                 translationX: -presentedFrame.width, y: 0
             )
-//            dismissedFrame.origin.x = -presentedFrame.width
         case .trailing:
             translationTransform = .init(
                 translationX: presentedFrame.width, y: 0
             )
-//            dismissedFrame.origin.x = transitionContext.containerView
-//                                                        .frame
-//                                                        .size
-//                                                        .width
         case .bottom:
             translationTransform = .init(
                 translationX: 0, y: presentedFrame.height
             )
-//            dismissedFrame.origin.y = transitionContext.containerView
-//                                                        .frame
-//                                                        .size
-//                                                        .height
         }
 
         let initialTransform = isPresenting ? translationTransform : .identity
