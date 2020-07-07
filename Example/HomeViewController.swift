@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
     lazy var trailingSheetPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
             dimmingViewAlpha: nil,
-            edgeInsets: .zero,
+            edgeInsets: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 0),
             ignoredEdgesForMargins: [.top, .right, .bottom],
             presentationEdge: .trailing
         )

@@ -139,12 +139,12 @@ public final class SheetPresentationController: UIPresentationController {
         case .leading:
             frame.origin.y = maximumBounds.minY
             frame.origin.x = maximumBounds.minX
-            frame.size = CGSize(width: frame.width - 100,
+            frame.size = CGSize(width: frame.width,
                                 height: frame.height)
         case .trailing:
             frame.origin.y = maximumBounds.minY
-            frame.origin.x = 100
-            frame.size = CGSize(width: frame.width - 100,
+            frame.origin.x = maximumBounds.origin.x
+            frame.size = CGSize(width: frame.width,
                                 height: frame.height)
         case .bottom:
             // Position the rect vertically at the bottom of the maximum bounds
@@ -208,17 +208,29 @@ public final class SheetPresentationController: UIPresentationController {
         ) -> CGSize {
         guard let layoutContainer = layoutContainer else { return .zero }
 
-        var fittingSize = bounds.size
-        fittingSize.height = 0
-
         if presentedViewController.hasPreferredContentSize {
             return presentedViewController.preferredContentSize
         }
-        else {
+
+        var fittingSize = bounds.size
+
+        switch options.presentationEdge {
+        case .bottom:
+            fittingSize.height = 0
+
             return layoutContainer.systemLayoutSizeFitting(
                 fittingSize,
                 withHorizontalFittingPriority: .required,
-                verticalFittingPriority: .fittingSizeLevel)
+                verticalFittingPriority: .fittingSizeLevel
+            )
+        case .leading, .trailing:
+            fittingSize.width = 0
+
+            return layoutContainer.systemLayoutSizeFitting(
+                fittingSize,
+                withHorizontalFittingPriority: .fittingSizeLevel,
+                verticalFittingPriority: .required
+            )
         }
     }
 
