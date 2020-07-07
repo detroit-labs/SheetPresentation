@@ -35,19 +35,19 @@ public final class SheetPresentationController: UIPresentationController {
         if let containerView = containerView {
             if !ignoredEdgesForMargins.contains(.top) {
                 insets.top = max(insets.top,
-                                 containerView.safeAreaInsets.top)
+                                 containerView.layoutMargins.top)
             }
             if !ignoredEdgesForMargins.contains(.left) {
                 insets.left = max(insets.left,
-                                  containerView.safeAreaInsets.left)
+                                  containerView.layoutMargins.left)
             }
             if !ignoredEdgesForMargins.contains(.right) {
                 insets.right = max(insets.right,
-                                   containerView.safeAreaInsets.right)
+                                   containerView.layoutMargins.right)
             }
             if !ignoredEdgesForMargins.contains(.bottom) {
                 insets.bottom = max(insets.bottom,
-                                    containerView.safeAreaInsets.bottom)
+                                    containerView.layoutMargins.bottom)
             }
         }
 
@@ -209,7 +209,7 @@ public final class SheetPresentationController: UIPresentationController {
         guard let layoutContainer = layoutContainer else { return .zero }
 
         var fittingSize = bounds.size
-        fittingSize.height = UIView.layoutFittingCompressedSize.height
+        fittingSize.height = 0
 
         if presentedViewController.hasPreferredContentSize {
             return presentedViewController.preferredContentSize
