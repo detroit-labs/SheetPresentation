@@ -12,9 +12,7 @@ import SheetPresentation
 class HomeViewController: UIViewController {
 
     lazy var bottomSheetPresentationManager: SheetPresentationManager = {
-        let options: SheetPresentationOptions
-
-        options = SheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: 8,
             maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
             dimmingViewAlpha: nil,
@@ -26,9 +24,7 @@ class HomeViewController: UIViewController {
     }()
 
     lazy var modalPresentationManager: SheetPresentationManager = {
-        let options: SheetPresentationOptions
-
-        options = SheetPresentationOptions(
+        let options = SheetPresentationOptions(
             cornerRadius: 0,
             maskedCorners: [],
             dimmingViewAlpha: 0,
@@ -41,9 +37,7 @@ class HomeViewController: UIViewController {
     }()
 
     lazy var leadingSheetPresentationManager: SheetPresentationManager = {
-        let options: SheetPresentationOptions
-
-        options = SheetPresentationOptions(
+        let options = SheetPresentationOptions(
             dimmingViewAlpha: nil,
             edgeInsets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50),
             ignoredEdgesForMargins: .bottomEdges,
@@ -54,9 +48,7 @@ class HomeViewController: UIViewController {
     }()
 
     lazy var trailingSheetPresentationManager: SheetPresentationManager = {
-        let options: SheetPresentationOptions
-
-        options = SheetPresentationOptions(
+        let options = SheetPresentationOptions(
             dimmingViewAlpha: nil,
             edgeInsets: .zero,
             ignoredEdgesForMargins: [.top, .right, .bottom],
@@ -91,7 +83,6 @@ class HomeViewController: UIViewController {
             .instantiateViewController(withIdentifier: "ChildViewController")
         controller.transitioningDelegate = modalPresentationManager
         controller.modalPresentationStyle = .custom
-        controller.modalTransitionStyle = .coverVertical
 
         present(controller, animated: true, completion: nil)
     }
