@@ -76,7 +76,7 @@ public struct SheetPresentationOptions {
     ///                             view for which its margins should be ignored
     ///                             for layout purposes, including the safe
     ///                             area.
-    ///   - presentationSide: Side of the screen from which to present. Defaults
+    ///   - presentationEdge: Edge of the screen from which to present. Defaults
     ///                       to `.bottom`.
     public init(cornerRadius: CGFloat = 10,
                 maskedCorners: CACornerMask = .all,
@@ -86,6 +86,38 @@ public struct SheetPresentationOptions {
                 presentationEdge: PresentationEdge = .bottom) {
         self.cornerOptions = .roundSomeCorners(radius: cornerRadius,
                                                corners: maskedCorners)
+        self.dimmingViewAlpha = dimmingViewAlpha
+        self.edgeInsets = edgeInsets
+        self.ignoredEdgesForMargins = ignoredEdgesForMargins
+        self.presentationEdge = presentationEdge
+    }
+
+    /// Creates a value with provided `CornerOptions`.
+    ///
+    /// - Parameters:
+    ///   - cornerOptions: `CornerOptions` to use.
+    ///   - dimmingViewAlpha: The `alpha` value for the dimming view used behind
+    ///                       the presented view controller. The color is black.
+    ///                       Defaults to `0.5`. Use `nil` to avoid using a
+    ///                       dimming view.
+    ///   - edgeInsets: The amount to inset the presented view controller from
+    ///                 the presenting view controller. This is a minimum; there
+    ///                 may be additional insets depending on the safe area
+    ///                 insets of the presenting view controller’s view (iOS 11
+    ///                 and later). Defaults to edge insets of `20` points on
+    ///                 each side.
+    ///   - ignoredEdgesForMargins: Edges of the presenting view controller’s
+    ///                             view for which its margins should be ignored
+    ///                             for layout purposes, including the safe
+    ///                             area.
+    ///   - presentationEdge: Edge of the screen from which to present. Defaults
+    ///                       to `.bottom`.
+    public init(cornerOptions: CornerOptions,
+                dimmingViewAlpha: CGFloat? = 0.5,
+                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
+                ignoredEdgesForMargins: ViewEdge = [],
+                presentationEdge: PresentationEdge = .bottom) {
+        self.cornerOptions = cornerOptions
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
