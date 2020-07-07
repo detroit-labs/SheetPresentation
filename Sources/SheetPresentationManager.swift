@@ -135,7 +135,6 @@ public final class SheetAnimationController:
         }
 
         animator.addCompletion { _ in
-            print("Animation complete.")
             self.currentAnimator = nil
             transitionContext.completeTransition(
                 !transitionContext.transitionWasCancelled
