@@ -39,8 +39,8 @@ class HomeViewController: UIViewController {
     lazy var leadingSheetPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
             dimmingViewAlpha: nil,
-            edgeInsets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50),
-            ignoredEdgesForMargins: .bottomEdges,
+            edgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 100),
+            ignoredEdgesForMargins: [.top, .left, .bottom],
             presentationEdge: .leading
         )
 
