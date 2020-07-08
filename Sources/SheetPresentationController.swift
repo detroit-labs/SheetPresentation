@@ -112,8 +112,10 @@ public final class SheetPresentationController: UIPresentationController {
 
     internal lazy var layoutContainer: UIView? = {
         let view = UIView()
+        view.backgroundColor = .purple
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cornerOptions.apply(to: view)
+        view.tag = 99
         return view
     }()
 
@@ -139,13 +141,11 @@ public final class SheetPresentationController: UIPresentationController {
         case .leading:
             frame.origin.y = maximumBounds.minY
             frame.origin.x = maximumBounds.minX
-            frame.size = CGSize(width: frame.width,
-                                height: frame.height)
+            frame.size = size
         case .trailing:
             frame.origin.y = maximumBounds.minY
             frame.origin.x = maximumBounds.origin.x
-            frame.size = CGSize(width: frame.width,
-                                height: frame.height)
+            frame.size = size
         case .bottom:
             // Position the rect vertically at the bottom of the maximum bounds
             frame.origin.y = maximumBounds.maxY - size.height
@@ -205,7 +205,7 @@ public final class SheetPresentationController: UIPresentationController {
 
     internal func preferredPresentedViewControllerSize(
         in bounds: CGRect
-        ) -> CGSize {
+    ) -> CGSize {
         guard let layoutContainer = layoutContainer else { return .zero }
 
         if presentedViewController.hasPreferredContentSize {
@@ -224,7 +224,7 @@ public final class SheetPresentationController: UIPresentationController {
                 verticalFittingPriority: .fittingSizeLevel
             )
         case .leading, .trailing:
-            fittingSize.width = 0
+            fittingSize.width = bounds.width
 
             return layoutContainer.systemLayoutSizeFitting(
                 fittingSize,
@@ -280,6 +280,7 @@ public final class SheetPresentationController: UIPresentationController {
             else { return }
 
         layoutContainer.addSubview(presentedVCView)
+        presentedVCView.tag = 66
 
         let views = ["presentedView": presentedVCView]
 
@@ -295,6 +296,27 @@ public final class SheetPresentationController: UIPresentationController {
                     withVisualFormat: "H:|[presentedView]|",
                     views: views)
             ])
+        } else if options.presentationEdge == .leading {            
+            let constraints = [
+                presentedVCView.widthAnchor.constraint(
+                    equalTo: layoutContainer.widthAnchor
+                ),
+                presentedVCView.leadingAnchor.constraint(
+                    equalTo: layoutContainer.leadingAnchor
+                ),
+                presentedVCView.trailingAnchor.constraint(
+                    equalTo: layoutContainer.trailingAnchor
+                ),
+                presentedVCView.topAnchor.constraint(
+                    equalTo: layoutContainer.topAnchor
+                ),
+                presentedVCView.bottomAnchor.constraint(
+                    equalTo: layoutContainer.bottomAnchor
+                )
+            ]
+            constraints.forEach { $0.priority = .defaultHigh }
+            NSLayoutConstraint.activate(constraints)
+//            presentedVCView.frame = layoutContainer.bounds
         } else {
             NSLayoutConstraint.activate([
                 NSLayoutConstraint.constraints(
