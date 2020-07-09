@@ -8,15 +8,23 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">BottomSheetPresentation 0.8.0 Docs</a> (100% documented)</p>
+        <p><a href="index.html">BottomSheetPresentation 1.0.0 Docs</a> (95% documented)</p>
         <p class="header-right"><a href="https://github.com/Detroit-Labs/BottomSheetPresentation"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit%2Dlabs%2Egithub%2Eio%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit-labs.github.io%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,19 +38,10 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Constants.html">Constants</a>
+            <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Constants.html#/c:BSPViewEdge.h@BSPViewEdgeAll">BSPViewEdgeAll</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:BSPViewEdge.h@BSPViewEdgeBottomEdges">BSPViewEdgeBottomEdges</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@BottomSheetPresentationVersionNumber">BottomSheetPresentationVersionNumber</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@BottomSheetPresentationVersionString">BottomSheetPresentationVersionString</a>
+                <a href="Classes/SheetPresentationManager.html">SheetPresentationManager</a>
               </li>
             </ul>
           </li>
@@ -50,21 +49,7 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/BSPViewEdge.html">BSPViewEdge</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/DimmingViewTapHandler.html">DimmingViewTapHandler</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Classes.html">Classes</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Classes/BottomSheetPresentationController.html">BottomSheetPresentationController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/BottomSheetPresentationManager.html">BottomSheetPresentationManager</a>
               </li>
             </ul>
           </li>
@@ -73,9 +58,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Extensions/CACornerMask.html">CACornerMask</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/NSLayoutConstraint.html">NSLayoutConstraint</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/UIEdgeInsets.html">UIEdgeInsets</a>
@@ -89,10 +71,16 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a>
+                <a href="Structs/SheetPresentationOptions.html">SheetPresentationOptions</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/BottomSheetPresentationOptions/CornerOptions.html">– CornerOptions</a>
+                <a href="Structs/SheetPresentationOptions/PresentationEdge.html">– PresentationEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SheetPresentationOptions/CornerOptions.html">– CornerOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ViewEdge.html">ViewEdge</a>
               </li>
             </ul>
           </li>
@@ -111,9 +99,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationController"></a>
-                    <a name="//apple_ref/swift/Class/BottomSheetPresentationController" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationController">BottomSheetPresentationController</a>
+                    <a name="/c:@M@SheetPresentation@objc(cs)SheetPresentationManager"></a>
+                    <a name="//apple_ref/swift/Class/SheetPresentationManager" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SheetPresentation@objc(cs)SheetPresentationManager">SheetPresentationManager</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -121,51 +109,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A presentation controller for presenting a view controller over the bottom
-portion of the screen, automatically growing the view controller as needed
-based on either its <code>preferredContentSize</code> or Auto Layout.</p>
-
-                        <a href="Classes/BottomSheetPresentationController.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">BottomSheetPresentationController</span> <span class="p">:</span> <span class="kt">UIPresentationController</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager"></a>
-                    <a name="//apple_ref/swift/Class/BottomSheetPresentationManager" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@BottomSheetPresentation@objc(cs)BottomSheetPresentationManager">BottomSheetPresentationManager</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An object that creates instances of <code><a href="Classes/BottomSheetPresentationController.html">BottomSheetPresentationController</a></code> when
+                        <p>An object that creates instances of <code>SheetPresentationController</code> when
 set as a view controller’s <code>transitioningDelegate</code>.</p>
 
-                        <a href="Classes/BottomSheetPresentationManager.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/SheetPresentationManager.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">BottomSheetPresentationManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">BottomSheetPresentationManager</span><span class="p">:</span>
-<span class="kt">UIViewControllerTransitioningDelegate</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">BottomSheetPresentationManager</span><span class="p">:</span>
-<span class="kt">UIAdaptivePresentationControllerDelegate</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SheetPresentationManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SheetPresentationManager</span><span class="p">:</span> <span class="kt">UIViewControllerTransitioningDelegate</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SheetPresentationManager</span><span class="p">:</span> <span class="kt">UIAdaptivePresentationControllerDelegate</span></code></pre>
 
                         </div>
                       </div>
@@ -177,8 +132,8 @@ set as a view controller’s <code>transitioningDelegate</code>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-05-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

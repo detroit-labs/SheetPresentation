@@ -8,14 +8,22 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="BottomSheetPresentation  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">BottomSheetPresentation 0.8.0 Docs</a> (100% documented)</p>
+        <p><a href="index.html">BottomSheetPresentation 1.0.0 Docs</a> (95% documented)</p>
         <p class="header-right"><a href="https://github.com/Detroit-Labs/BottomSheetPresentation"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit%2Dlabs%2Egithub%2Eio%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit-labs.github.io%2FBottomSheetPresentation%2Fdocsets%2FBottomSheetPresentation.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -29,19 +37,10 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Constants.html">Constants</a>
+            <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Constants.html#/c:BSPViewEdge.h@BSPViewEdgeAll">BSPViewEdgeAll</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:BSPViewEdge.h@BSPViewEdgeBottomEdges">BSPViewEdgeBottomEdges</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@BottomSheetPresentationVersionNumber">BottomSheetPresentationVersionNumber</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@BottomSheetPresentationVersionString">BottomSheetPresentationVersionString</a>
+                <a href="Classes/SheetPresentationManager.html">SheetPresentationManager</a>
               </li>
             </ul>
           </li>
@@ -49,21 +48,7 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/BSPViewEdge.html">BSPViewEdge</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/DimmingViewTapHandler.html">DimmingViewTapHandler</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Classes.html">Classes</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Classes/BottomSheetPresentationController.html">BottomSheetPresentationController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/BottomSheetPresentationManager.html">BottomSheetPresentationManager</a>
               </li>
             </ul>
           </li>
@@ -72,9 +57,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Extensions/CACornerMask.html">CACornerMask</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/NSLayoutConstraint.html">NSLayoutConstraint</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/UIEdgeInsets.html">UIEdgeInsets</a>
@@ -88,10 +70,16 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/BottomSheetPresentationOptions.html">BottomSheetPresentationOptions</a>
+                <a href="Structs/SheetPresentationOptions.html">SheetPresentationOptions</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/BottomSheetPresentationOptions/CornerOptions.html">– CornerOptions</a>
+                <a href="Structs/SheetPresentationOptions/PresentationEdge.html">– PresentationEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SheetPresentationOptions/CornerOptions.html">– CornerOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ViewEdge.html">ViewEdge</a>
               </li>
             </ul>
           </li>
@@ -101,10 +89,10 @@
         <section>
           <section class="section">
             
-            <h1 id='bottomsheetpresentation' class='heading'>BottomSheetPresentation</h1>
+            <h1 id='sheetpresentation' class='heading'>SheetPresentation</h1>
 
 <p>A <code>UIPresentationController</code> and attendant clases for iOS to present a view
-controller pinned to the bottom of the screen like an action sheet.</p>
+controller pinned to an edge of the screen like an action sheet.</p>
 
 <p><a href="https://cocoapods.org/pods/BottomSheetPresentation"><img src="https://img.shields.io/cocoapods/v/BottomSheetPresentation.svg?style=flat" alt="Version"></a>
 <a href="https://detroit-labs.github.io/BottomSheetPresentation/"><img src="docs/badge.svg" alt="Documentation"></a>
@@ -115,7 +103,7 @@ controller pinned to the bottom of the screen like an action sheet.</p>
 <h1 id='installation' class='heading'>Installation</h1>
 <h2 id='swift-package-manager' class='heading'>Swift Package Manager</h2>
 
-<p>To use BottomSheetPresentation with the
+<p>To use SheetPresentation with the
 <a href="https://swift.org/package-manager/">Swift Package Manager</a>, add it as a
 dependency to your project from within Xcode or as a dependency in your
 <code>Package.swift</code> file. </p>
@@ -144,7 +132,7 @@ add the framework to your project, configure a Run Script build phase, etc.</p>
 <h1 id='using-bottomsheetpresentation' class='heading'>Using BottomSheetPresentation</h1>
 <h2 id='swift' class='heading'>Swift</h2>
 
-<p>To use BottomSheetPresentation, create a <code><a href="Classes/BottomSheetPresentationManager.html">BottomSheetPresentationManager</a></code> and
+<p>To use BottomSheetPresentation, create a <code>BottomSheetPresentationManager</code> and
 set it as the <code>transitioningDelegate</code> of the view controller you want to
 present, then set the <code>modalPresentationStyle</code> of the view controller to
 <code>.custom</code>.</p>
@@ -178,8 +166,8 @@ satisfy Auto Layout constraints for a height using
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-05-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://jeffkelley.org" target="_blank" rel="external">Jeff Kelley</a>. All rights reserved. (Last updated: 2020-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

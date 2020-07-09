@@ -20,17 +20,6 @@ class ChildViewController: UIViewController {
 //        set {}
 //    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        contentView?.backgroundColor = .blue
-
-        view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView?.translatesAutoresizingMaskIntoConstraints = false
-        contentView?.translatesAutoresizingMaskIntoConstraints = false
-        stackView?.translatesAutoresizingMaskIntoConstraints = false
-    }
-
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }

@@ -1,3 +1,7 @@
+# 1.0.0
+- Added the ability to present from any edge of the view.
+- Removed Objective-C support, simplifying the API.
+
 # 0.8.0
 - Modified the access control of the `UIViewController` helper extension.
 

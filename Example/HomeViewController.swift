@@ -13,11 +13,10 @@ class HomeViewController: UIViewController {
 
     lazy var bottomSheetPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
-            cornerRadius: 8,
-            maskedCorners: [.layerMaxXMinYCorner, .layerMinXMinYCorner],
-            dimmingViewAlpha: nil,
-            edgeInsets: .zero,
-            ignoredEdgesForMargins: .bottomEdges
+            cornerOptions: .roundAllCorners(radius: 8),
+            dimmingViewAlpha: 0.5,
+            edgeInsets: UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24),
+            ignoredEdgesForMargins: .none
         )
 
         return SheetPresentationManager(options: options)
@@ -25,12 +24,11 @@ class HomeViewController: UIViewController {
 
     lazy var modalPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
-            cornerRadius: 0,
-            maskedCorners: [],
-            dimmingViewAlpha: 0,
+            cornerOptions: .none,
+            dimmingViewAlpha: 0.5,
             edgeInsets: .zero,
-            ignoredEdgesForMargins: [.top, .bottom],
-            presentationEdge: .trailing
+            ignoredEdgesForMargins: .all,
+            presentationEdge: .bottom
         )
 
         return SheetPresentationManager(options: options)
@@ -38,7 +36,8 @@ class HomeViewController: UIViewController {
 
     lazy var leadingSheetPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
-            dimmingViewAlpha: nil,
+            cornerOptions: .roundSomeCorners(radius: 10, corners: .right),
+            dimmingViewAlpha: 0.5,
             edgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 100),
             ignoredEdgesForMargins: [.top, .left, .bottom],
             presentationEdge: .leading
@@ -49,7 +48,8 @@ class HomeViewController: UIViewController {
 
     lazy var trailingSheetPresentationManager: SheetPresentationManager = {
         let options = SheetPresentationOptions(
-            dimmingViewAlpha: nil,
+            cornerOptions: .roundSomeCorners(radius: 10, corners: .left),
+            dimmingViewAlpha: 0.5,
             edgeInsets: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 0),
             ignoredEdgesForMargins: [.top, .right, .bottom],
             presentationEdge: .trailing

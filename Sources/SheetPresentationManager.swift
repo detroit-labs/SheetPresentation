@@ -42,7 +42,9 @@ public final class SheetPresentationManager: NSObject {
     /// - Parameters:
     ///     - options: The options to use for presenting view controllers.
     ///     - dimmingViewTapHandler: A handler to be called when tapping the
-    ///                              dimming view.
+    ///                              dimming view. The `dimmingViewAlpha` of the
+    ///                              given `options` must not be `nil`, or the
+    ///                              dimming view will not be created.
     public init(
         options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
@@ -53,102 +55,76 @@ public final class SheetPresentationManager: NSObject {
 
 }
 
-// swiftlint:disable:next colon
-public final class SheetAnimationController:
-    NSObject, UIViewControllerAnimatedTransitioning {
-
-    private let duration = 0.3
-
-    private let isPresenting: Bool
-    private let edge: SheetPresentationOptions.PresentationEdge
-
-    private var currentAnimator: UIViewPropertyAnimator?
-
-    public init(isPresenting: Bool,
-                edge: SheetPresentationOptions.PresentationEdge) {
-        self.isPresenting = isPresenting
-        self.edge = edge
-
-        super.init()
-    }
-
-    public func transitionDuration(
-        using transitionContext: UIViewControllerContextTransitioning?
-    ) -> TimeInterval {
-        duration
-    }
-
-    public func animateTransition(
-        using transitionContext: UIViewControllerContextTransitioning
-    ) {
-        interruptibleAnimator(using: transitionContext).startAnimation()
-    }
-
-    public func interruptibleAnimator(
-        using transitionContext: UIViewControllerContextTransitioning
-    ) -> UIViewImplicitlyAnimating {
-        if let animator = currentAnimator { return animator }
-
-        let controllerKey: UITransitionContextViewControllerKey =
-            (isPresenting) ? .to : .from
-
-        let viewKey: UITransitionContextViewKey = (isPresenting) ? .to : .from
-
-        guard let view = transitionContext.view(forKey: viewKey),
-              let controller = transitionContext
-                .viewController(forKey: controllerKey) else {
-            fatalError("Destination view not found during transition.")
-        }
-
-        if isPresenting {
-            transitionContext.containerView.addSubview(view)
-        }
-
-        let presentedFrame = transitionContext.finalFrame(for: controller)
-
-        let translationTransform: CGAffineTransform
-        switch edge {
-        case .leading:
-            translationTransform = .init(
-                translationX: -presentedFrame.width, y: 0
-            )
-        case .trailing:
-            translationTransform = .init(
-                translationX: presentedFrame.width, y: 0
-            )
-        case .bottom:
-            translationTransform = .init(
-                translationX: 0, y: presentedFrame.height
-            )
-        }
-
-        let initialTransform = isPresenting ? translationTransform : .identity
-        let finalTransform = isPresenting ? .identity : translationTransform
-
-        view.transform = initialTransform
-
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              curve: .easeInOut)
-
-        animator.addAnimations {
-            view.transform = finalTransform
-        }
-
-        animator.addCompletion { _ in
-            self.currentAnimator = nil
-            transitionContext.completeTransition(
-                !transitionContext.transitionWasCancelled
-            )
-        }
-
-        currentAnimator = animator
-
-        return animator
-    }
-}
-
 extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
 
+    /// Defines the animator object to use when presenting the view controller.
+    ///
+    /// - Parameters:
+    ///   - presented: The view controller that is about to be presented
+    ///                onscreen.
+    ///   - presenting: The view controller that is presenting the view
+    ///                 controller in the `presented` parameter. The object in
+    ///                 this parameter could be the root view controller of the
+    ///                 window, a parent view controller that is marked as
+    ///                 defining the current context, or the last view
+    ///                 controller that was presented. This view controller may
+    ///                 or may not be the same as the one in the `source`
+    ///                 parameter.
+    ///   - source: The view controller whose `present(_:animated:completion:)`
+    ///             method was called.
+    /// - Returns: The animator object to use when presenting the view
+    ///            controller or `nil` to use the system animator.
+    public func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        let edge = presentationOptions.presentationEdge
+        switch edge {
+        case .leading, .trailing:
+            return SheetAnimationController(isPresenting: true, edge: edge)
+        case .bottom, .top:
+            return nil
+        }
+    }
+
+    /// Defines the animator object to use when dismissing the view controller.
+    ///
+    /// - Parameter dismissed: The view controller that is about to be
+    ///                        dismissed.
+    /// - Returns: The animator object to use when dismissing the view
+    ///            controller or `nil` to use the system animator.
+    public func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        let edge = presentationOptions.presentationEdge
+        switch edge {
+        case .leading, .trailing:
+            return SheetAnimationController(isPresenting: false, edge: edge)
+        case .bottom, .top:
+            return nil
+        }
+    }
+
+    /// Defines the custom presentation controller to use for managing the view
+    /// hierarchy when presenting a view controller.
+    ///
+    /// - Parameters:
+    ///   - presented: The view controller being presented.
+    ///   - presenting: The view controller that is presenting the view
+    ///                 controller in the `presented` parameter. The object in
+    ///                 this parameter could be the root view controller of the
+    ///                 window, a parent view controller that is marked as
+    ///                 defining the current context, or the last view
+    ///                 controller that was presented. This view controller may
+    ///                 or may not be the same as the one in the `source`
+    ///                 parameter. This parameter may also be `nil` to indicate
+    ///                 that the presenting view controller will be determined
+    ///                 later.
+    ///   - source: The view controller whose `present(_:animated:completion:)`
+    ///             method was called to initiate the presentation process.
+    /// - Returns: The custom presentation controller for managing the modal
+    ///            presentation.
     public func presentationController(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
@@ -165,36 +141,18 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         return controller
     }
 
-    public func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
-        let edge = presentationOptions.presentationEdge
-        switch edge {
-        case .leading, .trailing:
-            return SheetAnimationController(isPresenting: true, edge: edge)
-        case .bottom:
-            return nil
-        }
-    }
-
-    public func animationController(
-        forDismissed dismissed: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
-        let edge = presentationOptions.presentationEdge
-        switch edge {
-        case .leading, .trailing:
-            return SheetAnimationController(isPresenting: false, edge: edge)
-        case .bottom:
-            return nil
-        }
-    }
-
 }
 
 extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
 
+    /// Defines the modal presentation style for the controller given a set of
+    /// traits.
+    ///
+    /// - Parameters:
+    ///   - controller: The presentation controller that is managing the size
+    ///                 change.
+    ///   - traitCollection: The traits representing the target environment.
+    /// - Returns: <#description#>
     public func adaptivePresentationStyle(
         for controller: UIPresentationController,
         traitCollection: UITraitCollection

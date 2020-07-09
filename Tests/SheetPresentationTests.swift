@@ -61,14 +61,8 @@ final class SheetPresentationOptionsTests: XCTestCase {
             presenting: presentingViewController,
             source: source) as! SheetPresentationController
 
-        XCTAssertEqual(presentationController.cornerOptions,
-                       presentationOptions.cornerOptions)
-
-        XCTAssertEqual(presentationController.dimmingViewAlpha,
-                       presentationOptions.dimmingViewAlpha)
-
-        XCTAssertEqual(presentationController.edgeInsets,
-                       presentationOptions.edgeInsets)
+        XCTAssertEqual(presentationController.options,
+                       presentationOptions)
 
     }
 
@@ -137,51 +131,46 @@ final class SheetPresentationControllerTests: XCTestCase {
             presenting: UIViewController())
     }
 
-    func testThatSettingCornerRadiusUpdatesLayoutContainer() throws {
+    func testThatSettingCornerRadiusUpdatesPresentedView() throws {
         let controller = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
             presentationOptions: .init(cornerRadius: 42, maskedCorners: .all)
         )
 
-        let layoutContainer = try XCTUnwrap(controller.layoutContainer)
+        let presentedView = try XCTUnwrap(controller.presentedView)
 
-        XCTAssertEqual(layoutContainer.layer.cornerRadius,
-                       42)
-        XCTAssertTrue(layoutContainer.clipsToBounds)
-
-        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
+        XCTAssertTrue(presentedView.clipsToBounds)
+        XCTAssertEqual(presentedView.layer.cornerRadius, 42)
+        XCTAssertEqual(presentedView.layer.maskedCorners, .all)
     }
 
-    func testThatSettingMaskedCornerRadiusUpdatesLayoutContainer() throws {
+    func testThatSettingMaskedCornerRadiusUpdatesPresentedView() throws {
         let controller = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
             presentationOptions: .init(cornerRadius: 42, maskedCorners: .top)
         )
 
-        let layoutContainer = try XCTUnwrap(controller.layoutContainer)
+        let presentedView = try XCTUnwrap(controller.presentedView)
 
-        XCTAssertEqual(layoutContainer.layer.cornerRadius,
-                       42)
-        XCTAssertTrue(layoutContainer.clipsToBounds)
-
-        XCTAssertEqual(layoutContainer.layer.maskedCorners, .top)
+        XCTAssertTrue(presentedView.clipsToBounds)
+        XCTAssertEqual(presentedView.layer.cornerRadius, 42)
+        XCTAssertEqual(presentedView.layer.maskedCorners, .top)
     }
 
-    func testThatRoundingNoCornersDoesNotMaskLayoutContainer() throws {
+    func testThatRoundingNoCornersDoesNotMaskPresentedView() throws {
         let controller = SheetPresentationController(
             forPresented: UIViewController(),
             presenting: UIViewController(),
             presentationOptions: .init(cornerOptions: .none)
         )
 
-        let layoutContainer = try XCTUnwrap(controller.layoutContainer)
+        let presentedView = try XCTUnwrap(controller.presentedView)
 
-        XCTAssertEqual(layoutContainer.layer.cornerRadius, 0)
-        XCTAssertFalse(layoutContainer.clipsToBounds)
-
-        XCTAssertEqual(layoutContainer.layer.maskedCorners, .all)
+        XCTAssertFalse(presentedView.clipsToBounds)
+        XCTAssertEqual(presentedView.layer.cornerRadius, 0)
+        XCTAssertEqual(presentedView.layer.maskedCorners, .all)
     }
 
     func testThatSettingDimmingViewAlphaUpdatesDimmingView() {
@@ -195,10 +184,6 @@ final class SheetPresentationControllerTests: XCTestCase {
         controller.dimmingView?.backgroundColor?.getWhite(nil, alpha: &alpha)
 
         XCTAssertEqual(alpha, 0.42)
-    }
-
-    func testThatTheLayoutContainerIsThePresentedView() {
-        XCTAssertEqual(subject.presentedView, subject.layoutContainer)
     }
 
     func testCallingTheDimmingViewDismissalBlockHandler() {

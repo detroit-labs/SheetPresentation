@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PassthroughView: UIView {
+final class PassthroughView: UIView {
 
     var passthroughViews: [UIView] = []
 

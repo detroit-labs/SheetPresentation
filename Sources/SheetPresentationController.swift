@@ -8,47 +8,36 @@
 
 import UIKit
 
-/// A presentation controller for presenting a view controller over a side of
-/// the screen, automatically growing the view controller as needed
-/// based on either its `preferredContentSize` or Auto Layout.
-public final class SheetPresentationController: UIPresentationController {
+final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
-    internal let options: SheetPresentationOptions
+    let options: SheetPresentationOptions
 
-    internal var cornerOptions: SheetPresentationOptions.CornerOptions {
-        options.cornerOptions
-    }
+    var marginAdjustedEdgeInsets: UIEdgeInsets {
+        var insets = options.edgeInsets
+        let margins: UIEdgeInsets
 
-    internal var dimmingViewAlpha: CGFloat? { options.dimmingViewAlpha }
+        if #available(iOS 12, *), let containerView = containerView {
+            margins = containerView.layoutMargins
+        }
+        else {
+            margins = presentingViewController.view.safeAreaInsets
+        }
 
-    internal var edgeInsets: UIEdgeInsets { options.edgeInsets }
+        let ignoredEdgesForMargins = options.ignoredEdgesForMargins
 
-    internal var ignoredEdgesForMargins: ViewEdge {
-        options.ignoredEdgesForMargins
-    }
-
-    internal var marginAdjustedEdgeInsets: UIEdgeInsets {
-        var insets = edgeInsets
-
-        if let containerView = containerView {
-            if !ignoredEdgesForMargins.contains(.top) {
-                insets.top = max(insets.top,
-                                 containerView.layoutMargins.top)
-            }
-            if !ignoredEdgesForMargins.contains(.left) {
-                insets.left = max(insets.left,
-                                  containerView.layoutMargins.left)
-            }
-            if !ignoredEdgesForMargins.contains(.right) {
-                insets.right = max(insets.right,
-                                   containerView.layoutMargins.right)
-            }
-            if !ignoredEdgesForMargins.contains(.bottom) {
-                insets.bottom = max(insets.bottom,
-                                    containerView.layoutMargins.bottom)
-            }
+        if !ignoredEdgesForMargins.contains(.top) {
+            insets.top = max(insets.top, margins.top)
+        }
+        if !ignoredEdgesForMargins.contains(.left) {
+            insets.left = max(insets.left, margins.left)
+        }
+        if !ignoredEdgesForMargins.contains(.right) {
+            insets.right = max(insets.right, margins.right)
+        }
+        if !ignoredEdgesForMargins.contains(.bottom) {
+            insets.bottom = max(insets.bottom, margins.bottom)
         }
 
         return insets
@@ -56,35 +45,24 @@ public final class SheetPresentationController: UIPresentationController {
 
     // MARK: - Interaction Options
 
-    internal var dimmingViewTapHandler: DimmingViewTapHandler
+    var dimmingViewTapHandler: DimmingViewTapHandler
 
     // MARK: - Initialization
 
-    /// Creates a `SheetPresentationController` for a specific
-    /// presentation.
-    ///
-    /// - Parameters:
-    ///   - presented: The view controller being presented modally.
-    ///   - presenting: The view controller whose content represents the
-    ///                 starting point of the transition.
-    ///   - options: The presentation options to use for presenting view
-    ///              controllers.
-    public init(
-        forPresented presented: UIViewController,
-        presenting: UIViewController?,
-        presentationOptions options: SheetPresentationOptions = .default,
-        dimmingViewTapHandler: DimmingViewTapHandler = .default
-        ) {
+    init(forPresented presented: UIViewController,
+         presenting: UIViewController?,
+         presentationOptions options: SheetPresentationOptions = .default,
+         dimmingViewTapHandler: DimmingViewTapHandler = .default) {
         self.options = options
         self.dimmingViewTapHandler = dimmingViewTapHandler
 
         super.init(presentedViewController: presented, presenting: presenting)
     }
 
-    // MARK: - Private Subviews
+    // MARK: - Internal Subviews
 
-    internal lazy var dimmingView: UIView? = {
-        guard let alpha = dimmingViewAlpha else { return nil }
+    lazy var dimmingView: UIView? = {
+        guard let alpha = options.dimmingViewAlpha else { return nil }
 
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -98,38 +76,28 @@ public final class SheetPresentationController: UIPresentationController {
         return view
     }()
 
-    internal lazy var passthroughView: PassthroughView? = {
-        guard dimmingViewAlpha == nil else { return nil }
+    lazy var passthroughView: PassthroughView? = {
+        guard options.dimmingViewAlpha == nil,
+            let presentedView = presentedView
+            else { return nil }
 
         let view = PassthroughView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
 
-        view.passthroughViews = [presentingViewController.view]
+        view.passthroughViews = [presentedView]
 
         return view
     }()
 
-    internal lazy var layoutContainer: UIView? = {
-        let view = UIView()
-        view.backgroundColor = .purple
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        cornerOptions.apply(to: view)
-        view.tag = 99
-        return view
-    }()
+    // MARK: - UIPresentationController Implementation
 
-    // MARK: - Public UIPresentationController Implementation
-
-    /// The view to be animated by the animator objects during a transition.
-    override public var presentedView: UIView? { layoutContainer }
-
-    /// The frame rectangle to assign to the presented view at the end of the
-    /// animations.
-    override public var frameOfPresentedViewInContainerView: CGRect {
+    override var frameOfPresentedViewInContainerView: CGRect {
         let maximumBounds = maximumPresentedBoundsInContainerView
 
-        var size = preferredPresentedViewControllerSize(in: maximumBounds)
+        var size = preferredPresentedViewControllerSize(
+            fitting: maximumBounds.size
+        )
 
         // Constrain the width and height to the safe area of the container view
         size.height = min(size.height, maximumBounds.height)
@@ -138,6 +106,16 @@ public final class SheetPresentationController: UIPresentationController {
         var frame = maximumBounds
 
         switch options.presentationEdge {
+        case .top:
+            // Position the rect vertically at the top of the maximum bounds
+            frame.origin.y = maximumBounds.minY
+            frame.size.height = size.height
+
+            // Center the rect horizontally inside the maximum bounds
+            frame.origin.x = maximumBounds.minX +
+                ((maximumBounds.width - size.width) / 2.0)
+
+            frame.size.width = size.width
         case .leading:
             frame.origin.y = maximumBounds.minY
             frame.origin.x = maximumBounds.minX
@@ -161,204 +139,134 @@ public final class SheetPresentationController: UIPresentationController {
         return frame.integral
     }
 
-    /// Notifies the presentation controller that layout is about to begin on
-    /// the views of the container view.
-    override public func containerViewWillLayoutSubviews() {
+    override func containerViewWillLayoutSubviews() {
+        super.containerViewWillLayoutSubviews()
+
         guard let containerView = containerView else { return }
+
         dimmingView?.frame = containerView.bounds
         passthroughView?.frame = containerView.bounds
-        presentedView?.frame = frameOfPresentedViewInContainerView
+
+        if let presentedView = presentedView {
+            options.cornerOptions.apply(to: presentedView)
+        }
     }
 
-    /// Notifies the presentation controller that the presentation animations
-    /// are about to start.
-    override public func presentationTransitionWillBegin() {
+    override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
 
         layoutDimmingView()
         layoutPassthroughView()
-        layoutPresentedViewController()
 
         animateDimmingViewAppearing()
     }
 
-    /// Notifies the presentation controller that the dismissal animations are
-    /// about to start.
-    override public func dismissalTransitionWillBegin() {
+    override func dismissalTransitionWillBegin() {
         super.dismissalTransitionWillBegin()
         animateDimmingViewDisappearing()
     }
 
-    /// A Boolean value indicating whether the presentation covers the entire
-    /// screen.
-    public override var shouldPresentInFullscreen: Bool { false }
+    override var shouldPresentInFullscreen: Bool { false }
 
-    // MARK: - Private Implementation
+    // MARK: - Internal Implementation
 
-    internal var maximumPresentedBoundsInContainerView: CGRect {
-        guard let containerView = containerView else { return .zero }
-
-        let insets = marginAdjustedEdgeInsets
-
-        return containerView.bounds.inset(by: insets)
+    var maximumPresentedBoundsInContainerView: CGRect {
+        containerView?.bounds.inset(by: marginAdjustedEdgeInsets) ?? .zero
     }
 
-    internal func preferredPresentedViewControllerSize(
-        in bounds: CGRect
-    ) -> CGSize {
-        guard let layoutContainer = layoutContainer else { return .zero }
-
+    func preferredPresentedViewControllerSize(fitting size: CGSize) -> CGSize {
         if presentedViewController.hasPreferredContentSize {
             return presentedViewController.preferredContentSize
         }
 
-        var fittingSize = bounds.size
-
         switch options.presentationEdge {
-        case .bottom:
-            fittingSize.height = 0
-
-            return layoutContainer.systemLayoutSizeFitting(
-                fittingSize,
+        case .bottom, .top:
+            return presentedViewController.view.systemLayoutSizeFitting(
+                size,
                 withHorizontalFittingPriority: .required,
                 verticalFittingPriority: .fittingSizeLevel
             )
         case .leading, .trailing:
-            fittingSize.width = bounds.width
-
-            return layoutContainer.systemLayoutSizeFitting(
-                fittingSize,
+            return presentedViewController.view.systemLayoutSizeFitting(
+                size,
                 withHorizontalFittingPriority: .fittingSizeLevel,
                 verticalFittingPriority: .required
             )
         }
     }
 
-    internal func layoutDimmingView() {
-        guard
-            let containerView = containerView,
-            let dimmingView = dimmingView
-            else { return }
+    func layoutDimmingView() {
+        guard let containerView = containerView,
+              let dimmingView = dimmingView
+        else { return }
 
         containerView.insertSubview(dimmingView, at: 0)
-
-        let views = ["dimmingView": dimmingView]
-
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|[dimmingView]|",
-                views: views),
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|[dimmingView]|",
-                views: views)
-            ])
+        dimmingView.frame = containerView.bounds
     }
 
-    internal func layoutPassthroughView() {
-        guard
-            let containerView = containerView,
-            let passthroughView = passthroughView
-            else { return }
+    func layoutPassthroughView() {
+        guard let containerView = containerView,
+              let passthroughView = passthroughView
+        else { return }
 
         containerView.insertSubview(passthroughView, at: 0)
-
-        let views = ["passthroughView": passthroughView]
-
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|[passthroughView]|",
-                views: views),
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|[passthroughView]|",
-                views: views)
-            ])
+        passthroughView.frame = containerView.bounds
     }
 
-    internal func layoutPresentedViewController() {
-        guard let layoutContainer = layoutContainer,
-            let presentedVCView = presentedViewController.view
-            else { return }
-
-        layoutContainer.addSubview(presentedVCView)
-        presentedVCView.tag = 66
-
-        let views = ["presentedView": presentedVCView]
-
-        if options.presentationEdge == .bottom {
-            NSLayoutConstraint.activate([
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "V:|-0@500-[presentedView]|",
-                    views: views),
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "V:|-(>=0)-[presentedView]|",
-                    views: views),
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "H:|[presentedView]|",
-                    views: views)
-            ])
-        } else if options.presentationEdge == .leading {            
-            let constraints = [
-                presentedVCView.widthAnchor.constraint(
-                    equalTo: layoutContainer.widthAnchor
-                ),
-                presentedVCView.leadingAnchor.constraint(
-                    equalTo: layoutContainer.leadingAnchor
-                ),
-                presentedVCView.trailingAnchor.constraint(
-                    equalTo: layoutContainer.trailingAnchor
-                ),
-                presentedVCView.topAnchor.constraint(
-                    equalTo: layoutContainer.topAnchor
-                ),
-                presentedVCView.bottomAnchor.constraint(
-                    equalTo: layoutContainer.bottomAnchor
-                )
-            ]
-            constraints.forEach { $0.priority = .defaultHigh }
-            NSLayoutConstraint.activate(constraints)
-//            presentedVCView.frame = layoutContainer.bounds
-        } else {
-            NSLayoutConstraint.activate([
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "V:|-0@500-[presentedView]|",
-                    views: views),
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "H:|-0@500-[presentedView]|",
-                    views: views)
-            ])
-        }
-
-    }
-
-    internal func animateDimmingViewAppearing() {
+    func animateDimmingViewAppearing() {
         guard let dimmingView = dimmingView,
-            let transitionCoordinator = presentedViewController
+              let transitionCoordinator = presentedViewController
                 .transitionCoordinator
-            else { return }
+        else { return }
 
         dimmingView.alpha = 0
 
         transitionCoordinator.animate(alongsideTransition: { _ in
             dimmingView.alpha = 1
-        }, completion: nil)
+        })
     }
 
-    internal func animateDimmingViewDisappearing() {
+    func animateDimmingViewDisappearing() {
         guard let dimmingView = dimmingView,
-            let transitionCoordinator = presentedViewController
+              let transitionCoordinator = presentedViewController
                 .transitionCoordinator
-            else { return }
+        else { return }
 
-        transitionCoordinator.animate(alongsideTransition: { _ in
+        // Despite this API being available earlier, iOS 11.3 is the first OS
+        // that doesn’t just animate this instantly.
+        if #available(iOS 11.3, *) {
+            transitionCoordinator.animateAlongsideTransition(
+                in: dimmingView.superview,
+                animation: { _ in dimmingView.alpha = 0 },
+                completion: { _ in dimmingView.removeFromSuperview() }
+            )
+        }
+        else {
+            UIView.beginAnimations("animateDimmingViewDisappearing",
+                                   context: nil)
+
+            if transitionCoordinator.transitionDuration > 0 {
+                UIView.setAnimationDuration(
+                    transitionCoordinator.transitionDuration
+                )
+            }
+            else {
+                UIView.setAnimationDuration(1.0 / 3.0)
+            }
+
+            UIView.setAnimationCurve(transitionCoordinator.completionCurve)
+
             dimmingView.alpha = 0
-        }, completion: nil)
+
+            UIView.commitAnimations()
+        }
     }
 
     // MARK: - UI Interaction
 
-    @objc internal func userTappedInDimmingArea(
+    @objc func userTappedInDimmingArea(
         _ gestureRecognizer: UITapGestureRecognizer
-        ) {
+    ) {
         switch dimmingViewTapHandler {
         case let .block(handler):
             handler(presentedViewController)
