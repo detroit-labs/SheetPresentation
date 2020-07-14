@@ -12,23 +12,6 @@ import UIKit
 /// `SheetPresentationController` objects upon creation.
 public struct SheetPresentationOptions {
 
-    /// The edge of the screen to which the presentation is pinned.
-    public enum PresentationEdge: Equatable {
-
-        /// The top edge of the view.
-        case top
-
-        /// The leading edge of the view.
-        case leading
-
-        /// The trailing edge of the view.
-        case trailing
-
-        /// The bottom edge of the view.
-        case bottom
-
-    }
-
     /// Options for the corners of the presented view controller.
     public enum CornerOptions: Equatable {
 
@@ -58,10 +41,11 @@ public struct SheetPresentationOptions {
 
     /// Edges of the presentation container view for which its margins should be
     /// ignored for layout purposes, including the safe area.
-    public let ignoredEdgesForMargins: ViewEdge
+    public let ignoredEdgesForMargins: [ViewEdge]
 
-    /// Edge of the screen from which to present.
-    public let presentationEdge: PresentationEdge
+    /// The location to place the presented view controller’s view in the
+    /// presentation container.
+    public let presentationLayout: PresentationLayout
 
     /// The default options that are used when calling `init()` on a
     /// `SheetPresentationManager` with no options.
@@ -90,13 +74,13 @@ public struct SheetPresentationOptions {
     public init(cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
                 dimmingViewAlpha: CGFloat? = 0.5,
                 edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: ViewEdge = [],
-                presentationEdge: PresentationEdge = .bottom) {
+                ignoredEdgesForMargins: [ViewEdge] = [],
+                presentationLayout: PresentationLayout = .bottom()) {
         self.cornerOptions = cornerOptions
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
-        self.presentationEdge = presentationEdge
+        self.presentationLayout = presentationLayout
     }
 
 }

@@ -15,8 +15,7 @@ class HomeViewController: UIViewController {
         let options = SheetPresentationOptions(
             cornerOptions: .roundAllCorners(radius: 8),
             dimmingViewAlpha: 0.5,
-            edgeInsets: UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24),
-            ignoredEdgesForMargins: .none
+            edgeInsets: UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
         )
 
         return SheetPresentationManager(options: options)
@@ -28,7 +27,7 @@ class HomeViewController: UIViewController {
             dimmingViewAlpha: 0.5,
             edgeInsets: .zero,
             ignoredEdgesForMargins: .all,
-            presentationEdge: .bottom
+            presentationLayout: .overlay()
         )
 
         return SheetPresentationManager(options: options)
@@ -39,8 +38,8 @@ class HomeViewController: UIViewController {
             cornerOptions: .roundSomeCorners(radius: 10, corners: .right),
             dimmingViewAlpha: 0.5,
             edgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 100),
-            ignoredEdgesForMargins: [.top, .left, .bottom],
-            presentationEdge: .leading
+            ignoredEdgesForMargins: [.top, .leading, .bottom],
+            presentationLayout: .leading(.fill)
         )
 
         return SheetPresentationManager(options: options)
@@ -51,8 +50,8 @@ class HomeViewController: UIViewController {
             cornerOptions: .roundSomeCorners(radius: 10, corners: .left),
             dimmingViewAlpha: 0.5,
             edgeInsets: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 0),
-            ignoredEdgesForMargins: [.top, .right, .bottom],
-            presentationEdge: .trailing
+            ignoredEdgesForMargins: [.top, .trailing, .bottom],
+            presentationLayout: .trailing(.fill)
         )
 
         return SheetPresentationManager(options: options)

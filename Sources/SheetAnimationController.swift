@@ -13,11 +13,11 @@ final class SheetAnimationController: NSObject {
     private let duration: TimeInterval = 1.0 / 3.0
 
     private let isPresenting: Bool
-    private let edge: SheetPresentationOptions.PresentationEdge
+    private let edge: ViewEdge
 
     private var currentAnimator: UIViewPropertyAnimator?
 
-    init(isPresenting: Bool, edge: SheetPresentationOptions.PresentationEdge) {
+    init(isPresenting: Bool, edge: ViewEdge) {
         self.isPresenting = isPresenting
         self.edge = edge
 

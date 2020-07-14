@@ -79,11 +79,12 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         presenting: UIViewController,
         source: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        let edge = presentationOptions.presentationEdge
-        switch edge {
-        case .leading, .trailing:
-            return SheetAnimationController(isPresenting: true, edge: edge)
-        case .bottom, .top:
+        switch presentationOptions.presentationLayout {
+        case .leading:
+            return SheetAnimationController(isPresenting: true, edge: .leading)
+        case .trailing:
+            return SheetAnimationController(isPresenting: true, edge: .trailing)
+        case .top, .bottom, .overlay:
             return nil
         }
     }
@@ -97,11 +98,13 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
     public func animationController(
         forDismissed dismissed: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        let edge = presentationOptions.presentationEdge
-        switch edge {
-        case .leading, .trailing:
-            return SheetAnimationController(isPresenting: false, edge: edge)
-        case .bottom, .top:
+        switch presentationOptions.presentationLayout {
+        case .leading:
+            return SheetAnimationController(isPresenting: false, edge: .leading)
+        case .trailing:
+            return SheetAnimationController(isPresenting: false,
+                                            edge: .trailing)
+        case .top, .bottom, .overlay:
             return nil
         }
     }

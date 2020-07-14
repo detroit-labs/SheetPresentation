@@ -27,13 +27,15 @@ final class SheetPresentationController: UIPresentationController {
 
         let ignoredEdgesForMargins = options.ignoredEdgesForMargins
 
+        // TODO: Translate from leading/trailing to left/right
+
         if !ignoredEdgesForMargins.contains(.top) {
             insets.top = max(insets.top, margins.top)
         }
-        if !ignoredEdgesForMargins.contains(.left) {
+        if !ignoredEdgesForMargins.contains(.leading) {
             insets.left = max(insets.left, margins.left)
         }
-        if !ignoredEdgesForMargins.contains(.right) {
+        if !ignoredEdgesForMargins.contains(.trailing) {
             insets.right = max(insets.right, margins.right)
         }
         if !ignoredEdgesForMargins.contains(.bottom) {
@@ -99,41 +101,37 @@ final class SheetPresentationController: UIPresentationController {
             fitting: maximumBounds.size
         )
 
-        // Constrain the width and height to the safe area of the container view
+        // If the preferred size extends beyone the maxiumum bounds (for
+        // instance, if set by the preferredContentSize of the view controller),
+        // clamp them to the maximum bounds.
         size.height = min(size.height, maximumBounds.height)
         size.width = min(size.width, maximumBounds.width)
 
-        var frame = maximumBounds
+        var frame = CGRect(origin: maximumBounds.origin, size: size)
 
-        switch options.presentationEdge {
-        case .top:
-            // Position the rect vertically at the top of the maximum bounds
-            frame.origin.y = maximumBounds.minY
-            frame.size.height = size.height
+        // TODO: Account for left/right/leading/trailing
 
-            // Center the rect horizontally inside the maximum bounds
-            frame.origin.x = maximumBounds.minX +
-                ((maximumBounds.width - size.width) / 2.0)
+        switch options.presentationLayout {
 
-            frame.size.width = size.width
-        case .leading:
-            frame.origin.y = maximumBounds.minY
-            frame.origin.x = maximumBounds.minX
-            frame.size = size
-        case .trailing:
-            frame.origin.y = maximumBounds.minY
-            frame.origin.x = maximumBounds.origin.x
-            frame.size = size
-        case .bottom:
-            // Position the rect vertically at the bottom of the maximum bounds
-            frame.origin.y = maximumBounds.maxY - size.height
-            frame.size.height = size.height
+        case .top(.automatic(let alignment)) where alignment == .middle,
+             .bottom(.automatic(let alignment)) where alignment == .middle:
+            frame.origin.y = (maximumBounds.height - frame.height) / 2
 
-            // Center the rect horizontally inside the maximum bounds
-            frame.origin.x = maximumBounds.minX +
-                ((maximumBounds.width - size.width) / 2.0)
+        case .top(.automatic(let alignment)) where alignment == .bottom,
+             .bottom(.automatic(let alignment)) where alignment == .bottom:
+            frame.origin.y = maximumBounds.height - frame.height
 
-            frame.size.width = size.width
+        case .leading(.automatic(let alignment)) where alignment == .center,
+             .trailing(.automatic(let alignment)) where alignment == .center:
+            frame.origin.x = (maximumBounds.width - frame.width) / 2
+
+        case .leading(.automatic(let alignment)) where alignment == .trailing,
+             .trailing(.automatic(let alignment)) where alignment == .trailing:
+            frame.origin.x = maximumBounds.width - frame.width
+
+        default:
+            break
+
         }
 
         return frame.integral
@@ -174,25 +172,81 @@ final class SheetPresentationController: UIPresentationController {
         containerView?.bounds.inset(by: marginAdjustedEdgeInsets) ?? .zero
     }
 
+    // swiftlint:disable:next function_body_length
     func preferredPresentedViewControllerSize(fitting size: CGSize) -> CGSize {
-        if presentedViewController.hasPreferredContentSize {
+        // Ensure that the view is loaded, in case the preferred content size is
+        // set during loadView() or viewDidLoad()
+        presentedViewController.loadViewIfNeeded()
+
+        var targetSize: CGSize = UIView.layoutFittingCompressedSize
+        let horizontalPriority: UILayoutPriority
+        let verticalPriority: UILayoutPriority
+
+        let preferredContentSize = presentedViewController.preferredContentSize
+        let hasPreferredContentSize = presentedViewController
+            .hasPreferredContentSize
+
+        switch options.presentationLayout {
+
+        // “Fill” layouts just fill the container entirely. These are still
+        // useful as they control the animation origin.
+        case .top(.fill),
+             .leading(.fill),
+             .trailing(.fill),
+             .bottom(.fill),
+             .overlay(.fill, .fill):
+            return size
+
+        // “Automatic” layouts use the preferred content size of the view
+        // controller, if specified.
+        case .top(.automatic) where hasPreferredContentSize,
+             .bottom(.automatic) where hasPreferredContentSize,
+             .leading(.automatic) where hasPreferredContentSize,
+             .trailing(.automatic) where hasPreferredContentSize,
+             .overlay(.automatic, .automatic) where hasPreferredContentSize:
             return presentedViewController.preferredContentSize
+
+        // Top and bottom layouts fill the width of the container.
+        case .top(.automatic), .bottom(.automatic):
+            targetSize.width = size.width
+            horizontalPriority = .required
+            verticalPriority = .fittingSizeLevel
+
+        // Leading and trailing layouts fill the height of the container.
+        case .leading(.automatic), .trailing(.automatic):
+            targetSize.height = size.height
+            horizontalPriority = .fittingSizeLevel
+            verticalPriority = .fittingSizeLevel
+
+        // Overlay layouts fill according to their behaviors
+        case .overlay(.automatic, .fill) where hasPreferredContentSize:
+            targetSize.width = preferredContentSize.width
+            return targetSize
+
+        case .overlay(.automatic, .fill):
+            targetSize.height = size.height
+            horizontalPriority = .fittingSizeLevel
+            verticalPriority = .fittingSizeLevel
+
+        case .overlay(.fill, .automatic) where hasPreferredContentSize:
+            targetSize.height = preferredContentSize.height
+            return targetSize
+
+        case .overlay(.fill, .automatic):
+            targetSize.width = size.width
+            horizontalPriority = .required
+            verticalPriority = .fittingSizeLevel
+
+        case .overlay(.automatic, .automatic):
+            horizontalPriority = .fittingSizeLevel
+            verticalPriority = .fittingSizeLevel
         }
 
-        switch options.presentationEdge {
-        case .bottom, .top:
-            return presentedViewController.view.systemLayoutSizeFitting(
-                size,
-                withHorizontalFittingPriority: .required,
-                verticalFittingPriority: .fittingSizeLevel
-            )
-        case .leading, .trailing:
-            return presentedViewController.view.systemLayoutSizeFitting(
-                size,
-                withHorizontalFittingPriority: .fittingSizeLevel,
-                verticalFittingPriority: .required
-            )
-        }
+        return presentedViewController.view.systemLayoutSizeFitting(
+            targetSize,
+            withHorizontalFittingPriority: horizontalPriority,
+            verticalFittingPriority: verticalPriority
+        )
     }
 
     func layoutDimmingView() {
