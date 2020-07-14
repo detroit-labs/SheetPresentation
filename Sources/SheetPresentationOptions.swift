@@ -37,7 +37,7 @@ public struct SheetPresentationOptions {
     /// container. This is a minimum; there may be additional insets depending
     /// on the safe area insets and margins of the container. Use
     /// `ignoredEdgesForMargins` to customize the margin behavior for each edge.
-    public let edgeInsets: UIEdgeInsets
+    public let edgeInsets: DirectionalEdgeInsetsConvertible
 
     /// Edges of the presentation container view for which its margins should be
     /// ignored for layout purposes, including the safe area.
@@ -71,11 +71,14 @@ public struct SheetPresentationOptions {
     ///                             area.
     ///   - presentationEdge: Edge of the screen from which to present. Defaults
     ///                       to `.bottom`.
-    public init(cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
-                dimmingViewAlpha: CGFloat? = 0.5,
-                edgeInsets: UIEdgeInsets = UIEdgeInsets(constant: 20),
-                ignoredEdgesForMargins: [ViewEdge] = [],
-                presentationLayout: PresentationLayout = .bottom()) {
+    public init(
+        cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
+        dimmingViewAlpha: CGFloat? = 0.5,
+        // swiftlint:disable:next line_length
+        edgeInsets: DirectionalEdgeInsetsConvertible = NSDirectionalEdgeInsets(constant: 20),
+        ignoredEdgesForMargins: [ViewEdge] = [],
+        presentationLayout: PresentationLayout = .bottom()
+    ) {
         self.cornerOptions = cornerOptions
         self.dimmingViewAlpha = dimmingViewAlpha
         self.edgeInsets = edgeInsets
@@ -85,7 +88,16 @@ public struct SheetPresentationOptions {
 
 }
 
-extension SheetPresentationOptions: Equatable {}
+extension SheetPresentationOptions: Equatable {
+    public static func == (lhs: SheetPresentationOptions,
+                           rhs: SheetPresentationOptions) -> Bool {
+        return (lhs.cornerOptions == rhs.cornerOptions &&
+            lhs.dimmingViewAlpha == rhs.dimmingViewAlpha &&
+            lhs.edgeInsets == rhs.edgeInsets &&
+            lhs.ignoredEdgesForMargins == rhs.ignoredEdgesForMargins &&
+            lhs.presentationLayout == rhs.presentationLayout)
+    }
+}
 
 extension SheetPresentationOptions.CornerOptions {
 

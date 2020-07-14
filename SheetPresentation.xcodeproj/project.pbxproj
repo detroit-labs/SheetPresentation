@@ -14,7 +14,7 @@
 		1F21766B20FE7E49006581CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766920FE7E49006581CD /* LaunchScreen.storyboard */; };
 		1F21767320FE8094006581CD /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21767220FE8094006581CD /* ChildViewController.swift */; };
 		1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */; };
-		1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */; };
+		1F31A83E22860A100086784C /* EdgeInsetsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A83D22860A100086784C /* EdgeInsetsHelpers.swift */; };
 		1F31A84222860A7B0086784C /* SheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84122860A7B0086784C /* SheetPresentationController.swift */; };
 		1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* SheetPresentationManager.swift */; };
 		1F58C7B924BE23650056FDEB /* PresentationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58C7B824BE23650056FDEB /* PresentationLayout.swift */; };
@@ -72,7 +72,7 @@
 		1F21767220FE8094006581CD /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		1F21767420FE839D006581CD /* SheetPresentationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationOptions.swift; sourceTree = "<group>"; };
 		1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PreferredContentSize.swift"; sourceTree = "<group>"; };
-		1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsHelpers.swift; sourceTree = "<group>"; };
+		1F31A83D22860A100086784C /* EdgeInsetsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetsHelpers.swift; sourceTree = "<group>"; };
 		1F31A84122860A7B0086784C /* SheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationController.swift; sourceTree = "<group>"; };
 		1F31A84322860A980086784C /* SheetPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationManager.swift; sourceTree = "<group>"; };
 		1F58C7B824BE23650056FDEB /* PresentationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayout.swift; sourceTree = "<group>"; };
@@ -164,13 +164,13 @@
 			isa = PBXGroup;
 			children = (
 				1FE9B73C2329734300EE050E /* CACornerMaskHelpers.swift */,
+				1F31A83D22860A100086784C /* EdgeInsetsHelpers.swift */,
 				1FE9B73A23296C1700EE050E /* PassthroughView.swift */,
 				1F58C7B824BE23650056FDEB /* PresentationLayout.swift */,
 				1F96095924B756D9007D52A0 /* SheetAnimationController.swift */,
 				1F31A84122860A7B0086784C /* SheetPresentationController.swift */,
 				1F31A84322860A980086784C /* SheetPresentationManager.swift */,
 				1F21767420FE839D006581CD /* SheetPresentationOptions.swift */,
-				1F31A83D22860A100086784C /* UIEdgeInsetsHelpers.swift */,
 				1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */,
 				315D038924AA77DD00E5406B /* ViewEdge.swift */,
 			);
@@ -397,7 +397,7 @@
 				1F96095A24B756D9007D52A0 /* SheetAnimationController.swift in Sources */,
 				1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */,
 				1FE9B73B23296C1700EE050E /* PassthroughView.swift in Sources */,
-				1F31A83E22860A100086784C /* UIEdgeInsetsHelpers.swift in Sources */,
+				1F31A83E22860A100086784C /* EdgeInsetsHelpers.swift in Sources */,
 				1F58C7B924BE23650056FDEB /* PresentationLayout.swift in Sources */,
 				1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */,
 				1F31A84222860A7B0086784C /* SheetPresentationController.swift in Sources */,

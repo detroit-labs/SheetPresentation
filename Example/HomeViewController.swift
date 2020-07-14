@@ -15,7 +15,8 @@ class HomeViewController: UIViewController {
         let options = SheetPresentationOptions(
             cornerOptions: .roundAllCorners(radius: 8),
             dimmingViewAlpha: 0.5,
-            edgeInsets: UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
+            edgeInsets: UIEdgeInsets(verticalConstant: 16,
+                                     horizontalConstant: 24)
         )
 
         return SheetPresentationManager(options: options)
@@ -25,7 +26,7 @@ class HomeViewController: UIViewController {
         let options = SheetPresentationOptions(
             cornerOptions: .none,
             dimmingViewAlpha: 0.5,
-            edgeInsets: .zero,
+            edgeInsets: NSDirectionalEdgeInsets.zero,
             ignoredEdgesForMargins: .all,
             presentationLayout: .overlay()
         )

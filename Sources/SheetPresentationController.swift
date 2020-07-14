@@ -15,7 +15,7 @@ final class SheetPresentationController: UIPresentationController {
     let options: SheetPresentationOptions
 
     var marginAdjustedEdgeInsets: UIEdgeInsets {
-        var insets = options.edgeInsets
+        var insets = options.edgeInsets.fixedEdgeInsets(for: traitCollection)
         let margins: UIEdgeInsets
 
         if #available(iOS 12, *), let containerView = containerView {
@@ -27,16 +27,26 @@ final class SheetPresentationController: UIPresentationController {
 
         let ignoredEdgesForMargins = options.ignoredEdgesForMargins
 
-        // TODO: Translate from leading/trailing to left/right
+        let isRightToLeft = (traitCollection.layoutDirection == .rightToLeft)
 
         if !ignoredEdgesForMargins.contains(.top) {
             insets.top = max(insets.top, margins.top)
         }
         if !ignoredEdgesForMargins.contains(.leading) {
-            insets.left = max(insets.left, margins.left)
+            if isRightToLeft {
+                insets.right = max(insets.right, margins.right)
+            }
+            else {
+                insets.left = max(insets.left, margins.left)
+            }
         }
         if !ignoredEdgesForMargins.contains(.trailing) {
-            insets.right = max(insets.right, margins.right)
+            if isRightToLeft {
+                insets.left = max(insets.left, margins.left)
+            }
+            else {
+                insets.right = max(insets.right, margins.right)
+            }
         }
         if !ignoredEdgesForMargins.contains(.bottom) {
             insets.bottom = max(insets.bottom, margins.bottom)
@@ -109,7 +119,7 @@ final class SheetPresentationController: UIPresentationController {
 
         var frame = CGRect(origin: maximumBounds.origin, size: size)
 
-        // TODO: Account for left/right/leading/trailing
+        let isRightToLeft = (traitCollection.layoutDirection == .rightToLeft)
 
         switch options.presentationLayout {
 
@@ -125,8 +135,16 @@ final class SheetPresentationController: UIPresentationController {
              .trailing(.automatic(let alignment)) where alignment == .center:
             frame.origin.x = (maximumBounds.width - frame.width) / 2
 
+        case .leading(.automatic(let alignment))
+        where alignment == .leading && !isRightToLeft,
+             .trailing(.automatic(let alignment))
+            where alignment == .trailing && isRightToLeft:
+            break
+
         case .leading(.automatic(let alignment)) where alignment == .trailing,
-             .trailing(.automatic(let alignment)) where alignment == .trailing:
+             .leading(.automatic(let alignment)) where isRightToLeft,
+             .trailing(.automatic(let alignment)) where alignment == .trailing,
+             .trailing(.automatic(let alignment)) where isRightToLeft:
             frame.origin.x = maximumBounds.width - frame.width
 
         default:
