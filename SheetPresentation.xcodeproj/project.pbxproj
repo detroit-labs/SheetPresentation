@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F09630D24C751A40091DFF8 /* UIViewControllerTransitionCoordinatorAnimationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F09630C24C751A40091DFF8 /* UIViewControllerTransitionCoordinatorAnimationHelpers.swift */; };
+		1F09630F24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F09630E24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift */; };
 		1F21766120FE7E47006581CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21766020FE7E47006581CD /* AppDelegate.swift */; };
 		1F21766320FE7E47006581CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21766220FE7E47006581CD /* HomeViewController.swift */; };
 		1F21766620FE7E47006581CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F21766420FE7E47006581CD /* Main.storyboard */; };
@@ -62,6 +64,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F09630C24C751A40091DFF8 /* UIViewControllerTransitionCoordinatorAnimationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerTransitionCoordinatorAnimationHelpers.swift; sourceTree = "<group>"; };
+		1F09630E24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimationOptionsHelpers.swift; sourceTree = "<group>"; };
 		1F21765D20FE7E47006581CD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F21766020FE7E47006581CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F21766220FE7E47006581CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +175,9 @@
 				1F31A84122860A7B0086784C /* SheetPresentationController.swift */,
 				1F31A84322860A980086784C /* SheetPresentationManager.swift */,
 				1F21767420FE839D006581CD /* SheetPresentationOptions.swift */,
+				1F09630E24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift */,
 				1F31A83B228609EF0086784C /* UIViewController+PreferredContentSize.swift */,
+				1F09630C24C751A40091DFF8 /* UIViewControllerTransitionCoordinatorAnimationHelpers.swift */,
 				315D038924AA77DD00E5406B /* ViewEdge.swift */,
 			);
 			path = Sources;
@@ -393,6 +399,7 @@
 			files = (
 				1FE9B73D2329734300EE050E /* CACornerMaskHelpers.swift in Sources */,
 				1FDFAB152101142300BBEE09 /* SheetPresentationOptions.swift in Sources */,
+				1F09630F24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift in Sources */,
 				315D038A24AA77DD00E5406B /* ViewEdge.swift in Sources */,
 				1F96095A24B756D9007D52A0 /* SheetAnimationController.swift in Sources */,
 				1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */,
@@ -401,6 +408,7 @@
 				1F58C7B924BE23650056FDEB /* PresentationLayout.swift in Sources */,
 				1F31A83C228609EF0086784C /* UIViewController+PreferredContentSize.swift in Sources */,
 				1F31A84222860A7B0086784C /* SheetPresentationController.swift in Sources */,
+				1F09630D24C751A40091DFF8 /* UIViewControllerTransitionCoordinatorAnimationHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

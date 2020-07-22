@@ -79,14 +79,11 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         presenting: UIViewController,
         source: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        switch presentationOptions.presentationLayout {
-        case .leading:
-            return SheetAnimationController(isPresenting: true, edge: .leading)
-        case .trailing:
-            return SheetAnimationController(isPresenting: true, edge: .trailing)
-        case .top, .bottom, .overlay:
-            return nil
-        }
+        guard let viewEdge = presentationOptions.presentationLayout
+            .viewEdge(for: presented.traitCollection)
+            else { return nil }
+
+        return SheetAnimationController(isPresenting: true, edge: viewEdge)
     }
 
     /// Defines the animator object to use when dismissing the view controller.
@@ -98,15 +95,11 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
     public func animationController(
         forDismissed dismissed: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        switch presentationOptions.presentationLayout {
-        case .leading:
-            return SheetAnimationController(isPresenting: false, edge: .leading)
-        case .trailing:
-            return SheetAnimationController(isPresenting: false,
-                                            edge: .trailing)
-        case .top, .bottom, .overlay:
-            return nil
-        }
+        guard let viewEdge = presentationOptions.presentationLayout
+            .viewEdge(for: dismissed.traitCollection)
+            else { return nil }
+
+        return SheetAnimationController(isPresenting: false, edge: viewEdge)
     }
 
     /// Defines the custom presentation controller to use for managing the view

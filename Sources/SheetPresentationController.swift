@@ -77,9 +77,7 @@ final class SheetPresentationController: UIPresentationController {
         guard let alpha = options.dimmingViewAlpha else { return nil }
 
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.black
-            .withAlphaComponent(alpha)
+        view.backgroundColor = UIColor.black.withAlphaComponent(alpha)
 
         view.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
@@ -94,7 +92,6 @@ final class SheetPresentationController: UIPresentationController {
             else { return nil }
 
         let view = PassthroughView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
 
         view.passthroughViews = [presentedView]
@@ -123,32 +120,145 @@ final class SheetPresentationController: UIPresentationController {
 
         switch options.presentationLayout {
 
-        case .top(.automatic(let alignment)) where alignment == .middle,
-             .bottom(.automatic(let alignment)) where alignment == .middle:
-            frame.origin.y = (maximumBounds.height - frame.height) / 2
+        case .leading(.fill),
+             .trailing(.fill),
+             .top(.fill),
+             .bottom(.fill),
+             .overlay(.fill, .fill),
+             .left(.fill),
+             .right(.fill):
+            return frame
 
-        case .top(.automatic(let alignment)) where alignment == .bottom,
-             .bottom(.automatic(let alignment)) where alignment == .bottom:
-            frame.origin.y = maximumBounds.height - frame.height
+        case .leading(.automatic(alignment: .leading)) where !isRightToLeft,
+             .leading(.automatic(alignment: .trailing)) where isRightToLeft,
+             .leading(.automatic(alignment: .left)),
+             .trailing(.automatic(alignment: .leading)) where !isRightToLeft,
+             .trailing(.automatic(alignment: .trailing)) where isRightToLeft,
+             .trailing(.automatic(alignment: .left)),
+             .top(.automatic(alignment: .top)),
+             .bottom(.automatic(alignment: .top)),
+             .left(.automatic(alignment: .leading)) where !isRightToLeft,
+             .left(.automatic(alignment: .trailing)) where isRightToLeft,
+             .left(.automatic(alignment: .left)),
+             .right(.automatic(alignment: .leading)) where !isRightToLeft,
+             .right(.automatic(alignment: .trailing)) where isRightToLeft,
+             .right(.automatic(alignment: .left)),
+             .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .top)) where !isRightToLeft,
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .top)) where isRightToLeft,
+             .overlay(.automatic(alignment: .left),
+                      .automatic(alignment: .top)),
+             .overlay(.automatic(alignment: .leading),
+                      .fill) where !isRightToLeft,
+             .overlay(.automatic(alignment: .trailing),
+                      .fill) where isRightToLeft,
+             .overlay(.automatic(alignment: .left), .fill),
+             .overlay(.fill, .automatic(alignment: .top)):
+            // Do nothing; the frame starts at the top-left point.
+            return frame
 
-        case .leading(.automatic(let alignment)) where alignment == .center,
-             .trailing(.automatic(let alignment)) where alignment == .center:
-            frame.origin.x = (maximumBounds.width - frame.width) / 2
+        case .leading(.automatic(alignment: .center)),
+             .trailing(.automatic(alignment: .center)),
+             .left(.automatic(alignment: .center)),
+             .right(.automatic(alignment: .center)),
+             .overlay(.automatic(alignment: .center), .fill),
+             .overlay(.automatic(alignment: .center),
+                      .automatic(alignment: .top)):
+            // Align the frame in the center of the bounds horizontally.
+            frame.origin.x = maximumBounds.minX +
+                ((maximumBounds.width - frame.width) / 2)
 
-        case .leading(.automatic(let alignment))
-        where alignment == .leading && !isRightToLeft,
-             .trailing(.automatic(let alignment))
-            where alignment == .trailing && isRightToLeft:
-            break
+        case .leading(.automatic(alignment: .leading)),
+             .leading(.automatic(alignment: .trailing)),
+             .leading(.automatic(alignment: .right)),
+             .trailing(.automatic(alignment: .leading)),
+             .trailing(.automatic(alignment: .trailing)),
+             .trailing(.automatic(alignment: .right)),
+             .left(.automatic(alignment: .leading)),
+             .left(.automatic(alignment: .trailing)),
+             .left(.automatic(alignment: .right)),
+             .right(.automatic(alignment: .leading)),
+             .right(.automatic(alignment: .trailing)),
+             .right(.automatic(alignment: .right)),
+             .overlay(.automatic(alignment: .leading), .fill),
+             .overlay(.automatic(alignment: .trailing), .fill),
+             .overlay(.automatic(alignment: .right), .fill),
+             .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .top)),
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .top)),
+             .overlay(.automatic(alignment: .right),
+                      .automatic(alignment: .top)):
+            // Align the frame at the right of the bounds.
+            frame.origin.x = maximumBounds.maxX - frame.width
 
-        case .leading(.automatic(let alignment)) where alignment == .trailing,
-             .leading(.automatic(let alignment)) where isRightToLeft,
-             .trailing(.automatic(let alignment)) where alignment == .trailing,
-             .trailing(.automatic(let alignment)) where isRightToLeft:
-            frame.origin.x = maximumBounds.width - frame.width
+        case .top(.automatic(alignment: .middle)),
+             .bottom(.automatic(alignment: .middle)),
+             .overlay(.fill, .automatic(alignment: .middle)),
+             .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .middle)) where !isRightToLeft,
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .middle)) where isRightToLeft,
+             .overlay(.automatic(.left), .automatic(alignment: .middle)):
+            // Align the frame in the middle of the bounds vertically.
+            frame.origin.y = maximumBounds.minY +
+                ((maximumBounds.height - frame.height) / 2)
 
-        default:
-            break
+        case .top(.automatic(alignment: .bottom)),
+             .bottom(.automatic(alignment: .bottom)),
+             .overlay(.fill, .automatic(alignment: .bottom)),
+             .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .bottom)) where !isRightToLeft,
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .bottom)) where isRightToLeft,
+             .overlay(.automatic(alignment: .left),
+                      .automatic(alignment: .bottom)):
+            // Align the frame at the bottom of the bounds.
+            frame.origin.y = maximumBounds.maxY - frame.height
+
+        case .overlay(.automatic(alignment: .center),
+                      .automatic(alignment: .middle)):
+            // Align the frame at the center of the bounds horizontally and
+            // middle of the bounds vertically.
+            frame.origin.x = maximumBounds.minX +
+                ((maximumBounds.width - frame.width) / 2)
+
+            frame.origin.y = maximumBounds.minY +
+                ((maximumBounds.height - frame.height) / 2)
+
+        case .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .middle)),
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .middle)),
+             .overlay(.automatic(alignment: .right),
+                      .automatic(alignment: .middle)):
+            // Align the frame at the right of the bounds horizontally and
+            // middle of the bounds vertically.
+            frame.origin.x = maximumBounds.maxX - frame.width
+
+            frame.origin.y = maximumBounds.minY +
+                ((maximumBounds.height - frame.height) / 2)
+
+        case .overlay(.automatic(alignment: .center),
+                      .automatic(alignment: .bottom)):
+            // Align the frame at the center of the bounds horizontally and
+            // bottom of the bounds vertically.
+            frame.origin.x = maximumBounds.minX +
+                ((maximumBounds.width - frame.width) / 2)
+
+            frame.origin.y = maximumBounds.maxY - frame.height
+
+        case .overlay(.automatic(alignment: .leading),
+                      .automatic(alignment: .bottom)),
+             .overlay(.automatic(alignment: .trailing),
+                      .automatic(alignment: .bottom)),
+             .overlay(.automatic(alignment: .right),
+                      .automatic(alignment: .bottom)):
+            // Align the frame at the right of the bounds horizontally and
+            // bottom of the bounds vertically.
+            frame.origin.x = maximumBounds.maxX - frame.width
+            frame.origin.y = maximumBounds.maxY - frame.height
 
         }
 
@@ -210,7 +320,9 @@ final class SheetPresentationController: UIPresentationController {
         // useful as they control the animation origin.
         case .top(.fill),
              .leading(.fill),
+             .left(.fill),
              .trailing(.fill),
+             .right(.fill),
              .bottom(.fill),
              .overlay(.fill, .fill):
             return size
@@ -220,34 +332,41 @@ final class SheetPresentationController: UIPresentationController {
         case .top(.automatic) where hasPreferredContentSize,
              .bottom(.automatic) where hasPreferredContentSize,
              .leading(.automatic) where hasPreferredContentSize,
+             .left(.automatic) where hasPreferredContentSize,
              .trailing(.automatic) where hasPreferredContentSize,
+             .right(.automatic) where hasPreferredContentSize,
              .overlay(.automatic, .automatic) where hasPreferredContentSize:
             return presentedViewController.preferredContentSize
 
-        // Top and bottom layouts fill the width of the container.
+        // Vertical layouts fill the width of the container.
         case .top(.automatic), .bottom(.automatic):
             targetSize.width = size.width
             horizontalPriority = .required
             verticalPriority = .fittingSizeLevel
 
-        // Leading and trailing layouts fill the height of the container.
-        case .leading(.automatic), .trailing(.automatic):
+        // Horizontal layouts fill the height of the container.
+        case .leading(.automatic),
+             .left(.automatic),
+             .trailing(.automatic),
+             .right(.automatic):
             targetSize.height = size.height
             horizontalPriority = .fittingSizeLevel
-            verticalPriority = .fittingSizeLevel
+            verticalPriority = .required
 
         // Overlay layouts fill according to their behaviors
         case .overlay(.automatic, .fill) where hasPreferredContentSize:
             targetSize.width = preferredContentSize.width
+            targetSize.height = size.height
             return targetSize
 
         case .overlay(.automatic, .fill):
             targetSize.height = size.height
             horizontalPriority = .fittingSizeLevel
-            verticalPriority = .fittingSizeLevel
+            verticalPriority = .required
 
         case .overlay(.fill, .automatic) where hasPreferredContentSize:
             targetSize.height = preferredContentSize.height
+            targetSize.width = size.width
             return targetSize
 
         case .overlay(.fill, .automatic):
@@ -269,8 +388,8 @@ final class SheetPresentationController: UIPresentationController {
 
     func layoutDimmingView() {
         guard let containerView = containerView,
-              let dimmingView = dimmingView
-        else { return }
+            let dimmingView = dimmingView
+            else { return }
 
         containerView.insertSubview(dimmingView, at: 0)
         dimmingView.frame = containerView.bounds
@@ -278,8 +397,8 @@ final class SheetPresentationController: UIPresentationController {
 
     func layoutPassthroughView() {
         guard let containerView = containerView,
-              let passthroughView = passthroughView
-        else { return }
+            let passthroughView = passthroughView
+            else { return }
 
         containerView.insertSubview(passthroughView, at: 0)
         passthroughView.frame = containerView.bounds
@@ -287,51 +406,29 @@ final class SheetPresentationController: UIPresentationController {
 
     func animateDimmingViewAppearing() {
         guard let dimmingView = dimmingView,
-              let transitionCoordinator = presentedViewController
+            let transitionCoordinator = presentedViewController
                 .transitionCoordinator
-        else { return }
+            else { return }
 
         dimmingView.alpha = 0
 
-        transitionCoordinator.animate(alongsideTransition: { _ in
-            dimmingView.alpha = 1
-        })
+        transitionCoordinator.animate(
+            id: "animateDimmingViewAppearing",
+            alongsideTransition: { _ in dimmingView.alpha = 1 }
+        )
     }
 
     func animateDimmingViewDisappearing() {
         guard let dimmingView = dimmingView,
-              let transitionCoordinator = presentedViewController
+            let transitionCoordinator = presentedViewController
                 .transitionCoordinator
-        else { return }
+            else { return }
 
-        // Despite this API being available earlier, iOS 11.3 is the first OS
-        // that doesn’t just animate this instantly.
-        if #available(iOS 11.3, *) {
-            transitionCoordinator.animateAlongsideTransition(
-                in: dimmingView.superview,
-                animation: { _ in dimmingView.alpha = 0 },
-                completion: { _ in dimmingView.removeFromSuperview() }
-            )
-        }
-        else {
-            UIView.beginAnimations("animateDimmingViewDisappearing",
-                                   context: nil)
-
-            if transitionCoordinator.transitionDuration > 0 {
-                UIView.setAnimationDuration(
-                    transitionCoordinator.transitionDuration
-                )
-            }
-            else {
-                UIView.setAnimationDuration(1.0 / 3.0)
-            }
-
-            UIView.setAnimationCurve(transitionCoordinator.completionCurve)
-
-            dimmingView.alpha = 0
-
-            UIView.commitAnimations()
-        }
+        transitionCoordinator.animate(
+            id: "animateDimmingViewDisappearing",
+            alongsideTransition: { _ in dimmingView.alpha = 0 },
+            completion: { _ in dimmingView.removeFromSuperview() }
+        )
     }
 
     // MARK: - UI Interaction
