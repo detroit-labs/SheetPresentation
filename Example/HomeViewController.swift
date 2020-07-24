@@ -9,7 +9,6 @@
 import UIKit
 import SheetPresentation
 
-// swiftlint:disable:next type_body_length
 class HomeViewController: UIViewController {
 
     lazy var wholeNumberFormatter: NumberFormatter = {
@@ -182,8 +181,8 @@ class HomeViewController: UIViewController {
     @IBOutlet var ignoreTrailingEdgeSwitch: UISwitch!
     @IBOutlet var ignoreBottomEdgeSwitch: UISwitch!
 
-    func ignoredEdgesForMarginsForUISelections() -> [ViewEdge] {
-        var ignoredEdges: [ViewEdge] = []
+    func ignoredEdgesForMarginsForUISelections() -> [DirectionalViewEdge] {
+        var ignoredEdges: [DirectionalViewEdge] = []
 
         if ignoreTopEdgeSwitch.isOn { ignoredEdges.append(.top) }
 
@@ -197,7 +196,6 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Presentation Layout
-    @IBOutlet var presentationLayoutTypeSegmentedControl: UISegmentedControl!
     @IBOutlet var horizontalSizingBehaviorSegmentedControl: UISegmentedControl!
     @IBOutlet var horizontalSizingBehaviorStackView: UIStackView!
     @IBOutlet var horizontalAlignmentSegmentedControl: UISegmentedControl!
@@ -222,8 +220,8 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func horizontalSizingBehaviorForUISelections(
-    ) -> PresentationLayout.HorizontalSizingBehavior {
+    func horizontalLayoutForUISelections(
+    ) -> PresentationLayout.HorizontalLayout {
         if horizontalSizingBehaviorSegmentedControl.selectedSegmentIndex == 0 {
             return .automatic(alignment: horizontalAlignmentForUISelections())
         }
@@ -243,8 +241,8 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func verticalSizingBehaviorForUISelections(
-    ) -> PresentationLayout.VerticalSizingBehavior {
+    func verticalLayoutForUISelections(
+    ) -> PresentationLayout.VerticalLayout {
         if verticalSizingBehaviorSegmentedControl.selectedSegmentIndex == 0 {
             return .automatic(alignment: verticalAlignmentForUISelections())
         }
@@ -254,54 +252,10 @@ class HomeViewController: UIViewController {
     }
 
     func presentationLayoutForUISelections() -> PresentationLayout {
-        switch presentationLayoutTypeSegmentedControl.selectedSegmentIndex {
-        case 0: return .leading(horizontalSizingBehaviorForUISelections())
-        case 1: return .trailing(horizontalSizingBehaviorForUISelections())
-        case 2: return .top(verticalSizingBehaviorForUISelections())
-        case 3: return .bottom(verticalSizingBehaviorForUISelections())
-        case 4: return .overlay(horizontalSizingBehaviorForUISelections(),
-                                verticalSizingBehaviorForUISelections())
-        case 5: return .left(horizontalSizingBehaviorForUISelections())
-        case 6: return .right(horizontalSizingBehaviorForUISelections())
-        default:
-            fatalError(
-                "Unexpected value for presentationLayoutTypeSegmentedControl"
-            )
-        }
-    }
-
-    @IBAction func userSelectedPresentationLayoutType(
-        _ sender: UISegmentedControl
-    ) {
-        switch sender.selectedSegmentIndex {
-        case 0, 1, 5, 6:
-            horizontalSizingBehaviorStackView.isHidden = false
-            horizontalAlignmentStackView.isHidden =
-                (horizontalSizingBehaviorSegmentedControl.selectedSegmentIndex
-                    != 0)
-            verticalSizingBehaviorStackView.isHidden = true
-            verticalAlignmentStackView.isHidden = true
-        case 2, 3:
-            horizontalSizingBehaviorStackView.isHidden = true
-            horizontalAlignmentStackView.isHidden = true
-            verticalSizingBehaviorStackView.isHidden = false
-            verticalAlignmentStackView.isHidden =
-                (verticalSizingBehaviorSegmentedControl.selectedSegmentIndex
-                    != 0)
-        case 4:
-            horizontalSizingBehaviorStackView.isHidden = false
-            horizontalAlignmentStackView.isHidden =
-                (horizontalSizingBehaviorSegmentedControl.selectedSegmentIndex
-                    != 0)
-            verticalSizingBehaviorStackView.isHidden = false
-            verticalAlignmentStackView.isHidden =
-                (verticalSizingBehaviorSegmentedControl.selectedSegmentIndex
-                    != 0)
-        default:
-            fatalError(
-                "Unexpected value for presentationLayoutTypeSegmentedControl"
-            )
-        }
+        PresentationLayout(
+            horizontalLayout: horizontalLayoutForUISelections(),
+            verticalLayout: verticalLayoutForUISelections()
+        )
     }
 
     @IBAction func userSelectedHorizontalSizingBehavior(
@@ -316,6 +270,61 @@ class HomeViewController: UIViewController {
         verticalAlignmentStackView.isHidden = sender.selectedSegmentIndex != 0
     }
 
+    // MARK: - Animation Behavior
+    @IBOutlet var animationBehaviorSegmentedControl: UISegmentedControl!
+    @IBOutlet var edgeForApearanceSegmentedControl: UISegmentedControl!
+    @IBOutlet var edgeForAppearanceStackView: UIStackView!
+    @IBOutlet var edgeForDismissalSegmentedControl: UISegmentedControl!
+    @IBOutlet var edgeForDismissalStackView: UIStackView!
+
+    func animationEdgeSelection(
+        for segmentedControl: UISegmentedControl
+    ) -> ViewEdge {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            return DirectionalViewEdge.leading
+        case 1:
+            return DirectionalViewEdge.trailing
+        case 2:
+            return FixedViewEdge.top
+        case 3:
+            return FixedViewEdge.bottom
+        case 4:
+            return FixedViewEdge.left
+        case 5:
+            return FixedViewEdge.right
+        default:
+            fatalError("Unexpected segmented control value for animation edge.")
+        }
+    }
+
+    func animationBehaviorForUISelections() -> AnimationBehavior {
+        if animationBehaviorSegmentedControl.selectedSegmentIndex == 0 {
+            return .system
+        }
+        else {
+            return .present(
+                edgeForAppearance: animationEdgeSelection(
+                    for: edgeForApearanceSegmentedControl
+                ),
+                edgeForDismissal: animationEdgeSelection(
+                    for: edgeForDismissalSegmentedControl
+                )
+            )
+        }
+    }
+
+    @IBAction func userSelectedAnimationBehavior(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            edgeForAppearanceStackView.isHidden = true
+            edgeForDismissalStackView.isHidden = true
+        }
+        else {
+            edgeForAppearanceStackView.isHidden = false
+            edgeForDismissalStackView.isHidden = false
+        }
+    }
+
     // MARK: -
 
     var presentationManager: SheetPresentationManager?
@@ -326,22 +335,21 @@ class HomeViewController: UIViewController {
             dimmingViewAlpha: dimmingViewAlphaForUISelections(),
             edgeInsets: edgeInsetsForUISelections(),
             ignoredEdgesForMargins: ignoredEdgesForMarginsForUISelections(),
-            presentationLayout: presentationLayoutForUISelections()
+            presentationLayout: presentationLayoutForUISelections(),
+            animationBehavior: animationBehaviorForUISelections()
         )
     }
 
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "presentChild" {
-            let options = presentationOptionsForUISelections()
-            let presentationManager = SheetPresentationManager(options: options)
+        let options = presentationOptionsForUISelections()
+        let presentationManager = SheetPresentationManager(options: options)
 
-            segue.destination.transitioningDelegate = presentationManager
-            segue.destination.modalPresentationStyle = .custom
+        segue.destination.transitioningDelegate = presentationManager
+        segue.destination.modalPresentationStyle = .custom
 
-            self.presentationManager = presentationManager
-        }
+        self.presentationManager = presentationManager
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

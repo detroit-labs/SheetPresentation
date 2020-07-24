@@ -10,7 +10,7 @@ import UIKit
 
 /// How the presented view controller should be positioned in the presentation
 /// container.
-public enum PresentationLayout: Equatable {
+public struct PresentationLayout {
 
     /// Controls where on the screen an automatically-sized view controller is
     /// placed horizontally.
@@ -53,7 +53,7 @@ public enum PresentationLayout: Equatable {
     }
 
     /// Horizontal sizing behavior for the presented view controller.
-    public enum HorizontalSizingBehavior: Equatable {
+    public enum HorizontalLayout: Equatable {
 
         // swiftlint:disable line_length
         /// Sets the width of the view controller’s view according to the view
@@ -72,7 +72,7 @@ public enum PresentationLayout: Equatable {
     }
 
     /// Vertical sizing behavior for the presented view controller.
-    public enum VerticalSizingBehavior: Equatable {
+    public enum VerticalLayout: Equatable {
 
         // swiftlint:disable line_length
         /// Sets the height of the view controller’s view according to the view
@@ -90,83 +90,18 @@ public enum PresentationLayout: Equatable {
 
     }
 
-    /// Places the view controller’s view at the leading edge of the
-    /// presentation container, filling the container’s height, using the
-    /// specified `HorizontalSizingBehavior` to determine the view’s width and
-    /// horizontal position.
-    case leading(HorizontalSizingBehavior = .automatic(alignment: .leading))
+    public let horizontalSizingBehavior: HorizontalLayout
+    public let verticalSizingBehavior: VerticalLayout
 
-    /// Places the view controller’s view at the trailing edge of the
-    /// presentation container, filling the container’s height, using the
-    /// specified `HorizontalSizingBehavior` to determine the view’s width and
-    /// horizontal position.
-    case trailing(HorizontalSizingBehavior = .automatic(alignment: .trailing))
-
-    /// Places the view controller’s view at the top of the presentation
-    /// container, filling the container’s width, and using the specified
-    /// `VerticalSizingBehavior` to determine the view’s height and vertical
-    /// position.
-    case top(VerticalSizingBehavior = .automatic(alignment: .top))
-
-    /// Places the view controller’s view at the bottom of the presentation
-    /// container, filling the container’s width, and using the specified
-    /// `VerticalSizingBehavior` to determine the view’s height and vertical
-    /// position.
-    case bottom(VerticalSizingBehavior = .automatic(alignment: .bottom))
-
-    /// Uses the given `HorizontalSizingBehavior` and `VerticalSizingBehavior`
-    /// to determine the placement and the size of the presented view
-    /// controller’s view.
-    case overlay(
-        HorizontalSizingBehavior = .fill,
-        VerticalSizingBehavior = .fill
-    )
-
-    /// Places the view controller’s view at the left edge of the presentation
-    /// container, filling the container’s height, using the specified
-    /// `HorizontalSizingBehavior` to determine the view’s width and horizontal
-    /// position.
-    ///
-    /// Available for legacy layouts; use of `leading` is preferred.
-    case left(HorizontalSizingBehavior = .automatic(alignment: .left))
-
-    /// Places the view controller’s view at the right edge of the presentation
-    /// container, filling the container’s height, using the specified
-    /// `HorizontalSizingBehavior` to determine the view’s width and horizontal
-    /// position.
-    ///
-    /// Available for legacy layouts; use of `trailing` is preferred.
-    case right(HorizontalSizingBehavior = .automatic(alignment: .right))
-
-    /// Calculates the `ViewEdge` used for presentation for a given trait
-    /// collection.
-    ///
-    /// - Parameter traitCollection: The `UITraitCollection` of the presentation
-    ///                              environment; pass `nil` to use the
-    ///                              defaults.
-    /// - Returns: A `ViewEdge` that represents the edge of the screen that the
-    ///            layout attaches to, or `nil` where there is no semantic edge.
-    func viewEdge(for traitCollection: UITraitCollection? = nil) -> ViewEdge? {
-        switch (self, traitCollection?.layoutDirection) {
-        case (.leading, _):
-            return .leading
-        case (.left, .rightToLeft):
-            return .trailing
-        case (.left, _):
-            return .leading
-        case (.trailing, _):
-            return .trailing
-        case (.right, .rightToLeft):
-            return .leading
-        case (.right, _):
-            return .trailing
-        case (.top, _):
-            return .top
-        case (.bottom, _):
-            return .bottom
-        case (.overlay, _):
-            return nil
-        }
+    public init(horizontalLayout: HorizontalLayout,
+                verticalLayout: VerticalLayout) {
+        self.horizontalSizingBehavior = horizontalLayout
+        self.verticalSizingBehavior = verticalLayout
     }
+
+    public static let `default` = PresentationLayout(
+        horizontalLayout: .fill,
+        verticalLayout: .automatic(alignment: .bottom)
+    )
 
 }

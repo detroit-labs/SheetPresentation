@@ -20,6 +20,7 @@
 		1F31A84222860A7B0086784C /* SheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84122860A7B0086784C /* SheetPresentationController.swift */; };
 		1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31A84322860A980086784C /* SheetPresentationManager.swift */; };
 		1F58C7B924BE23650056FDEB /* PresentationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58C7B824BE23650056FDEB /* PresentationLayout.swift */; };
+		1F7C239624CA490400D5C826 /* AnimationBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C239524CA490400D5C826 /* AnimationBehavior.swift */; };
 		1F96095A24B756D9007D52A0 /* SheetAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F96095924B756D9007D52A0 /* SheetAnimationController.swift */; };
 		1FDFAB06210113CE00BBEE09 /* SheetPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDFAAFD210113CE00BBEE09 /* SheetPresentation.framework */; };
 		1FDFAB0B210113CE00BBEE09 /* SheetPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFAB0A210113CE00BBEE09 /* SheetPresentationTests.swift */; };
@@ -80,6 +81,7 @@
 		1F31A84122860A7B0086784C /* SheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationController.swift; sourceTree = "<group>"; };
 		1F31A84322860A980086784C /* SheetPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPresentationManager.swift; sourceTree = "<group>"; };
 		1F58C7B824BE23650056FDEB /* PresentationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayout.swift; sourceTree = "<group>"; };
+		1F7C239524CA490400D5C826 /* AnimationBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationBehavior.swift; sourceTree = "<group>"; };
 		1F96095924B756D9007D52A0 /* SheetAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAnimationController.swift; sourceTree = "<group>"; };
 		1FD6907D23E9D93F009C29EF /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		1FD690A623E9E675009C29EF /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		1FD6907B23E9D861009C29EF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1F7C239524CA490400D5C826 /* AnimationBehavior.swift */,
 				1FE9B73C2329734300EE050E /* CACornerMaskHelpers.swift */,
 				1F31A83D22860A100086784C /* EdgeInsetsHelpers.swift */,
 				1FE9B73A23296C1700EE050E /* PassthroughView.swift */,
@@ -401,6 +404,7 @@
 				1FDFAB152101142300BBEE09 /* SheetPresentationOptions.swift in Sources */,
 				1F09630F24C7548D0091DFF8 /* UIViewAnimationOptionsHelpers.swift in Sources */,
 				315D038A24AA77DD00E5406B /* ViewEdge.swift in Sources */,
+				1F7C239624CA490400D5C826 /* AnimationBehavior.swift in Sources */,
 				1F96095A24B756D9007D52A0 /* SheetAnimationController.swift in Sources */,
 				1F31A84422860A980086784C /* SheetPresentationManager.swift in Sources */,
 				1FE9B73B23296C1700EE050E /* PassthroughView.swift in Sources */,

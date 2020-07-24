@@ -79,11 +79,15 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         presenting: UIViewController,
         source: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        guard let viewEdge = presentationOptions.presentationLayout
-            .viewEdge(for: presented.traitCollection)
-            else { return nil }
-
-        return SheetAnimationController(isPresenting: true, edge: viewEdge)
+        switch presentationOptions.animationBehavior {
+        case .system:
+            return nil
+        case .present(edgeForAppearance: let edge, edgeForDismissal: _):
+            let edge = edge.fixedViewEdge(using: presented.traitCollection)
+            return SheetAnimationController(isPresenting: true, edge: edge)
+        case .custom(let animator):
+            return animator
+        }
     }
 
     /// Defines the animator object to use when dismissing the view controller.
@@ -95,11 +99,15 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
     public func animationController(
         forDismissed dismissed: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        guard let viewEdge = presentationOptions.presentationLayout
-            .viewEdge(for: dismissed.traitCollection)
-            else { return nil }
-
-        return SheetAnimationController(isPresenting: false, edge: viewEdge)
+        switch presentationOptions.animationBehavior {
+        case .system:
+            return nil
+        case .present(edgeForAppearance: _, edgeForDismissal: let edge):
+            let edge = edge.fixedViewEdge(using: dismissed.traitCollection)
+            return SheetAnimationController(isPresenting: false, edge: edge)
+        case .custom(let animator):
+            return animator
+        }
     }
 
     /// Defines the custom presentation controller to use for managing the view
@@ -130,7 +138,8 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
             forPresented: presented,
             presenting: presenting,
             presentationOptions: presentationOptions,
-            dimmingViewTapHandler: dimmingViewTapHandler)
+            dimmingViewTapHandler: dimmingViewTapHandler
+        )
 
         controller.delegate = self
 

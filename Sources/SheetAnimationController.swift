@@ -13,11 +13,11 @@ final class SheetAnimationController: NSObject {
     private let duration: TimeInterval = 1.0 / 3.0
 
     private let isPresenting: Bool
-    private let edge: ViewEdge
+    private let edge: FixedViewEdge
 
     private var currentAnimator: UIViewPropertyAnimator?
 
-    init(isPresenting: Bool, edge: ViewEdge) {
+    init(isPresenting: Bool, edge: FixedViewEdge) {
         self.isPresenting = isPresenting
         self.edge = edge
 
@@ -60,6 +60,7 @@ extension SheetAnimationController: UIViewControllerAnimatedTransitioning {
             fatalError("Destination view not found during transition.")
         }
 
+        let containerFrame = transitionContext.containerView.frame
         let presentedFrame = transitionContext.finalFrame(for: controller)
 
         if isPresenting {
@@ -71,19 +72,19 @@ extension SheetAnimationController: UIViewControllerAnimatedTransitioning {
         switch edge {
         case .top:
             translationTransform = .init(
-                translationX: 0, y: -presentedFrame.maxY
+                translationX: 0, y: containerFrame.minY - presentedFrame.maxY
             )
-        case .leading:
+        case .left:
             translationTransform = .init(
-                translationX: -presentedFrame.maxX, y: 0
+                translationX: containerFrame.minX - presentedFrame.maxX, y: 0
             )
-        case .trailing:
+        case .right:
             translationTransform = .init(
-                translationX: presentedFrame.maxX, y: 0
+                translationX: containerFrame.maxX - presentedFrame.minX, y: 0
             )
         case .bottom:
             translationTransform = .init(
-                translationX: 0, y: presentedFrame.maxY
+                translationX: 0, y: containerFrame.maxY - presentedFrame.minY
             )
         }
 

@@ -6,17 +6,49 @@
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
-public enum ViewEdge: Equatable {
+import UIKit
+
+public protocol ViewEdge {
+
+    func fixedViewEdge(
+        using traitCollection: UITraitCollection?
+    ) -> FixedViewEdge
+
+}
+
+public enum FixedViewEdge: ViewEdge {
+
+    case top
+    case left
+    case right
+    case bottom
+
+    public func fixedViewEdge(
+        using traitCollection: UITraitCollection?
+    ) -> FixedViewEdge {
+        self
+    }
+
+}
+
+public enum DirectionalViewEdge: ViewEdge {
+
     case top
     case leading
     case trailing
     case bottom
-}
 
-extension Array where Element == ViewEdge {
-
-    public static let all: [ViewEdge] = [.top, .leading, .trailing, .bottom]
-
-    public static let bottomEdges: [ViewEdge] = [.leading, .trailing, .bottom]
+    public func fixedViewEdge(
+        using traitCollection: UITraitCollection?
+    ) -> FixedViewEdge {
+        switch (self, traitCollection?.layoutDirection) {
+        case (.top, _): return .top
+        case (.leading, .rightToLeft): return .right
+        case (.leading, _): return .left
+        case (.trailing, .rightToLeft): return .left
+        case (.trailing, _): return .right
+        case (.bottom, _): return .bottom
+        }
+    }
 
 }
