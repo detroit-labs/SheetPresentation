@@ -18,6 +18,7 @@ public protocol ConstantInsets {
     init(verticalConstant: CGFloat, horizontalConstant: CGFloat)
 }
 
+@available(iOS 11.0, *)
 extension NSDirectionalEdgeInsets: ConstantInsets {
 
     public init(constant: CGFloat) {
@@ -56,6 +57,7 @@ extension UIEdgeInsets: ConstantInsets {
 
 public protocol DirectionalEdgeInsetsConvertible {
 
+    @available(iOS 11.0, *)
     func directionalEdgeInsets(
         for traitCollection: UITraitCollection?
     ) -> NSDirectionalEdgeInsets
@@ -68,10 +70,11 @@ public protocol DirectionalEdgeInsetsConvertible {
 
 public func == (lhs: DirectionalEdgeInsetsConvertible,
                 rhs: DirectionalEdgeInsetsConvertible) -> Bool {
-    return lhs.directionalEdgeInsets(for: nil) ==
-        rhs.directionalEdgeInsets(for: nil)
+    return lhs.fixedEdgeInsets(for: nil) ==
+        rhs.fixedEdgeInsets(for: nil)
 }
 
+@available(iOS 11.0, *)
 extension NSDirectionalEdgeInsets: DirectionalEdgeInsetsConvertible {
 
     public func directionalEdgeInsets(
@@ -101,6 +104,7 @@ extension NSDirectionalEdgeInsets: DirectionalEdgeInsetsConvertible {
 
 extension UIEdgeInsets: DirectionalEdgeInsetsConvertible {
 
+    @available(iOS 11.0, *)
     public func directionalEdgeInsets(
         for traitCollection: UITraitCollection?
     ) -> NSDirectionalEdgeInsets {

@@ -133,14 +133,14 @@ final class SheetPresentationController: UIPresentationController {
             return presentedViewController.preferredContentSize
         }
 
-        var targetSize: CGSize = UIView.layoutFittingCompressedSize
-        let horizontalPriority: UILayoutPriority
-        let verticalPriority: UILayoutPriority
-
         if options.presentationLayout.horizontalSizingBehavior == .fill,
             options.presentationLayout.verticalSizingBehavior == .fill {
             return parentSize
         }
+
+        var targetSize: CGSize = UIView.layoutFittingCompressedSize
+        let horizontalPriority: UILayoutPriority
+        let verticalPriority: UILayoutPriority
 
         switch options.presentationLayout.horizontalSizingBehavior {
         case .fill:
@@ -210,7 +210,11 @@ final class SheetPresentationController: UIPresentationController {
             margins = containerView.layoutMargins
         }
         else if let presentedView = context.view(forKey: .to) {
-            margins = presentedView.safeAreaInsets
+            if #available(iOS 11.0, *) {
+                margins = presentedView.safeAreaInsets
+            } else {
+                margins = presentedView.layoutMargins
+            }
         }
         else {
             margins = .zero
@@ -246,7 +250,7 @@ final class SheetPresentationController: UIPresentationController {
         var size = self.size(forChildContentContainer: presentedViewController,
                              withParentContainerSize: bounds.size)
 
-        // If the preferred size extends beyond the maxiumum bounds (for
+        // If the preferred size extends beyond the maximum bounds (for
         // instance, if set by the preferredContentSize of the view controller),
         // clamp them to the maximum bounds.
         size.height = min(size.height, bounds.height)

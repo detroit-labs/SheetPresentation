@@ -19,6 +19,7 @@ public struct SheetPresentationOptions {
         case roundAllCorners(radius: CGFloat)
 
         /// Rounds the corners specified in `corners` by the given `radius`.
+        @available(iOS 11.0, *)
         case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
 
         /// Does not round corners.
@@ -79,9 +80,7 @@ public struct SheetPresentationOptions {
     public init(
         cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
         dimmingViewAlpha: CGFloat? = 0.5,
-        edgeInsets: DirectionalEdgeInsetsConvertible = NSDirectionalEdgeInsets(
-            constant: 20
-        ),
+        edgeInsets: DirectionalEdgeInsetsConvertible = UIEdgeInsets(constant: 20),
         ignoredEdgesForMargins: [ViewEdge] = [],
         presentationLayout: PresentationLayout = .default,
         animationBehavior: AnimationBehavior = .system
@@ -103,12 +102,18 @@ extension SheetPresentationOptions.CornerOptions {
         case .roundAllCorners(radius: let radius):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-            view.layer.maskedCorners = .all
+
+            if #available(iOS 11.0, *) {
+                view.layer.maskedCorners = .all
+            }
 
         case let .roundSomeCorners(radius: radius, corners: corners):
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
-            view.layer.maskedCorners = corners
+
+            if #available(iOS 11.0, *) {
+                view.layer.maskedCorners = corners
+            }
 
         case .none:
             view.layer.cornerRadius = 0

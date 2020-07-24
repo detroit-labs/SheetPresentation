@@ -38,6 +38,9 @@ class HomeViewController: UIViewController {
                 return .roundAllCorners(radius: radius)
             }
             else {
+                guard #available(iOS 11.0, *) else {
+                    fatalError("roundSomeCorners is unavailable before iOS 11.")
+                }
                 var mask = CACornerMask()
 
                 if topLeftCornerSwitch.isOn {
@@ -113,6 +116,12 @@ class HomeViewController: UIViewController {
 
     func edgeInsetsForUISelections() -> DirectionalEdgeInsetsConvertible {
         if edgeInsetsTypeSegmentedControl.selectedSegmentIndex == 0 {
+            guard #available(iOS 11.0, *) else {
+                fatalError(
+                    "NSDirectionalEdgeInsets is unavailable before iOS 11."
+                )
+            }
+            
             return NSDirectionalEdgeInsets(
                 top: CGFloat(topEdgeInsetSlider.value),
                 leading: CGFloat(leadingLeftEdgeInsetSlider.value),
@@ -373,6 +382,21 @@ class HomeViewController: UIViewController {
     // MARK: -
 
     var presentationManager: SheetPresentationManager?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if #available(iOS 11.0, *) {}
+        else {
+            cornerSelectionSegmentedControl.isHidden = true
+
+            edgeInsetsTypeSegmentedControl.selectedSegmentIndex = 1
+            edgeInsetsTypeSegmentedControl.isHidden = true
+
+            ignoredEdgesTypeSegmentedControl.selectedSegmentIndex = 1
+            ignoredEdgesTypeSegmentedControl.isHidden = true
+        }
+    }
 
     func presentationOptionsForUISelections() -> SheetPresentationOptions {
         return SheetPresentationOptions(

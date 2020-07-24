@@ -525,8 +525,6 @@
                                     <constraint firstAttribute="bottom" secondItem="a1o-5i-lyw" secondAttribute="bottom" id="jA3-e9-6dd"/>
                                     <constraint firstItem="a1o-5i-lyw" firstAttribute="top" secondItem="Mll-sk-vhh" secondAttribute="top" id="lvQ-hE-5sk"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="uGN-ec-N9P"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="G1I-in-9oi"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -537,7 +535,6 @@
                             <constraint firstAttribute="bottom" secondItem="Mll-sk-vhh" secondAttribute="bottom" id="qA8-vQ-000"/>
                             <constraint firstItem="a1o-5i-lyw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="wtv-wz-8Gu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Jyn-xR-mm7"/>
