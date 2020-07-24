@@ -137,6 +137,11 @@ final class SheetPresentationController: UIPresentationController {
         let horizontalPriority: UILayoutPriority
         let verticalPriority: UILayoutPriority
 
+        if options.presentationLayout.horizontalSizingBehavior == .fill,
+            options.presentationLayout.verticalSizingBehavior == .fill {
+            return parentSize
+        }
+
         switch options.presentationLayout.horizontalSizingBehavior {
         case .fill:
             targetSize.width = parentSize.width
