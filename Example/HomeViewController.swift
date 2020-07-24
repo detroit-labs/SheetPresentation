@@ -176,23 +176,68 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Ignored Edges for Margins
+    @IBOutlet var ignoredEdgesTypeSegmentedControl: UISegmentedControl!
     @IBOutlet var ignoreTopEdgeSwitch: UISwitch!
-    @IBOutlet var ignoreLeadingEdgeSwitch: UISwitch!
-    @IBOutlet var ignoreTrailingEdgeSwitch: UISwitch!
+    @IBOutlet var ignoreLeadingLeftEdgeLabel: UILabel!
+    @IBOutlet var ignoreLeadingLeftEdgeSwitch: UISwitch!
+    @IBOutlet var ignoreTrailingRightEdgeLabel: UILabel!
+    @IBOutlet var ignoreTrailingRightEdgeSwitch: UISwitch!
     @IBOutlet var ignoreBottomEdgeSwitch: UISwitch!
 
-    func ignoredEdgesForMarginsForUISelections() -> [DirectionalViewEdge] {
-        var ignoredEdges: [DirectionalViewEdge] = []
+    func ignoredEdgesForMarginsForUISelections() -> [ViewEdge] {
+        if ignoredEdgesTypeSegmentedControl.selectedSegmentIndex == 0 {
+            var ignoredEdges: [DirectionalViewEdge] = []
 
-        if ignoreTopEdgeSwitch.isOn { ignoredEdges.append(.top) }
+            if ignoreTopEdgeSwitch.isOn {
+                ignoredEdges.append(.top)
+            }
 
-        if ignoreLeadingEdgeSwitch.isOn { ignoredEdges.append(.leading) }
+            if ignoreLeadingLeftEdgeSwitch.isOn {
+                ignoredEdges.append(.leading)
+            }
 
-        if ignoreTrailingEdgeSwitch.isOn { ignoredEdges.append(.trailing) }
+            if ignoreTrailingRightEdgeSwitch.isOn {
+                ignoredEdges.append(.trailing)
+            }
 
-        if ignoreBottomEdgeSwitch.isOn { ignoredEdges.append(.bottom) }
+            if ignoreBottomEdgeSwitch.isOn {
+                ignoredEdges.append(.bottom)
+            }
 
-        return ignoredEdges
+            return ignoredEdges
+        }
+        else {
+            var ignoredEdges: [FixedViewEdge] = []
+
+            if ignoreTopEdgeSwitch.isOn {
+                ignoredEdges.append(.top)
+            }
+
+            if ignoreLeadingLeftEdgeSwitch.isOn {
+                ignoredEdges.append(.left)
+            }
+
+            if ignoreTrailingRightEdgeSwitch.isOn {
+                ignoredEdges.append(.right)
+            }
+
+            if ignoreBottomEdgeSwitch.isOn {
+                ignoredEdges.append(.bottom)
+            }
+
+            return ignoredEdges
+        }
+    }
+
+    @IBAction func userSelectedIgnoredEdgesType(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            ignoreLeadingLeftEdgeLabel.text = "Leading"
+            ignoreTrailingRightEdgeLabel.text = "Trailing"
+        }
+        else {
+            ignoreLeadingLeftEdgeLabel.text = "Left"
+            ignoreTrailingRightEdgeLabel.text = "Right"
+        }
     }
 
     // MARK: - Presentation Layout
