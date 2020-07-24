@@ -214,7 +214,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-IV-FQx">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-IV-FQx">
                                                 <rect key="frame" x="6" y="353.33333333333331" width="402" height="31"/>
                                                 <connections>
                                                     <action selector="userAdjustedTopEdgeInsetSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="FJq-dl-KtQ"/>
@@ -237,7 +237,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="O0X-np-6f2">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O0X-np-6f2">
                                                 <rect key="frame" x="6" y="419.66666666666669" width="402" height="31"/>
                                                 <connections>
                                                     <action selector="userAdjustedLeadingLeftValueSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="zpa-gc-9j4"/>
@@ -260,7 +260,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZFm-7g-gEg">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZFm-7g-gEg">
                                                 <rect key="frame" x="6" y="486" width="402" height="31"/>
                                                 <connections>
                                                     <action selector="userAdjustedTrailingRightEdgeInsetSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="GKk-RG-irS"/>
@@ -283,7 +283,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="Fmh-3Z-nJE">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Fmh-3Z-nJE">
                                                 <rect key="frame" x="6" y="552.33333333333337" width="402" height="31"/>
                                                 <connections>
                                                     <action selector="userAdjustedBottomEdgeInsetSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="XTG-Er-vqW"/>
@@ -387,7 +387,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-4N-bWn">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-4N-bWn">
                                                         <rect key="frame" x="0.0" y="26" width="398" height="32"/>
                                                         <segments>
                                                             <segment title="Leading"/>
@@ -429,7 +429,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="weM-X4-JAY">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="weM-X4-JAY">
                                                         <rect key="frame" x="0.0" y="26" width="398" height="32"/>
                                                         <segments>
                                                             <segment title="Top"/>
@@ -470,7 +470,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Mv-Un-xlH">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="9Mv-Un-xlH">
                                                         <rect key="frame" x="0.0" y="26" width="398" height="32"/>
                                                         <segments>
                                                             <segment title="Leading"/>
@@ -492,7 +492,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WX4-3d-k6C">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="WX4-3d-k6C">
                                                         <rect key="frame" x="0.0" y="26" width="398" height="32"/>
                                                         <segments>
                                                             <segment title="Leading"/>
