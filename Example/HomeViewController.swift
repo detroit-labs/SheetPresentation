@@ -9,6 +9,8 @@
 import UIKit
 import SheetPresentation
 
+// swiftlint:disable type_body_length
+// swiftlint:disable file_length
 class HomeViewController: UIViewController {
 
     lazy var wholeNumberFormatter: NumberFormatter = {
@@ -121,7 +123,7 @@ class HomeViewController: UIViewController {
                     "NSDirectionalEdgeInsets is unavailable before iOS 11."
                 )
             }
-            
+
             return NSDirectionalEdgeInsets(
                 top: CGFloat(topEdgeInsetSlider.value),
                 leading: CGFloat(leadingLeftEdgeInsetSlider.value),
@@ -193,8 +195,12 @@ class HomeViewController: UIViewController {
     @IBOutlet var ignoreTrailingRightEdgeSwitch: UISwitch!
     @IBOutlet var ignoreBottomEdgeSwitch: UISwitch!
 
-    func ignoredEdgesForMarginsForUISelections() -> [ViewEdge] {
+    func ignoredEdgesForMarginsForUISelections() -> [ViewEdgeConvertible] {
         if ignoredEdgesTypeSegmentedControl.selectedSegmentIndex == 0 {
+            guard #available(iOS 11.0, *) else {
+                fatalError("DirectionalViewEdge is unavailable before iOS 11.")
+            }
+
             var ignoredEdges: [DirectionalViewEdge] = []
 
             if ignoreTopEdgeSwitch.isOn {
@@ -333,22 +339,42 @@ class HomeViewController: UIViewController {
 
     func animationEdgeSelection(
         for segmentedControl: UISegmentedControl
-    ) -> ViewEdge {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            return DirectionalViewEdge.leading
-        case 1:
-            return DirectionalViewEdge.trailing
-        case 2:
-            return FixedViewEdge.top
-        case 3:
-            return FixedViewEdge.bottom
-        case 4:
-            return FixedViewEdge.left
-        case 5:
-            return FixedViewEdge.right
-        default:
-            fatalError("Unexpected segmented control value for animation edge.")
+    ) -> ViewEdgeConvertible {
+        if #available(iOS 11.0, *) {
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                return DirectionalViewEdge.leading
+            case 1:
+                return DirectionalViewEdge.trailing
+            case 2:
+                return FixedViewEdge.top
+            case 3:
+                return FixedViewEdge.bottom
+            case 4:
+                return FixedViewEdge.left
+            case 5:
+                return FixedViewEdge.right
+            default:
+                fatalError(
+                    "Unexpected segmented control value for animation edge."
+                )
+            }
+        }
+        else {
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                return FixedViewEdge.top
+            case 1:
+                return FixedViewEdge.bottom
+            case 2:
+                return FixedViewEdge.left
+            case 3:
+                return FixedViewEdge.right
+            default:
+                fatalError(
+                    "Unexpected segmented control value for animation edge."
+                )
+            }
         }
     }
 
@@ -395,6 +421,23 @@ class HomeViewController: UIViewController {
 
             ignoredEdgesTypeSegmentedControl.selectedSegmentIndex = 1
             ignoredEdgesTypeSegmentedControl.isHidden = true
+
+            edgeForApearanceSegmentedControl.removeSegment(at: 0,
+                                                           animated: false)
+            edgeForApearanceSegmentedControl.removeSegment(at: 0,
+                                                           animated: false)
+            edgeForApearanceSegmentedControl.selectedSegmentIndex = 0
+
+            edgeForDismissalSegmentedControl.removeSegment(at: 0,
+                                                           animated: false)
+            edgeForDismissalSegmentedControl.removeSegment(at: 0,
+                                                           animated: false)
+            edgeForDismissalSegmentedControl.selectedSegmentIndex = 0
+
+            leadingLeftEdgeInsetLabel.text = "Left"
+            ignoreLeadingLeftEdgeLabel.text = "Left"
+            trailingRightEdgeInsetLabel.text = "Right"
+            ignoreTrailingRightEdgeLabel.text = "Right"
         }
     }
 

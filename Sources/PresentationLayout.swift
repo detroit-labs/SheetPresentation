@@ -10,7 +10,7 @@ import UIKit
 
 /// How the presented view controller should be positioned in the presentation
 /// container.
-public struct PresentationLayout {
+public struct PresentationLayout: Equatable {
 
     /// Controls where on the screen an automatically-sized view controller is
     /// placed horizontally.

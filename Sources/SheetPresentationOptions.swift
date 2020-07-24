@@ -42,7 +42,7 @@ public struct SheetPresentationOptions {
 
     /// Edges of the presentation container view for which its margins should be
     /// ignored for layout purposes, including the safe area.
-    public let ignoredEdgesForMargins: [ViewEdge]
+    public let ignoredEdgesForMargins: [ViewEdgeConvertible]
 
     /// The location to place the presented view controller’s view in the
     /// presentation container.
@@ -81,7 +81,7 @@ public struct SheetPresentationOptions {
         cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
         dimmingViewAlpha: CGFloat? = 0.5,
         edgeInsets: DirectionalEdgeInsetsConvertible = UIEdgeInsets(constant: 20),
-        ignoredEdgesForMargins: [ViewEdge] = [],
+        ignoredEdgesForMargins: [ViewEdgeConvertible] = [],
         presentationLayout: PresentationLayout = .default,
         animationBehavior: AnimationBehavior = .system
     ) {
@@ -91,6 +91,21 @@ public struct SheetPresentationOptions {
         self.ignoredEdgesForMargins = ignoredEdgesForMargins
         self.presentationLayout = presentationLayout
         self.animationBehavior = animationBehavior
+    }
+
+}
+
+extension SheetPresentationOptions: Equatable {
+
+    public static func == (lhs: SheetPresentationOptions,
+                           rhs: SheetPresentationOptions) -> Bool {
+        lhs.cornerOptions == rhs.cornerOptions &&
+            lhs.dimmingViewAlpha == rhs.dimmingViewAlpha &&
+            lhs.edgeInsets == rhs.edgeInsets &&
+            lhs.ignoredEdgesForMargins.map { $0.fixedViewEdge(using: nil) } ==
+            rhs.ignoredEdgesForMargins.map { $0.fixedViewEdge(using: nil) } &&
+            lhs.presentationLayout == rhs.presentationLayout &&
+            lhs.animationBehavior == rhs.animationBehavior
     }
 
 }
