@@ -61,7 +61,8 @@ final class SheetPresentationController: UIPresentationController {
     // MARK: - UIPresentationController Implementation
 
     override var frameOfPresentedViewInContainerView: CGRect {
-        frameOfPresentedView(in: maximumPresentedBoundsInContainerView)
+        let frame = frameOfPresentedView(in: maximumPresentedBoundsInContainerView)
+        return frame
     }
 
     override func containerViewWillLayoutSubviews() {
@@ -147,7 +148,8 @@ final class SheetPresentationController: UIPresentationController {
             targetSize.width = parentSize.width
             horizontalPriority = .required
         case .automatic:
-            horizontalPriority = .fittingSizeLevel
+            targetSize.width = parentSize.width
+            horizontalPriority = .defaultLow
         }
 
         switch options.presentationLayout.verticalSizingBehavior {
@@ -155,7 +157,8 @@ final class SheetPresentationController: UIPresentationController {
             targetSize.height = parentSize.height
             verticalPriority = .required
         case .automatic:
-            verticalPriority = .fittingSizeLevel
+            targetSize.height = parentSize.height
+            verticalPriority = .defaultLow
         }
 
         var computedSize = presentedViewController.view.systemLayoutSizeFitting(
@@ -182,10 +185,8 @@ final class SheetPresentationController: UIPresentationController {
     ) {
         super.preferredContentSizeDidChange(forChildContentContainer: container)
 
-        if container as? UIViewController == presentedViewController,
-            container.preferredContentSize != .zero {
-            presentedViewController.view.frame =
-            frameOfPresentedViewInContainerView
+        if container as? UIViewController == presentedViewController {
+            layoutPresentedViewController()
         }
     }
 
@@ -196,7 +197,9 @@ final class SheetPresentationController: UIPresentationController {
             forChildContentContainer: container
         )
 
-        presentedViewController.view.frame = frameOfPresentedViewInContainerView
+        if container as? UIViewController == presentedViewController {
+            layoutPresentedViewController()
+        }
     }
 
     // MARK: - Internal Implementation
@@ -289,6 +292,8 @@ final class SheetPresentationController: UIPresentationController {
             frame.origin.y = bounds.maxY - size.height
         }
 
+        print("frameOfPresentedView(in:) - \(frame)")
+
         return frame.integral
     }
 
@@ -317,6 +322,19 @@ final class SheetPresentationController: UIPresentationController {
 
         containerView.insertSubview(passthroughView, at: 0)
         passthroughView.frame = containerView.bounds
+    }
+
+    private func layoutPresentedViewController() {
+        guard containerView != nil,
+            presentedViewController.isViewLoaded,
+            let view = presentedViewController.view
+            else { return }
+
+        let newFrame = frameOfPresentedViewInContainerView
+
+        if view.frame != newFrame {
+            view.frame = newFrame
+        }
     }
 
     func animateDimmingViewAppearing() {

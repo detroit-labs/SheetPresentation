@@ -14,11 +14,12 @@ class ChildViewController: UIViewController {
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var stackView: UIStackView?
 
-    // Uncomment to see how a preferred content size is handled.
-//    override var preferredContentSize: CGSize {
-//        get { return CGSize(width: 200, height: 500) }
-//        set {}
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Uncomment to see how a preferred content size is handled.
+        // preferredContentSize = CGSize(width: 200, height: 500)
+    }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all

@@ -19,6 +19,12 @@ class HomeViewController: UIViewController {
         return formatter
     }()
 
+    lazy var opacityFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
     // MARK: - Corner Options
     @IBOutlet var cornerRadiusStackView: UIStackView!
     @IBOutlet var roundCornersSwitch: UISwitch!
@@ -88,15 +94,22 @@ class HomeViewController: UIViewController {
     // MARK: - Dimming View Alpha
     @IBOutlet var useDimmingViewStackView: UIStackView!
     @IBOutlet var useDimmingViewSwitch: UISwitch!
-    @IBOutlet var useDimmingViewAlphaSlider: UISlider!
+    @IBOutlet var dimmingViewAlphaLabel: UILabel!
+    @IBOutlet var dimmingViewAlphaSlider: UISlider!
 
     func dimmingViewAlphaForUISelections() -> CGFloat? {
         if useDimmingViewSwitch.isOn {
-            return CGFloat(useDimmingViewAlphaSlider.value)
+            return CGFloat(dimmingViewAlphaSlider.value)
         }
         else {
             return nil
         }
+    }
+
+    @IBAction func userAdjustedDimmingViewAlphaSlider(_ sender: UISlider) {
+        dimmingViewAlphaLabel.text = opacityFormatter.string(
+            from: NSNumber(value: sender.value)
+        )
     }
 
     @IBAction func userToggledUseDimmingViewSwitch(_ sender: UISwitch) {
