@@ -13,14 +13,14 @@ final class PassthroughView: UIView {
     var passthroughViews: [UIView] = []
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        var hit = super.hitTest(point, with: event)
+        let hit = super.hitTest(point, with: event)
 
         if hit == self {
             for view in passthroughViews {
-                hit = view.hitTest(point, with: event)
+                let convertedPoint = view.convert(point, from: self)
 
-                if hit != nil {
-                    break
+                if let hit = view.hitTest(convertedPoint, with: event) {
+                    return hit
                 }
             }
         }

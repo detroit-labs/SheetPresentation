@@ -8,7 +8,8 @@
 
 import UIKit
 
-final class SheetPresentationController: UIPresentationController {
+// swiftlint:disable:next type_body_length
+class SheetPresentationController: UIPresentationController {
 
     // MARK: - Presentation Options
 
@@ -61,17 +62,14 @@ final class SheetPresentationController: UIPresentationController {
     // MARK: - UIPresentationController Implementation
 
     override var frameOfPresentedViewInContainerView: CGRect {
-        let frame = frameOfPresentedView(in: maximumPresentedBoundsInContainerView)
-        return frame
+        frameOfPresentedView(in: maximumPresentedBoundsInContainerView)
     }
 
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
 
-        guard let containerView = containerView else { return }
-
-        dimmingView?.frame = containerView.bounds
-        passthroughView?.frame = containerView.bounds
+        layoutDimmingView()
+        layoutPassthroughView()
 
         if let presentedView = presentedView {
             options.cornerOptions.apply(to: presentedView)
@@ -92,7 +90,9 @@ final class SheetPresentationController: UIPresentationController {
         animateDimmingViewDisappearing()
     }
 
-    override var shouldPresentInFullscreen: Bool { false }
+    override var shouldPresentInFullscreen: Bool {
+        false
+    }
 
     // MARK: - UIContentContainer Implementation
 
@@ -134,30 +134,28 @@ final class SheetPresentationController: UIPresentationController {
             return presentedViewController.preferredContentSize
         }
 
-        if options.presentationLayout.horizontalSizingBehavior == .fill,
-            options.presentationLayout.verticalSizingBehavior == .fill {
+        if options.presentationLayout.horizontalLayout == .fill,
+            options.presentationLayout.verticalLayout == .fill {
             return parentSize
         }
 
         var targetSize: CGSize = UIView.layoutFittingCompressedSize
-        let horizontalPriority: UILayoutPriority
-        let verticalPriority: UILayoutPriority
+        var horizontalPriority: UILayoutPriority
+        var verticalPriority: UILayoutPriority
 
-        switch options.presentationLayout.horizontalSizingBehavior {
+        switch options.presentationLayout.horizontalLayout {
         case .fill:
             targetSize.width = parentSize.width
             horizontalPriority = .required
         case .automatic:
-            targetSize.width = parentSize.width
             horizontalPriority = .defaultLow
         }
 
-        switch options.presentationLayout.verticalSizingBehavior {
+        switch options.presentationLayout.verticalLayout {
         case .fill:
             targetSize.height = parentSize.height
             verticalPriority = .required
         case .automatic:
-            targetSize.height = parentSize.height
             verticalPriority = .defaultLow
         }
 
@@ -169,10 +167,22 @@ final class SheetPresentationController: UIPresentationController {
 
         if computedSize.width > parentSize.width {
             targetSize.width = parentSize.width
+            horizontalPriority = .required
 
             computedSize = presentedViewController.view.systemLayoutSizeFitting(
                 targetSize,
-                withHorizontalFittingPriority: .required,
+                withHorizontalFittingPriority: horizontalPriority,
+                verticalFittingPriority: verticalPriority
+            )
+        }
+
+        if computedSize.height > parentSize.height {
+            targetSize.height = parentSize.height
+            verticalPriority = .required
+
+            computedSize = presentedViewController.view.systemLayoutSizeFitting(
+                targetSize,
+                withHorizontalFittingPriority: horizontalPriority,
                 verticalFittingPriority: verticalPriority
             )
         }
@@ -213,7 +223,7 @@ final class SheetPresentationController: UIPresentationController {
             margins = containerView.layoutMargins
         }
         else if let presentedView = context.view(forKey: .to) {
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, macCatalyst 10.15, *) {
                 margins = presentedView.safeAreaInsets
             } else {
                 margins = presentedView.layoutMargins
@@ -263,7 +273,7 @@ final class SheetPresentationController: UIPresentationController {
 
         let isRightToLeft = (traitCollection.layoutDirection == .rightToLeft)
 
-        switch options.presentationLayout.horizontalSizingBehavior {
+        switch options.presentationLayout.horizontalLayout {
         case .automatic(alignment: .leading) where !isRightToLeft,
              .automatic(alignment: .left),
              .automatic(alignment: .trailing) where isRightToLeft,
@@ -279,7 +289,7 @@ final class SheetPresentationController: UIPresentationController {
             frame.origin.x = bounds.maxX - size.width
         }
 
-        switch options.presentationLayout.verticalSizingBehavior {
+        switch options.presentationLayout.verticalLayout {
         case .automatic(alignment: .top),
              .fill:
             frame.origin.y = bounds.minY
@@ -291,8 +301,6 @@ final class SheetPresentationController: UIPresentationController {
         case .automatic(alignment: .bottom):
             frame.origin.y = bounds.maxY - size.height
         }
-
-        print("frameOfPresentedView(in:) - \(frame)")
 
         return frame.integral
     }
@@ -326,8 +334,7 @@ final class SheetPresentationController: UIPresentationController {
 
     private func layoutPresentedViewController() {
         guard containerView != nil,
-            presentedViewController.isViewLoaded,
-            let view = presentedViewController.view
+            let view = presentedViewController.viewIfLoaded
             else { return }
 
         let newFrame = frameOfPresentedViewInContainerView

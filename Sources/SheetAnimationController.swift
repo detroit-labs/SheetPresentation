@@ -10,18 +10,49 @@ import UIKit
 
 final class SheetAnimationController: NSObject {
 
-    private let duration: TimeInterval = 1.0 / 3.0
-
-    private let isPresenting: Bool
-    private let edge: FixedViewEdge
+    let duration: TimeInterval = 1.0 / 3.0
+    let edge: ViewEdgeConvertible
+    let isPresenting: Bool
 
     private var currentAnimator: UIViewPropertyAnimator?
 
-    init(isPresenting: Bool, edge: FixedViewEdge) {
+    init(isPresenting: Bool, edge: ViewEdgeConvertible) {
         self.isPresenting = isPresenting
         self.edge = edge
 
         super.init()
+    }
+
+    private func offscreenTransform(
+        forPresentedFrame presentedFrame: CGRect,
+        containerFrame: CGRect,
+        using traitCollection: UITraitCollection
+    ) -> CGAffineTransform {
+        switch edge.fixedViewEdge(using: traitCollection) {
+        case .top:
+            return CGAffineTransform(
+                translationX: 0,
+                y: containerFrame.minY - presentedFrame.maxY
+            )
+
+        case .left:
+            return CGAffineTransform(
+                translationX: containerFrame.minX - presentedFrame.maxX,
+                y: 0
+            )
+
+        case .right:
+            return CGAffineTransform(
+                translationX: containerFrame.maxX - presentedFrame.minX,
+                y: 0
+            )
+
+        case .bottom:
+            return CGAffineTransform(
+                translationX: 0,
+                y: containerFrame.maxY - presentedFrame.minY
+            )
+        }
     }
 
 }
@@ -49,55 +80,40 @@ extension SheetAnimationController: UIViewControllerAnimatedTransitioning {
     ) -> UIViewImplicitlyAnimating {
         if let animator = currentAnimator { return animator }
 
+        let animator = UIViewPropertyAnimator(duration: duration,
+                                              curve: .easeInOut)
+
         let controllerKey: UITransitionContextViewControllerKey =
             (isPresenting) ? .to : .from
 
         let viewKey: UITransitionContextViewKey = (isPresenting) ? .to : .from
 
-        guard let view = transitionContext.view(forKey: viewKey),
-              let controller = transitionContext
-                .viewController(forKey: controllerKey) else {
-            fatalError("Destination view not found during transition.")
-        }
+        if let view = transitionContext.view(forKey: viewKey),
+            let controller = transitionContext
+                .viewController(forKey: controllerKey) {
+            let presentedFrame = transitionContext.finalFrame(for: controller)
 
-        let containerFrame = transitionContext.containerView.frame
-        let presentedFrame = transitionContext.finalFrame(for: controller)
+            if isPresenting {
+                transitionContext.containerView.addSubview(view)
+                view.frame = presentedFrame
+            }
 
-        if isPresenting {
-            transitionContext.containerView.addSubview(view)
-            view.frame = presentedFrame
-        }
+            let containerFrame = transitionContext.containerView.frame
 
-        let translationTransform: CGAffineTransform
-        switch edge {
-        case .top:
-            translationTransform = .init(
-                translationX: 0, y: containerFrame.minY - presentedFrame.maxY
+            let translationTransform = offscreenTransform(
+                forPresentedFrame: presentedFrame,
+                containerFrame: containerFrame,
+                using: controller.traitCollection
             )
-        case .left:
-            translationTransform = .init(
-                translationX: containerFrame.minX - presentedFrame.maxX, y: 0
-            )
-        case .right:
-            translationTransform = .init(
-                translationX: containerFrame.maxX - presentedFrame.minX, y: 0
-            )
-        case .bottom:
-            translationTransform = .init(
-                translationX: 0, y: containerFrame.maxY - presentedFrame.minY
-            )
-        }
 
-        let initialTransform = isPresenting ? translationTransform : .identity
-        let finalTransform = isPresenting ? .identity : translationTransform
+            let startTransform = isPresenting ? translationTransform : .identity
+            let endTransform = isPresenting ? .identity : translationTransform
 
-        view.transform = initialTransform
+            view.transform = startTransform
 
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              curve: .easeInOut)
-
-        animator.addAnimations {
-            view.transform = finalTransform
+            animator.addAnimations {
+                view.transform = endTransform
+            }
         }
 
         animator.addCompletion { _ in

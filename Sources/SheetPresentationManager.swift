@@ -24,8 +24,8 @@ public enum DimmingViewTapHandler {
     /// The default handler, which will dismiss the presented view controller
     /// upon tapping.
     public static let `default` = DimmingViewTapHandler.block({
-        $0.dismiss(animated: true, completion: nil)}
-    )
+        $0.dismiss(animated: true, completion: nil)
+    })
 
 }
 
@@ -33,8 +33,8 @@ public enum DimmingViewTapHandler {
 /// set as a view controller’s `transitioningDelegate`.
 public final class SheetPresentationManager: NSObject {
 
-    internal let presentationOptions: SheetPresentationOptions
-    internal let dimmingViewTapHandler: DimmingViewTapHandler
+    let presentationOptions: SheetPresentationOptions
+    let dimmingViewTapHandler: DimmingViewTapHandler
 
     /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap handler.
@@ -48,7 +48,7 @@ public final class SheetPresentationManager: NSObject {
     public init(
         options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
-        ) {
+    ) {
         presentationOptions = options
         self.dimmingViewTapHandler = dimmingViewTapHandler
     }

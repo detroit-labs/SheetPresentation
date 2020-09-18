@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
                 return .roundAllCorners(radius: radius)
             }
             else {
-                guard #available(iOS 11.0, *) else {
+                guard #available(iOS 11.0, macCatalyst 10.15, *) else {
                     fatalError("roundSomeCorners is unavailable before iOS 11.")
                 }
                 var mask = CACornerMask()
@@ -131,7 +131,7 @@ class HomeViewController: UIViewController {
 
     func edgeInsetsForUISelections() -> DirectionalEdgeInsetsConvertible {
         if edgeInsetsTypeSegmentedControl.selectedSegmentIndex == 0 {
-            guard #available(iOS 11.0, *) else {
+            guard #available(iOS 11.0, macCatalyst 10.15, *) else {
                 fatalError(
                     "NSDirectionalEdgeInsets is unavailable before iOS 11."
                 )
@@ -210,10 +210,6 @@ class HomeViewController: UIViewController {
 
     func ignoredEdgesForMarginsForUISelections() -> [ViewEdgeConvertible] {
         if ignoredEdgesTypeSegmentedControl.selectedSegmentIndex == 0 {
-            guard #available(iOS 11.0, *) else {
-                fatalError("DirectionalViewEdge is unavailable before iOS 11.")
-            }
-
             var ignoredEdges: [DirectionalViewEdge] = []
 
             if ignoreTopEdgeSwitch.isOn {
@@ -353,7 +349,6 @@ class HomeViewController: UIViewController {
     func animationEdgeSelection(
         for segmentedControl: UISegmentedControl
     ) -> ViewEdgeConvertible {
-        if #available(iOS 11.0, *) {
             switch segmentedControl.selectedSegmentIndex {
             case 0:
                 return DirectionalViewEdge.leading
@@ -372,23 +367,6 @@ class HomeViewController: UIViewController {
                     "Unexpected segmented control value for animation edge."
                 )
             }
-        }
-        else {
-            switch segmentedControl.selectedSegmentIndex {
-            case 0:
-                return FixedViewEdge.top
-            case 1:
-                return FixedViewEdge.bottom
-            case 2:
-                return FixedViewEdge.left
-            case 3:
-                return FixedViewEdge.right
-            default:
-                fatalError(
-                    "Unexpected segmented control value for animation edge."
-                )
-            }
-        }
     }
 
     func animationBehaviorForUISelections() -> AnimationBehavior {
@@ -425,7 +403,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {}
+        if #available(iOS 11.0, macCatalyst 10.15, *) {}
         else {
             cornerSelectionSegmentedControl.isHidden = true
 
@@ -434,23 +412,6 @@ class HomeViewController: UIViewController {
 
             ignoredEdgesTypeSegmentedControl.selectedSegmentIndex = 1
             ignoredEdgesTypeSegmentedControl.isHidden = true
-
-            edgeForApearanceSegmentedControl.removeSegment(at: 0,
-                                                           animated: false)
-            edgeForApearanceSegmentedControl.removeSegment(at: 0,
-                                                           animated: false)
-            edgeForApearanceSegmentedControl.selectedSegmentIndex = 0
-
-            edgeForDismissalSegmentedControl.removeSegment(at: 0,
-                                                           animated: false)
-            edgeForDismissalSegmentedControl.removeSegment(at: 0,
-                                                           animated: false)
-            edgeForDismissalSegmentedControl.selectedSegmentIndex = 0
-
-            leadingLeftEdgeInsetLabel.text = "Left"
-            ignoreLeadingLeftEdgeLabel.text = "Left"
-            trailingRightEdgeInsetLabel.text = "Right"
-            ignoreTrailingRightEdgeLabel.text = "Right"
         }
     }
 
@@ -479,6 +440,10 @@ class HomeViewController: UIViewController {
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
+    }
+
+    @IBAction func userTappedShare(_ sender: UIBarButtonItem) {
+
     }
 
 }

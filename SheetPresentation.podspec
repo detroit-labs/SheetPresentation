@@ -15,7 +15,7 @@ A UIPresentationController and attendant classes for iOS to present a view contr
   s.author             = { "Jeff Kelley" => "SlaunchaMan@gmail.com" }
   s.social_media_url   = "https://twitter.com/SlaunchaMan"
 
-  s.platform     = :ios, "10"
+  s.platform     = :ios, '10'
 
   s.source       = {
     :git => "https://github.com/Detroit-Labs/BottomSheetPresentation.git",
@@ -26,7 +26,7 @@ A UIPresentationController and attendant classes for iOS to present a view contr
 
   s.framework  = "UIKit"
 
-  s.swift_versions = ['5.2']
+  s.swift_versions = ['4', '4.2', '5', '5.1', '5.2', '5.3']
 
   s.test_spec 'SheetPresentationTests' do |ts|
     ts.platform = :ios, '10'

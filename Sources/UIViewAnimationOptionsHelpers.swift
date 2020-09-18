@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView.AnimationOptions {
 
-    init(curve: UIView.AnimationCurve) {
+    init(curve: UIView.AnimationCurve?) {
         switch curve {
         case .easeInOut:
             self = [.curveEaseInOut]
@@ -20,7 +20,7 @@ extension UIView.AnimationOptions {
             self = [.curveEaseOut]
         case .linear:
             self = [.curveLinear]
-        @unknown default:
+        default:
             self = []
         }
     }

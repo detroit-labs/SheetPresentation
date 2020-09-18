@@ -25,4 +25,10 @@ class ChildViewController: UIViewController {
         return .all
     }
 
+    override func traitCollectionDidChange(
+        _ previousTraitCollection: UITraitCollection?
+    ) {
+        super.traitCollectionDidChange(previousTraitCollection)
+    }
+
 }

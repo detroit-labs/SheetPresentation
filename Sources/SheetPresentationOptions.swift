@@ -19,7 +19,7 @@ public struct SheetPresentationOptions {
         case roundAllCorners(radius: CGFloat)
 
         /// Rounds the corners specified in `corners` by the given `radius`.
-        @available(iOS 11.0, *)
+        @available(iOS 11.0, macCatalyst 10.15, *)
         case roundSomeCorners(radius: CGFloat, corners: CACornerMask)
 
         /// Does not round corners.
@@ -80,7 +80,7 @@ public struct SheetPresentationOptions {
     public init(
         cornerOptions: CornerOptions = .roundAllCorners(radius: 10),
         dimmingViewAlpha: CGFloat? = 0.5,
-        edgeInsets: DirectionalEdgeInsetsConvertible = UIEdgeInsets(constant: 20),
+        edgeInsets: DirectionalEdgeInsetsConvertible = constantInsets(20),
         ignoredEdgesForMargins: [ViewEdgeConvertible] = [],
         presentationLayout: PresentationLayout = .default,
         animationBehavior: AnimationBehavior = .system
@@ -95,21 +95,6 @@ public struct SheetPresentationOptions {
 
 }
 
-extension SheetPresentationOptions: Equatable {
-
-    public static func == (lhs: SheetPresentationOptions,
-                           rhs: SheetPresentationOptions) -> Bool {
-        lhs.cornerOptions == rhs.cornerOptions &&
-            lhs.dimmingViewAlpha == rhs.dimmingViewAlpha &&
-            lhs.edgeInsets == rhs.edgeInsets &&
-            lhs.ignoredEdgesForMargins.map { $0.fixedViewEdge(using: nil) } ==
-            rhs.ignoredEdgesForMargins.map { $0.fixedViewEdge(using: nil) } &&
-            lhs.presentationLayout == rhs.presentationLayout &&
-            lhs.animationBehavior == rhs.animationBehavior
-    }
-
-}
-
 extension SheetPresentationOptions.CornerOptions {
 
     func apply(to view: UIView) {
@@ -118,7 +103,7 @@ extension SheetPresentationOptions.CornerOptions {
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
 
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, macCatalyst 10.15, *) {
                 view.layer.maskedCorners = .all
             }
 
@@ -126,7 +111,7 @@ extension SheetPresentationOptions.CornerOptions {
             view.layer.cornerRadius = radius
             view.clipsToBounds = true
 
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, macCatalyst 10.15, *) {
                 view.layer.maskedCorners = corners
             }
 

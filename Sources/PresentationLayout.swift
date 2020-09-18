@@ -14,7 +14,7 @@ public struct PresentationLayout: Equatable {
 
     /// Controls where on the screen an automatically-sized view controller is
     /// placed horizontally.
-    public enum HorizontalAlignment: Equatable {
+    public enum HorizontalAlignment: Equatable, CaseIterable {
 
         /// Aligns the view to the leading edge of the container.
         case leading
@@ -39,7 +39,7 @@ public struct PresentationLayout: Equatable {
 
     /// Controls where on the screen an automatically-sized view controller is
     /// placed vertically.
-    public enum VerticalAlignment: Equatable {
+    public enum VerticalAlignment: Equatable, CaseIterable {
 
         /// Aligns the view to the top edge of the container.
         case top
@@ -90,13 +90,13 @@ public struct PresentationLayout: Equatable {
 
     }
 
-    public let horizontalSizingBehavior: HorizontalLayout
-    public let verticalSizingBehavior: VerticalLayout
+    public let horizontalLayout: HorizontalLayout
+    public let verticalLayout: VerticalLayout
 
     public init(horizontalLayout: HorizontalLayout,
                 verticalLayout: VerticalLayout) {
-        self.horizontalSizingBehavior = horizontalLayout
-        self.verticalSizingBehavior = verticalLayout
+        self.horizontalLayout = horizontalLayout
+        self.verticalLayout = verticalLayout
     }
 
     public static let `default` = PresentationLayout(

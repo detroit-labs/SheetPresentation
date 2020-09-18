@@ -1,5 +1,5 @@
 //
-//  UIEdgeInsetsHelpers.swift
+//  DirectionalEdgeInsetsConvertible.swift
 //  SheetPresentation
 //
 //  Created by Jeff Kelley on 5/10/19.
@@ -8,56 +8,9 @@
 
 import UIKit
 
-public protocol ConstantInsets {
-
-    /// Initializes the insets with a constant value for all dimensions.
-    ///
-    /// - Parameter constant: The constant value to use for all dimensions.
-    init(constant: CGFloat)
-
-    init(verticalConstant: CGFloat, horizontalConstant: CGFloat)
-}
-
-@available(iOS 11.0, *)
-extension NSDirectionalEdgeInsets: ConstantInsets {
-
-    public init(constant: CGFloat) {
-        self.init(top: constant,
-                  leading: constant,
-                  bottom: constant,
-                  trailing: constant)
-    }
-
-    public init(verticalConstant: CGFloat, horizontalConstant: CGFloat) {
-        self.init(top: verticalConstant,
-                  leading: horizontalConstant,
-                  bottom: verticalConstant,
-                  trailing: horizontalConstant)
-    }
-
-}
-
-extension UIEdgeInsets: ConstantInsets {
-
-    public init(constant: CGFloat) {
-        self.init(top: constant,
-                  left: constant,
-                  bottom: constant,
-                  right: constant)
-    }
-
-    public init(verticalConstant: CGFloat, horizontalConstant: CGFloat) {
-        self.init(top: verticalConstant,
-                  left: horizontalConstant,
-                  bottom: verticalConstant,
-                  right: horizontalConstant)
-    }
-
-}
-
 public protocol DirectionalEdgeInsetsConvertible {
 
-    @available(iOS 11.0, *)
+    @available(iOS 11.0, macCatalyst 10.15, *)
     func directionalEdgeInsets(
         for traitCollection: UITraitCollection?
     ) -> NSDirectionalEdgeInsets
@@ -74,7 +27,7 @@ public func == (lhs: DirectionalEdgeInsetsConvertible,
         rhs.fixedEdgeInsets(for: nil)
 }
 
-@available(iOS 11.0, *)
+@available(iOS 11.0, macCatalyst 10.15, *)
 extension NSDirectionalEdgeInsets: DirectionalEdgeInsetsConvertible {
 
     public func directionalEdgeInsets(
@@ -104,7 +57,7 @@ extension NSDirectionalEdgeInsets: DirectionalEdgeInsetsConvertible {
 
 extension UIEdgeInsets: DirectionalEdgeInsetsConvertible {
 
-    @available(iOS 11.0, *)
+    @available(iOS 11.0, macCatalyst 10.15, *)
     public func directionalEdgeInsets(
         for traitCollection: UITraitCollection?
     ) -> NSDirectionalEdgeInsets {

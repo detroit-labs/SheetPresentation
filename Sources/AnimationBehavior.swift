@@ -26,7 +26,8 @@ extension AnimationBehavior: Equatable {
     public static func == (lhs: AnimationBehavior,
                            rhs: AnimationBehavior) -> Bool {
         switch (lhs, rhs) {
-        case (.system, .system): return true
+        case (.system, .system):
+            return true
         case let (.present(edgeForAppearance: lhsEdgeA,
                            edgeForDismissal: lhsEdgeD),
                   .present(edgeForAppearance: rhsEdgeA,
@@ -39,7 +40,11 @@ extension AnimationBehavior: Equatable {
             return lhsFixedEdgeA == rhsFixedEdgeA &&
                 lhsFixedEdgeD == rhsFixedEdgeD
 
-        default: return false
+        case let (.custom(lhs), .custom(rhs)):
+            return lhs.isEqual(rhs)
+
+        default:
+            return false
         }
     }
 

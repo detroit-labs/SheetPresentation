@@ -1,5 +1,5 @@
 //
-//  ViewEdge.swift
+//  ViewEdgeConvertible.swift
 //  SheetPresentation
 //
 //  Created by Jon Shier on 6/29/20.
@@ -14,11 +14,24 @@ public protocol ViewEdgeConvertible {
         using traitCollection: UITraitCollection?
     ) -> FixedViewEdge
 
-    @available(iOS 11.0, *)
     func directionalViewEdge(
         using traitCollection: UITraitCollection?
     ) -> DirectionalViewEdge
 
+}
+
+private let ltrTraits = UITraitCollection(layoutDirection: .leftToRight)
+private let rtlTraits = UITraitCollection(layoutDirection: .rightToLeft)
+
+public func == (lhs: ViewEdgeConvertible, rhs: ViewEdgeConvertible) -> Bool {
+    switch (lhs.fixedViewEdge(using: ltrTraits),
+            lhs.fixedViewEdge(using: rtlTraits)) {
+    case (rhs.fixedViewEdge(using: ltrTraits),
+          rhs.fixedViewEdge(using: rtlTraits)):
+        return true
+    default:
+        return false
+    }
 }
 
 public enum FixedViewEdge: Equatable {
@@ -38,7 +51,6 @@ extension FixedViewEdge: ViewEdgeConvertible {
         self
     }
 
-    @available(iOS 11.0, *)
     public func directionalViewEdge(
         using traitCollection: UITraitCollection?
     ) -> DirectionalViewEdge {
@@ -54,7 +66,6 @@ extension FixedViewEdge: ViewEdgeConvertible {
 
 }
 
-@available(iOS 11.0, *)
 public enum DirectionalViewEdge: Equatable {
 
     case top
@@ -64,7 +75,6 @@ public enum DirectionalViewEdge: Equatable {
 
 }
 
-@available(iOS 11.0, *)
 extension DirectionalViewEdge: ViewEdgeConvertible {
 
     public func fixedViewEdge(
