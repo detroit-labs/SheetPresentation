@@ -616,8 +616,8 @@
                             <scrollView verifyAmbiguity="ignoreSizes" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lS-9k-Yc3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFS-yP-XbG" userLabel="Content View">
-                                        <rect key="frame" x="8" y="9" width="359" height="146"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="lFS-yP-XbG" userLabel="Content View">
+                                        <rect key="frame" x="8" y="8" width="359" height="146"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jaL-gg-kJQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="146"/>
