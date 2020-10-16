@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mpu-39-VLi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mpu-39-VLi">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -533,6 +533,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="cAR-SD-NXV"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mll-sk-vhh" secondAttribute="trailing" id="1ST-jl-NF0"/>
@@ -541,7 +542,6 @@
                             <constraint firstAttribute="bottom" secondItem="Mll-sk-vhh" secondAttribute="bottom" id="qA8-vQ-000"/>
                             <constraint firstItem="a1o-5i-lyw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="wtv-wz-8Gu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cAR-SD-NXV"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Jyn-xR-mm7"/>
@@ -551,11 +551,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="95r-oH-Cyy"/>
-                        <barButtonItem systemItem="action" id="C3a-s3-bch">
-                            <connections>
-                                <action selector="userTappedShare:" destination="BYZ-38-t0r" id="N1b-6Q-FhF"/>
-                            </connections>
-                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Presentation Options" id="ksp-3I-cWA"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -657,7 +652,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sR-th-be4">
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sR-th-be4">
                                                         <rect key="frame" x="0.0" y="139" width="359" height="7"/>
                                                         <state key="normal" title="Dismiss"/>
                                                         <connections>
@@ -688,6 +683,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="uUC-5G-0KB"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9lS-9k-Yc3" firstAttribute="bottom" secondItem="Pl7-Vp-zPc" secondAttribute="bottom" id="90t-xO-jSs"/>
@@ -695,7 +691,6 @@
                             <constraint firstItem="9lS-9k-Yc3" firstAttribute="leading" secondItem="Pl7-Vp-zPc" secondAttribute="leading" id="oHP-xb-fyG"/>
                             <constraint firstItem="9lS-9k-Yc3" firstAttribute="trailing" secondItem="Pl7-Vp-zPc" secondAttribute="trailing" id="zGv-D2-nyd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uUC-5G-0KB"/>
                     </view>
                     <size key="freeformSize" width="375" height="162"/>
                     <connections>
@@ -715,7 +710,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Mpu-39-VLi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="5NY-xU-3xE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

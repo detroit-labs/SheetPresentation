@@ -442,8 +442,4 @@ class HomeViewController: UIViewController {
         return .all
     }
 
-    @IBAction func userTappedShare(_ sender: UIBarButtonItem) {
-
-    }
-
 }
