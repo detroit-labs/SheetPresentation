@@ -18,5 +18,5 @@ let package = Package(
                     dependencies: ["SheetPresentation"],
                     path: "Tests")
     ],
-    swiftLanguageVersions: [.version("4"), .version("4.2"), .version("5")]
+    swiftLanguageVersions: [.v4, .v4_2, .v5]
 )
