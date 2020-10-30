@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// An inset type that can be initialized with constant insets.
 public protocol ConstantInsets {
 
     /// Initializes the insets with a constant value for all dimensions.
@@ -15,7 +16,13 @@ public protocol ConstantInsets {
     /// - Parameter constant: The constant value to use for all dimensions.
     init(constant: CGFloat)
 
+    /// Initializes the insets with a constant value for vertical and horizontal
+    /// dimensions. 
+    /// - Parameters:
+    ///   - verticalConstant: The constant for the vertical dimension.
+    ///   - horizontalConstant: The constant for the horizontal dimension.
     init(verticalConstant: CGFloat, horizontalConstant: CGFloat)
+
 }
 
 @available(iOS 11.0, macCatalyst 10.15, *)
@@ -55,6 +62,10 @@ extension UIEdgeInsets: ConstantInsets {
 
 }
 
+/// Creates a `UIEdgeInsets` structure using constant insets.
+/// - Parameter constant: The inset constant.
+/// - Returns: A `UIEdgeInsets` with every value initialized to the value of
+///            `constant`.
 public func constantInsets(_ constant: CGFloat) -> UIEdgeInsets {
     UIEdgeInsets(constant: constant)
 }

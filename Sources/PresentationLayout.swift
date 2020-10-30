@@ -90,15 +90,26 @@ public struct PresentationLayout: Equatable {
 
     }
 
+    /// How the presented view controller should be laid out horizontally.
     public let horizontalLayout: HorizontalLayout
+
+    /// How the presented view controller should be laid out vertically.
     public let verticalLayout: VerticalLayout
 
+    /// Creates a `PresentationLayout` with the given horizontal and vertical
+    /// layouts.
+    /// - Parameters:
+    ///   - horizontalLayout: The horizontal layout to use.
+    ///   - verticalLayout: The vertical layout to use.
     public init(horizontalLayout: HorizontalLayout,
                 verticalLayout: VerticalLayout) {
         self.horizontalLayout = horizontalLayout
         self.verticalLayout = verticalLayout
     }
 
+    /// The default `PresentationLayout`, which fills the width of the parent
+    /// view controller and aligns the presented view controller to the bottom
+    /// of the screen.
     public static let `default` = PresentationLayout(
         horizontalLayout: .fill,
         verticalLayout: .automatic(alignment: .bottom)

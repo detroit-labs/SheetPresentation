@@ -8,12 +8,19 @@
 
 import UIKit
 
+/// A type that can convert between fixed and directional view edges.
 public protocol ViewEdgeConvertible {
 
+    /// Converts the type to fixed view edges.
+    /// - Parameter traitCollection: The traits to use to determine layout
+    ///                              direction.
     func fixedViewEdge(
         using traitCollection: UITraitCollection?
     ) -> FixedViewEdge
 
+    /// Converts the type to directional view edges.
+    /// - Parameter traitCollection: The traits to use to determine layout
+    ///                              direction.
     func directionalViewEdge(
         using traitCollection: UITraitCollection?
     ) -> DirectionalViewEdge
@@ -23,7 +30,14 @@ public protocol ViewEdgeConvertible {
 private let ltrTraits = UITraitCollection(layoutDirection: .leftToRight)
 private let rtlTraits = UITraitCollection(layoutDirection: .rightToLeft)
 
-public func == (lhs: ViewEdgeConvertible, rhs: ViewEdgeConvertible) -> Bool {
+/// Determines if two `ViewEdgeConvertible` values are equivalent.
+/// - Parameters:
+///   - lhs: The first `ViewEdgeConvertible` value.
+///   - rhs: The second `ViewEdgeConvertible` value.
+/// - Returns: `true` if the values are equivalent in both left-to-right and
+///            right-to-left triat collections.
+public func == (_ lhs: ViewEdgeConvertible,
+                _ rhs: ViewEdgeConvertible) -> Bool {
     switch (lhs.fixedViewEdge(using: ltrTraits),
             lhs.fixedViewEdge(using: rtlTraits)) {
     case (rhs.fixedViewEdge(using: ltrTraits),
@@ -34,11 +48,19 @@ public func == (lhs: ViewEdgeConvertible, rhs: ViewEdgeConvertible) -> Bool {
     }
 }
 
+/// A view edge relative to a fixed physical edge of the screen.
 public enum FixedViewEdge: Equatable {
 
+    /// The top edge.
     case top
+
+    /// The left edge.
     case left
+
+    /// The right edge.
     case right
+
+    /// The bottom edge.
     case bottom
 
 }
@@ -66,11 +88,19 @@ extension FixedViewEdge: ViewEdgeConvertible {
 
 }
 
+/// A view edge relative to the layout direction of on-screen text.
 public enum DirectionalViewEdge: Equatable {
 
+    /// The top edge.
     case top
+
+    /// The leading edge.
     case leading
+
+    /// The trailing edge.
     case trailing
+
+    /// The bottom edge.
     case bottom
 
 }

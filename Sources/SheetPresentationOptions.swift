@@ -48,6 +48,8 @@ public struct SheetPresentationOptions {
     /// presentation container.
     public let presentationLayout: PresentationLayout
 
+    /// The animation behavior to use when the presented view controller is
+    /// appearing or being dismissed.
     public let animationBehavior: AnimationBehavior
 
     /// The default options that are used when calling `init()` on a

@@ -157,7 +157,10 @@ extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
     ///   - controller: The presentation controller that is managing the size
     ///                 change.
     ///   - traitCollection: The traits representing the target environment.
-    /// - Returns: <#description#>
+    /// - Returns: The new presentation style, which must be
+    ///            `UIModalPresentationStyle.fullScreen`,
+    ///            `UIModalPresentationStyle.overFullScreen`,
+    ///            or `UIModalPresentationStyle.none`.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController,
         traitCollection: UITraitCollection
@@ -165,6 +168,13 @@ extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
         .overCurrentContext
     }
 
+    /// Defines the modal presentation style for the controller.
+    /// - Parameter controller: The presentation controller that is managing the
+    ///                         size change.
+    /// - Returns: The new presentation style, which must be
+    ///            `UIModalPresentationStyle.fullScreen`,
+    ///            `UIModalPresentationStyle.overFullScreen`,
+    ///            or `UIModalPresentationStyle.none`.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController
     ) -> UIModalPresentationStyle {

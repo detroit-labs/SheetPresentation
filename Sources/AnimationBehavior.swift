@@ -8,15 +8,20 @@
 
 import UIKit
 
+/// A value that represents the behavior to use when animating the appearnce or
+/// dismissal of a presented view controller.
 public enum AnimationBehavior {
 
+    /// Use the default system animation.
     case system
 
+    /// Animate appearing and dismissing using specific edges of the screen.
     case present(
         edgeForAppearance: ViewEdgeConvertible,
         edgeForDismissal: ViewEdgeConvertible
     )
 
+    /// Animate using a custom animator.
     case custom(UIViewControllerAnimatedTransitioning)
 
 }
