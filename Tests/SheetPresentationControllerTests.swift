@@ -1374,7 +1374,12 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
 
         controller.presentationTransitionWillBegin()
 
-        XCTAssertEqual(controller.dimmingView?.alpha, 0)
+        let animation = try XCTUnwrap(
+            controller.dimmingView?.layer.animation(forKey: "opacity")
+                as? CABasicAnimation
+        )
+
+        XCTAssertEqual(animation.fromValue as? CGFloat, 0)
 
         coordinator.animateAlongsideTransitionAnimation?(coordinator)
 
@@ -1434,7 +1439,12 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
 
         controller.dismissalTransitionWillBegin()
 
-        XCTAssertEqual(controller.dimmingView?.alpha, 1)
+        let animation = try XCTUnwrap(
+            controller.dimmingView?.layer.animation(forKey: "opacity")
+                as? CABasicAnimation
+        )
+
+        XCTAssertEqual(animation.fromValue as? CGFloat, 1)
 
         coordinator.animateAlongsideTransitionAnimation?(coordinator)
 
