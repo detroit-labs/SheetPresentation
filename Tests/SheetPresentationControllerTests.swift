@@ -1374,12 +1374,17 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
 
         controller.presentationTransitionWillBegin()
 
-        let animation = try XCTUnwrap(
-            controller.dimmingView?.layer.animation(forKey: "opacity")
-                as? CABasicAnimation
-        )
+        if #available(iOS 11.3, macCatalyst 10.15, *) {
+            XCTAssertEqual(controller.dimmingView?.alpha, 0)
+        }
+        else {
+            let animation = try XCTUnwrap(
+                controller.dimmingView?.layer.animation(forKey: "opacity")
+                    as? CABasicAnimation
+            )
 
-        XCTAssertEqual(animation.fromValue as? CGFloat, 0)
+            XCTAssertEqual(animation.fromValue as? CGFloat, 0)
+        }
 
         coordinator.animateAlongsideTransitionAnimation?(coordinator)
 
@@ -1439,12 +1444,17 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
 
         controller.dismissalTransitionWillBegin()
 
-        let animation = try XCTUnwrap(
-            controller.dimmingView?.layer.animation(forKey: "opacity")
-                as? CABasicAnimation
-        )
+        if #available(iOS 11.3, macCatalyst 10.15, *) {
+            XCTAssertEqual(controller.dimmingView?.alpha, 1)
+        }
+        else {
+            let animation = try XCTUnwrap(
+                controller.dimmingView?.layer.animation(forKey: "opacity")
+                    as? CABasicAnimation
+            )
 
-        XCTAssertEqual(animation.fromValue as? CGFloat, 1)
+            XCTAssertEqual(animation.fromValue as? CGFloat, 1)
+        }
 
         coordinator.animateAlongsideTransitionAnimation?(coordinator)
 
