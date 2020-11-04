@@ -3,7 +3,10 @@ import PackageDescription
 
 let package = Package(
     name: "SheetPresentation",
-    platforms: [.iOS(.v11)],
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v10)
+    ],
     products: [
         .library(name: "SheetPresentation",
                  targets: ["SheetPresentation"])
@@ -15,5 +18,5 @@ let package = Package(
                     dependencies: ["SheetPresentation"],
                     path: "Tests")
     ],
-    swiftLanguageVersions: [.version("5")]
+    swiftLanguageVersions: [.v4, .v4_2, .v5]
 )

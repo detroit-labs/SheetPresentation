@@ -6,8 +6,6 @@
 //  Copyright © 2020 Detroit Labs. All rights reserved.
 //
 
-// swiftlint:disable file_length
-
 import UIKit
 
 /// A handler that the presentation controller calls when the user taps on the
@@ -26,17 +24,17 @@ public enum DimmingViewTapHandler {
     /// The default handler, which will dismiss the presented view controller
     /// upon tapping.
     public static let `default` = DimmingViewTapHandler.block({
-        $0.dismiss(animated: true, completion: nil)}
-    )
+        $0.dismiss(animated: true, completion: nil)
+    })
 
 }
 
 /// An object that creates instances of `SheetPresentationController` when
 /// set as a view controller’s `transitioningDelegate`.
-@objcMembers public final class SheetPresentationManager: NSObject {
+public final class SheetPresentationManager: NSObject {
 
-    internal let presentationOptions: SheetPresentationOptions
-    internal let dimmingViewTapHandler: DimmingViewTapHandler
+    let presentationOptions: SheetPresentationOptions
+    let dimmingViewTapHandler: DimmingViewTapHandler
 
     /// Creates a `SheetPresentationManager` with specific presentation
     /// options and tap handler.
@@ -44,334 +42,104 @@ public enum DimmingViewTapHandler {
     /// - Parameters:
     ///     - options: The options to use for presenting view controllers.
     ///     - dimmingViewTapHandler: A handler to be called when tapping the
-    ///                              dimming view.
+    ///                              dimming view. The `dimmingViewAlpha` of the
+    ///                              given `options` must not be `nil`, or the
+    ///                              dimming view will not be created.
     public init(
         options: SheetPresentationOptions = .default,
         dimmingViewTapHandler: DimmingViewTapHandler = .default
-        ) {
+    ) {
         presentationOptions = options
         self.dimmingViewTapHandler = dimmingViewTapHandler
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and the default tap handler.
-    ///
-    /// - Parameters:
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black. Use `nil` to avoid using a dimmming
-    ///                         view.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(dimmingViewAlpha: CGFloat?,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge = []) {
-        let options = SheetPresentationOptions(
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options)
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and the default tap handler.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black. Use `nil` to avoid using a dimmming
-    ///                         view.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(cornerRadius: CGFloat,
-                            dimmingViewAlpha: CGFloat?,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge = []) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options)
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and the default tap handler.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - maskedCorners: The corners to mask using the `cornerRadius`.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black. Use `nil` to avoid using a dimmming
-    ///                         view.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(cornerRadius: CGFloat,
-                            maskedCorners: CACornerMask = .all,
-                            dimmingViewAlpha: CGFloat?,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge = []) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            maskedCorners: maskedCorners,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options)
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and tap target/action.
-    ///
-    /// - Parameters:
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - dimmingViewTapHandler: A block to be called when the dimming view
-    ///                              is tapped. Its argument is the presented
-    ///                              `UIViewController`.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(
-        dimmingViewAlpha: CGFloat,
-        edgeInsets: UIEdgeInsets,
-        ignoredEdgesForMargins: ViewEdge = [],
-        dimmingViewTapHandler: @escaping (UIViewController) -> Void
-        ) {
-        let options = SheetPresentationOptions(
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .block(dimmingViewTapHandler))
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and tap target/action.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - dimmingViewTapHandler: A block to be called when the dimming view
-    ///                              is tapped. Its argument is the presented
-    ///                              `UIViewController`.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(
-        cornerRadius: CGFloat,
-        dimmingViewAlpha: CGFloat,
-        edgeInsets: UIEdgeInsets,
-        ignoredEdgesForMargins: ViewEdge = [],
-        dimmingViewTapHandler: @escaping (UIViewController) -> Void
-        ) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .block(dimmingViewTapHandler))
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options and tap target/action.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - maskedCorners: The corners to mask using the `cornerRadius`.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - dimmingViewTapHandler: A block to be called when the dimming view
-    ///                              is tapped. Its argument is the presented
-    ///                              `UIViewController`.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    public convenience init(
-        cornerRadius: CGFloat,
-        maskedCorners: CACornerMask,
-        dimmingViewAlpha: CGFloat,
-        edgeInsets: UIEdgeInsets,
-        ignoredEdgesForMargins: ViewEdge = [],
-        dimmingViewTapHandler: @escaping (UIViewController) -> Void
-        ) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            maskedCorners: maskedCorners,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .block(dimmingViewTapHandler))
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options.
-    ///
-    /// - Parameters:
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    ///     - target: The target to call when the dimming view is
-    ///                             tapped.
-    ///     - action: The action selector to call on the target
-    ///                             when the dimming view is tapped.
-    public convenience init(dimmingViewAlpha: CGFloat,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge,
-                            dimmingViewTapTarget target: NSObjectProtocol,
-                            dimmingViewTapAction action: Selector) {
-        let options = SheetPresentationOptions(
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .targetAction(target, action))
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    ///     - target: The target to call when the dimming view is
-    ///                             tapped.
-    ///     - action: The action selector to call on the target
-    ///                             when the dimming view is tapped.
-    public convenience init(cornerRadius: CGFloat,
-                            dimmingViewAlpha: CGFloat,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge,
-                            dimmingViewTapTarget target: NSObjectProtocol,
-                            dimmingViewTapAction action: Selector) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .targetAction(target, action))
-    }
-
-    /// Creates a `SheetPresentationManager` with specific presentation
-    /// options.
-    ///
-    /// - Parameters:
-    ///     - cornerRadius: The corner radius to use when displaying the
-    ///                     presented view controller.
-    ///     - maskedCorners: The corners to mask using the `cornerRadius`.
-    ///     - dimmingViewAlpha: The `alpha` value for the dimming view used
-    ///                         behind the presented view controller. The color
-    ///                         is black.
-    ///     - edgeInsets: The amount to inset the presented view controller from
-    ///                   the presenting view controller. This is a minimum;
-    ///                   there may be additional insets depending on the safe
-    ///                   area insets of the presenting view controller’s view.
-    ///     - ignoredEdgesForMargins: Edges of the presenting view controller’s
-    ///                               view for which its margins should be
-    ///                               ignored for layout purposes.
-    ///     - target: The target to call when the dimming view is
-    ///                             tapped.
-    ///     - action: The action selector to call on the target
-    ///                             when the dimming view is tapped.
-    public convenience init(cornerRadius: CGFloat,
-                            maskedCorners: CACornerMask,
-                            dimmingViewAlpha: CGFloat,
-                            edgeInsets: UIEdgeInsets,
-                            ignoredEdgesForMargins: ViewEdge,
-                            dimmingViewTapTarget target: NSObjectProtocol,
-                            dimmingViewTapAction action: Selector) {
-        let options = SheetPresentationOptions(
-            cornerRadius: cornerRadius,
-            maskedCorners: maskedCorners,
-            dimmingViewAlpha: dimmingViewAlpha,
-            edgeInsets: edgeInsets,
-            ignoredEdgesForMargins: ignoredEdgesForMargins)
-
-        self.init(options: options,
-                  dimmingViewTapHandler: .targetAction(target, action))
     }
 
 }
 
 extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
 
-    /// Asks your delegate for the custom presentation controller to use for
-    /// managing the view hierarchy when presenting a view controller.
+    /// Defines the animator object to use when presenting the view controller.
+    ///
+    /// - Parameters:
+    ///   - presented: The view controller that is about to be presented
+    ///                onscreen.
+    ///   - presenting: The view controller that is presenting the view
+    ///                 controller in the `presented` parameter. The object in
+    ///                 this parameter could be the root view controller of the
+    ///                 window, a parent view controller that is marked as
+    ///                 defining the current context, or the last view
+    ///                 controller that was presented. This view controller may
+    ///                 or may not be the same as the one in the `source`
+    ///                 parameter.
+    ///   - source: The view controller whose `present(_:animated:completion:)`
+    ///             method was called.
+    /// - Returns: The animator object to use when presenting the view
+    ///            controller or `nil` to use the system animator.
+    public func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        switch presentationOptions.animationBehavior {
+        case .system:
+            return nil
+        case .present(edgeForAppearance: let edge, edgeForDismissal: _):
+            let edge = edge.fixedViewEdge(using: presented.traitCollection)
+            return SheetAnimationController(isPresenting: true, edge: edge)
+        case .custom(let animator):
+            return animator
+        }
+    }
+
+    /// Defines the animator object to use when dismissing the view controller.
+    ///
+    /// - Parameter dismissed: The view controller that is about to be
+    ///                        dismissed.
+    /// - Returns: The animator object to use when dismissing the view
+    ///            controller or `nil` to use the system animator.
+    public func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        switch presentationOptions.animationBehavior {
+        case .system:
+            return nil
+        case .present(edgeForAppearance: _, edgeForDismissal: let edge):
+            let edge = edge.fixedViewEdge(using: dismissed.traitCollection)
+            return SheetAnimationController(isPresenting: false, edge: edge)
+        case .custom(let animator):
+            return animator
+        }
+    }
+
+    /// Defines the custom presentation controller to use for managing the view
+    /// hierarchy when presenting a view controller.
+    ///
+    /// - Parameters:
+    ///   - presented: The view controller being presented.
+    ///   - presenting: The view controller that is presenting the view
+    ///                 controller in the `presented` parameter. The object in
+    ///                 this parameter could be the root view controller of the
+    ///                 window, a parent view controller that is marked as
+    ///                 defining the current context, or the last view
+    ///                 controller that was presented. This view controller may
+    ///                 or may not be the same as the one in the `source`
+    ///                 parameter. This parameter may also be `nil` to indicate
+    ///                 that the presenting view controller will be determined
+    ///                 later.
+    ///   - source: The view controller whose `present(_:animated:completion:)`
+    ///             method was called to initiate the presentation process.
+    /// - Returns: The custom presentation controller for managing the modal
+    ///            presentation.
     public func presentationController(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
         source: UIViewController
-        ) -> UIPresentationController? {
+    ) -> UIPresentationController? {
         let controller = SheetPresentationController(
             forPresented: presented,
             presenting: presenting,
             presentationOptions: presentationOptions,
-            dimmingViewTapHandler: dimmingViewTapHandler)
+            dimmingViewTapHandler: dimmingViewTapHandler
+        )
 
         controller.delegate = self
 
@@ -382,20 +150,35 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
 
 extension SheetPresentationManager: UIAdaptivePresentationControllerDelegate {
 
-    /// Asks the delegate for the presentation style to use when the specified
-    /// set of traits are active.
+    /// Defines the modal presentation style for the controller given a set of
+    /// traits.
+    ///
+    /// - Parameters:
+    ///   - controller: The presentation controller that is managing the size
+    ///                 change.
+    ///   - traitCollection: The traits representing the target environment.
+    /// - Returns: The new presentation style, which must be
+    ///            `UIModalPresentationStyle.fullScreen`,
+    ///            `UIModalPresentationStyle.overFullScreen`,
+    ///            or `UIModalPresentationStyle.none`.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController,
         traitCollection: UITraitCollection
-        ) -> UIModalPresentationStyle {
-        return .overCurrentContext
+    ) -> UIModalPresentationStyle {
+        .overCurrentContext
     }
 
-    /// Asks the delegate for the new presentation style to use.
+    /// Defines the modal presentation style for the controller.
+    /// - Parameter controller: The presentation controller that is managing the
+    ///                         size change.
+    /// - Returns: The new presentation style, which must be
+    ///            `UIModalPresentationStyle.fullScreen`,
+    ///            `UIModalPresentationStyle.overFullScreen`,
+    ///            or `UIModalPresentationStyle.none`.
     public func adaptivePresentationStyle(
         for controller: UIPresentationController
-        ) -> UIModalPresentationStyle {
-        return .overCurrentContext
+    ) -> UIModalPresentationStyle {
+        .overCurrentContext
     }
 
 }
