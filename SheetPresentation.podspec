@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 A UIPresentationController and attendant classes for iOS to present a view controller pinned to the bottom of the screen like an action sheet. Integrates with the UIKit view controller presentation hooks to involve as little integration surface as possible.
                    DESC
 
-  s.homepage     = "https://github.com/detroit-labs/BottomSheetPresentation"
+  s.homepage     = "https://github.com/detroit-labs/SheetPresentation"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
