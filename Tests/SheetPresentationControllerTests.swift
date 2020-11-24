@@ -1181,7 +1181,7 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
         let controller = try XCTUnwrap(
             manager.presentationController(
                 forPresented: presented,
-                presenting: nil,
+                presenting: source,
                 source: source
             ) as? SheetPresentationController
         )
@@ -1356,7 +1356,7 @@ final class SheetPresentationControllerPresentationControllerTests: XCTestCase {
         let controller = try XCTUnwrap(
             manager.presentationController(
                 forPresented: presented,
-                presenting: nil,
+                presenting: source,
                 source: source
             ) as? SheetPresentationController
         )
