@@ -70,6 +70,27 @@ final class SheetPresentationControllerTests: XCTestCase {
                        presented)
     }
 
+    func testPassthroughViewPassesTouchesToPresentingViewController() throws {
+        let presented = MockViewController()
+
+        let manager = SheetPresentationManager(
+            options: SheetPresentationOptions(dimmingViewAlpha: nil)
+        )
+
+        let source = UIViewController()
+
+        let controller = try XCTUnwrap(
+            manager.presentationController(
+                forPresented: presented,
+                presenting: source,
+                source: source
+            ) as? SheetPresentationController
+        )
+
+        XCTAssertEqual(controller.passthroughView?.passthroughViews,
+                       [source.view])
+    }
+
 }
 
 // swiftlint:disable file_length
