@@ -54,7 +54,7 @@ class SheetPresentationController: UIPresentationController {
         let view = PassthroughView()
         view.backgroundColor = .clear
 
-        view.passthroughViews = [presentedView]
+        view.passthroughViews = [presentingViewController.view]
 
         return view
     }()
