@@ -17,6 +17,6 @@
     <key>DashDocSetFamily</key>
       <string>dashtoc</string>
     <key>DashDocSetFallbackURL</key>
-      <string>https://detroit-labs.github.io/BottomSheetPresentation/</string>
+      <string>https://detroit-labs.github.io/SheetPresentation/</string>
   </dict>
 </plist>
