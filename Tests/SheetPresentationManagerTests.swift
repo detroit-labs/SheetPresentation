@@ -158,19 +158,21 @@ final class SheetPresentationManagerTests: XCTestCase {
     }
 
     func testUsingACustomAnimatorForPresenting() {
-        let animator = MockAnimator()
+        let appearanceAnimator = MockAnimator()
+        let dismissalAnimator = MockAnimator()
         let presentedViewController = UIViewController()
         let presentingViewController = UIViewController()
         let sourceViewController = UIViewController()
 
         let subject = SheetPresentationManager(
             options: SheetPresentationOptions(
-                animationBehavior: .custom(animator)
+                animationBehavior: .custom(appearance: appearanceAnimator,
+                                           dismissal: dismissalAnimator)
             )
         )
 
         XCTAssertEqual(
-            animator,
+            appearanceAnimator,
             subject.animationController(forPresented: presentedViewController,
                                         presenting: presentingViewController,
                                         source: sourceViewController)
@@ -179,17 +181,19 @@ final class SheetPresentationManagerTests: XCTestCase {
     }
 
     func testUsingACustomAnimatorForDismissing() {
-        let animator = MockAnimator()
+        let appearanceAnimator = MockAnimator()
+        let dismissalAnimator = MockAnimator()
         let dismissedViewController = UIViewController()
 
         let subject = SheetPresentationManager(
             options: SheetPresentationOptions(
-                animationBehavior: .custom(animator)
+                animationBehavior: .custom(appearance: appearanceAnimator,
+                                           dismissal: dismissalAnimator)
             )
         )
 
         XCTAssertEqual(
-            animator,
+            dismissalAnimator,
             subject.animationController(forDismissed: dismissedViewController)
                 as? MockAnimator
         )

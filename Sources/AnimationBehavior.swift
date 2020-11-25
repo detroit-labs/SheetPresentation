@@ -21,8 +21,9 @@ public enum AnimationBehavior {
         edgeForDismissal: ViewEdgeConvertible
     )
 
-    /// Animate using a custom animator.
-    case custom(UIViewControllerAnimatedTransitioning)
+    /// Animate using custom animators for appearance and dismissal.
+    case custom(appearance: UIViewControllerAnimatedTransitioning,
+                dismissal: UIViewControllerAnimatedTransitioning)
 
 }
 
@@ -45,8 +46,8 @@ extension AnimationBehavior: Equatable {
             return lhsFixedEdgeA == rhsFixedEdgeA &&
                 lhsFixedEdgeD == rhsFixedEdgeD
 
-        case let (.custom(lhs), .custom(rhs)):
-            return lhs.isEqual(rhs)
+        case let (.custom(lhsA, lhsD), .custom(rhsA, rhsD)):
+            return lhsA.isEqual(rhsA) && lhsD.isEqual(rhsD)
 
         default:
             return false

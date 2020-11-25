@@ -85,7 +85,7 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         case .present(edgeForAppearance: let edge, edgeForDismissal: _):
             let edge = edge.fixedViewEdge(using: presented.traitCollection)
             return SheetAnimationController(isPresenting: true, edge: edge)
-        case .custom(let animator):
+        case .custom(let animator, _):
             return animator
         }
     }
@@ -105,7 +105,7 @@ extension SheetPresentationManager: UIViewControllerTransitioningDelegate {
         case .present(edgeForAppearance: _, edgeForDismissal: let edge):
             let edge = edge.fixedViewEdge(using: dismissed.traitCollection)
             return SheetAnimationController(isPresenting: false, edge: edge)
-        case .custom(let animator):
+        case .custom(_, let animator):
             return animator
         }
     }
