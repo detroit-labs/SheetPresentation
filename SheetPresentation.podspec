@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SheetPresentation"
-  s.version      = "1.0.0.rc.3"
+  s.version      = "1.0.0"
   s.summary      = "A UIPresentationController for iOS to present a view controller pinned to the bottom of the screen."
 
   s.description  = <<-DESC
