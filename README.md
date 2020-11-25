@@ -50,8 +50,8 @@ add the framework to your project, configure a Run Script build phase, etc.
 # Using SheetPresentation
 
 To use SheetPresentation, create a `SheetPresentationManager` and
-set it as the `transitioningDelegate` of the view controller you want to
-present, then set the `modalPresentationStyle` of the view controller to
+set it as the [`transitioningDelegate`][1] of the view controller you want to
+present, then set the [`modalPresentationStyle`][2] of the view controller to
 `.custom`.
 
 ```Swift
@@ -62,6 +62,9 @@ viewControllerToPresent.modalPresentationStyle = .custom
 
 present(viewControllerToPresent, animated: true, completion: nil)
 ```
+
+[1]: https://developer.apple.com/documentation/uikit/uiviewcontroller/1621421-transitioningdelegate
+[2]: https://developer.apple.com/documentation/uikit/uiviewcontroller/1621355-modalpresentationstyle
 
 ## Presentation Options
 
@@ -76,10 +79,12 @@ have their corners rounded:
 - `.roundAllCorners`, which takes a `CGFloat` corner radius, rounds all corners
   with the given radius.
 - `.roundSomeCorners`, which takes a `CGFloat` corner radius and a
-  `CACornerMask` to specify which corner(s) should be rounded.
+  [`CACornerMask`][3] to specify which corner(s) should be rounded.
 - `.none` leaves the presented view’s corners around.
 
 The default value is `.roundAllCorners` with a radius of 10 points.
+
+[3]: https://developer.apple.com/documentation/quartzcore/cacornermask
 
 ### Dimming View Alpha
 
@@ -94,12 +99,15 @@ The default value is 50% opacity.
 ### Edge Insets
 
 The edge insets control the distance between the presenting view controller and
-the presented view. You can use either `UIEdgeInsets` or
-`NSDirectionalEdgeInsets`. This value is combined with the safe area, so if you
-use an inset that is less than the safe area, the safe area’s inset will be
+the presented view. You can use either [`UIEdgeInsets`][4] or
+[`NSDirectionalEdgeInsets`][5]. This value is combined with the safe area, so if
+you use an inset that is less than the safe area, the safe area’s inset will be
 used.
 
 The default value is 20 points on all sides.
+
+[4]: https://developer.apple.com/documentation/uikit/uiedgeinsets
+[5]: https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets
 
 ### Ignored Edges for Margins
 
@@ -126,17 +134,21 @@ layout of `.fill`.
 
 To correctly compute the height of the presented view controller when using
 automatic layouts, it must either satisfy Auto Layout constraints for a height
-using `systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)` or have a
-non-zero `preferredContentSize`.
+using
+[`systemLayoutSizeFitting(_:withHorizontalFittingPriority:verticalFittingPriority:)`][6]
+or have a non-zero [`preferredContentSize`][7].
+
+[6]: https://developer.apple.com/documentation/uikit/uiview/1622623-systemlayoutsizefitting
+[7]: https://developer.apple.com/documentation/uikit/uiviewcontroller/1621476-preferredcontentsize
 
 ### Animation Behavior
 
 When the presented view controller is presented or dismissed, these options
 control the way that this animation occurs. You can use `.system` to use the
 default UIKit animations, use `.custom` to provide your own animator objects
-that conform to the [`UIViewControllerAnimatedTransitioning`][1] protocol, or
+that conform to the [`UIViewControllerAnimatedTransitioning`][8] protocol, or
 use `.present` to slide the view controller to or from the given view edge(s).
 
 The default value is `.system`.
 
-[1]: https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning
+[8]: https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning
