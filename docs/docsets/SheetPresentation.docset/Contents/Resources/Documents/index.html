@@ -16,7 +16,7 @@
     <a title="SheetPresentation  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SheetPresentation 1.0.0.rc.3 Docs</a> (100% documented)</p>
+        <p><a href="index.html">SheetPresentation 1.0.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Detroit-Labs/SheetPresentation"><img src="img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdetroit-labs.github.io%2FSheetPresentation%2Fdocsets%2FSheetPresentation.xml"><img src="img/dash.png"/>Install in Dash</a></p>
         <p class="header-right">
@@ -179,11 +179,10 @@ project.</p>
 in <a href="https://github.com/Carthage/Carthage#getting-started">Carthage’s README</a> to
 add the framework to your project, configure a Run Script build phase, etc.</p>
 <h1 id='using-sheetpresentation' class='heading'>Using SheetPresentation</h1>
-<h2 id='swift' class='heading'>Swift</h2>
 
 <p>To use SheetPresentation, create a <code><a href="Classes/SheetPresentationManager.html">SheetPresentationManager</a></code> and
-set it as the <code>transitioningDelegate</code> of the view controller you want to
-present, then set the <code>modalPresentationStyle</code> of the view controller to
+set it as the <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621421-transitioningdelegate"><code>transitioningDelegate</code></a> of the view controller you want to
+present, then set the <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621355-modalpresentationstyle"><code>modalPresentationStyle</code></a> of the view controller to
 <code>.custom</code>.</p>
 <pre class="highlight plaintext"><code>let manager = SheetPresentationManager() // Save this reference somewhere
 let viewControllerToPresent = …
@@ -192,25 +191,77 @@ viewControllerToPresent.modalPresentationStyle = .custom
 
 present(viewControllerToPresent, animated: true, completion: nil)
 </code></pre>
-<h2 id='objective-c' class='heading'>Objective-C</h2>
+<h2 id='presentation-options' class='heading'>Presentation Options</h2>
 
-<p>SheetPresentation also works with Objective-C:</p>
-<pre class="highlight plaintext"><code>SheetPresentationManager *manager = [[SheetPresentationManager alloc] init];
+<p>To get the most out of SheetPresentation, you’ll need to set some options on
+your <code><a href="Classes/SheetPresentationManager.html">SheetPresentationManager</a></code> instances:</p>
+<h3 id='corner-options' class='heading'>Corner Options</h3>
 
-UIViewController *viewControllerToPresent = …;
-viewControllerToPresent.transitioningDelegate = manager;
-viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
+<p>The corner options specify whether and how the corners of presented views should
+have their corners rounded:</p>
 
-[self presentViewController:viewControllerToPresent
-                   animated:YES
-                 completion:NULL];
-</code></pre>
-<h2 id='requirements' class='heading'>Requirements</h2>
+<ul>
+<li><code>.roundAllCorners</code>, which takes a <code>CGFloat</code> corner radius, rounds all corners
+with the given radius.</li>
+<li><code>.roundSomeCorners</code>, which takes a <code>CGFloat</code> corner radius and a
+<a href="https://developer.apple.com/documentation/quartzcore/cacornermask"><code>CACornerMask</code></a> to specify which corner(s) should be rounded.</li>
+<li><code>.none</code> leaves the presented view’s corners around.</li>
+</ul>
 
-<p>To correctly compute the height of the presented view controller, it must either
-satisfy Auto Layout constraints for a height using
-<code>systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)</code> or have a non-zero
-<code>preferredContentSize</code>.</p>
+<p>The default value is <code>.roundAllCorners</code> with a radius of 10 points.</p>
+<h3 id='dimming-view-alpha' class='heading'>Dimming View Alpha</h3>
+
+<p>SheetPresentation can place a black dimming view behind the presented view. To
+control its opacity, you can specify a <code>CGFloat</code> value. If you specify <code>nil</code>,
+then a dimming view will not be placed behind the presented view and touches
+will be forwarded to the presenting view controller if they fall outside the
+presented view.</p>
+
+<p>The default value is 50% opacity.</p>
+<h3 id='edge-insets' class='heading'>Edge Insets</h3>
+
+<p>The edge insets control the distance between the presenting view controller and
+the presented view. You can use either <a href="https://developer.apple.com/documentation/uikit/uiedgeinsets"><code>UIEdgeInsets</code></a> or
+<a href="https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets"><code>NSDirectionalEdgeInsets</code></a>. This value is combined with the safe area, so if
+you use an inset that is less than the safe area, the safe area’s inset will be
+used.</p>
+
+<p>The default value is 20 points on all sides.</p>
+<h3 id='ignored-edges-for-margins' class='heading'>Ignored Edges for Margins</h3>
+
+<p>You can specify an array of edges to ignore for margins (including the safe
+area) when performing layout. Edges can be either the <code><a href="Enums/DirectionalViewEdge.html">DirectionalViewEdge</a></code> or
+<code><a href="Enums/FixedViewEdge.html">FixedViewEdge</a></code> type, depending on if you want to use <code>.leading</code> and <code>.trailing</code>
+(recommended) or <code>.left</code> and <code>.right</code>.</p>
+
+<p>The default value is an empty array to ignore no edges.</p>
+<h3 id='presentation-layout' class='heading'>Presentation Layout</h3>
+
+<p>The presentation layout controls how SheetPresentation positions the presented
+view within the presentation container. Specify both horizontal and vertical
+layouts, which can either be <code>.fill</code> to fill the container or <code>.automatic</code> to
+automatically size the presented view. The automatic layouts must specify either
+vertical or horizontal alignment to control where the presented view is placed
+relative to the container.</p>
+
+<p>The default value is a vertical layout of <code>.automatic(.bottom)</code> and a horizontal
+layout of <code>.fill</code>.</p>
+<h4 id='requirements' class='heading'>Requirements</h4>
+
+<p>To correctly compute the height of the presented view controller when using
+automatic layouts, it must either satisfy Auto Layout constraints for a height
+using
+<a href="https://developer.apple.com/documentation/uikit/uiview/1622623-systemlayoutsizefitting"><code>systemLayoutSizeFitting(_:withHorizontalFittingPriority:verticalFittingPriority:)</code></a>
+or have a non-zero <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621476-preferredcontentsize"><code>preferredContentSize</code></a>.</p>
+<h3 id='animation-behavior' class='heading'>Animation Behavior</h3>
+
+<p>When the presented view controller is presented or dismissed, these options
+control the way that this animation occurs. You can use <code>.system</code> to use the
+default UIKit animations, use <code>.custom</code> to provide your own animator objects
+that conform to the <a href="https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning"><code>UIViewControllerAnimatedTransitioning</code></a> protocol, or
+use <code>.present</code> to slide the view controller to or from the given view edge(s).</p>
+
+<p>The default value is <code>.system</code>.</p>
 
           </section>
         </section>
