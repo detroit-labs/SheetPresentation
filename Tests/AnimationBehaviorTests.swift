@@ -162,6 +162,11 @@ final class AnimationBehaviorTests: XCTestCase {
                                                 dismissal: dismissalAnimator),
                        AnimationBehavior.custom(appearance: appearanceAnimator,
                                                 dismissal: dismissalAnimator))
+
+        let animator = MockAnimator()
+
+        XCTAssertEqual(AnimationBehavior.custom(animator),
+                       AnimationBehavior.custom(animator))
     }
 
     func testCustomAnimationsThatAreNotEqual() {
@@ -169,6 +174,10 @@ final class AnimationBehaviorTests: XCTestCase {
                                                    dismissal: MockAnimator()),
                           AnimationBehavior.custom(appearance: MockAnimator(),
                                                    dismissal: MockAnimator()))
+
+        XCTAssertNotEqual(AnimationBehavior.custom(appearance: MockAnimator(),
+                                                   dismissal: MockAnimator()),
+                          AnimationBehavior.custom(MockAnimator()))
     }
 
     func testCustomAnimationsThatArePartiallyEqual() {

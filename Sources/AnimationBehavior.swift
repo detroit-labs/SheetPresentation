@@ -27,6 +27,21 @@ public enum AnimationBehavior {
 
 }
 
+public extension AnimationBehavior {
+
+    /// An animation behavior that uses a custom animator object for both
+    /// appearance and dismissal.
+    /// - Parameter animator: The custom animator to use.
+    /// - Returns: An `AnimationBehavior` with both `appearance` and `dismissal`
+    ///            set to `animator`.
+    static func custom(
+        _ animator: UIViewControllerAnimatedTransitioning
+    ) -> AnimationBehavior {
+        .custom(appearance: animator, dismissal: animator)
+    }
+
+}
+
 extension AnimationBehavior: Equatable {
 
     public static func == (lhs: AnimationBehavior,
