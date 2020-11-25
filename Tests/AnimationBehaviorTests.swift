@@ -25,8 +25,11 @@ final class AnimationBehaviorTests: XCTestCase {
     }
 
     func testSytemAnimationDoesNotEqualCustomPresentation() {
-        XCTAssertNotEqual(AnimationBehavior.system,
-                          AnimationBehavior.custom(MockAnimator()))
+        XCTAssertNotEqual(
+            AnimationBehavior.system,
+            AnimationBehavior.custom(appearance: MockAnimator(),
+                                     dismissal: MockAnimator())
+        )
     }
 
     func testFixedEdgePresentationsAreEqual() {
@@ -152,6 +155,14 @@ final class AnimationBehaviorTests: XCTestCase {
     }
 
     func testCustomAnimationsThatAreEqual() {
+        let appearanceAnimator = MockAnimator()
+        let dismissalAnimator = MockAnimator()
+
+        XCTAssertEqual(AnimationBehavior.custom(appearance: appearanceAnimator,
+                                                dismissal: dismissalAnimator),
+                       AnimationBehavior.custom(appearance: appearanceAnimator,
+                                                dismissal: dismissalAnimator))
+
         let animator = MockAnimator()
 
         XCTAssertEqual(AnimationBehavior.custom(animator),
@@ -159,8 +170,34 @@ final class AnimationBehaviorTests: XCTestCase {
     }
 
     func testCustomAnimationsThatAreNotEqual() {
-        XCTAssertNotEqual(AnimationBehavior.custom(MockAnimator()),
+        XCTAssertNotEqual(AnimationBehavior.custom(appearance: MockAnimator(),
+                                                   dismissal: MockAnimator()),
+                          AnimationBehavior.custom(appearance: MockAnimator(),
+                                                   dismissal: MockAnimator()))
+
+        XCTAssertNotEqual(AnimationBehavior.custom(appearance: MockAnimator(),
+                                                   dismissal: MockAnimator()),
                           AnimationBehavior.custom(MockAnimator()))
+    }
+
+    func testCustomAnimationsThatArePartiallyEqual() {
+        let appearanceAnimator = MockAnimator()
+
+        XCTAssertNotEqual(
+            AnimationBehavior.custom(appearance: appearanceAnimator,
+                                     dismissal: MockAnimator()),
+            AnimationBehavior.custom(appearance: appearanceAnimator,
+                                     dismissal: MockAnimator())
+        )
+
+        let dismissalAnimator = MockAnimator()
+
+        XCTAssertNotEqual(
+            AnimationBehavior.custom(appearance: MockAnimator(),
+                                     dismissal: dismissalAnimator),
+            AnimationBehavior.custom(appearance: MockAnimator(),
+                                     dismissal: dismissalAnimator)
+        )
     }
 
 }
