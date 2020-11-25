@@ -49,8 +49,6 @@ add the framework to your project, configure a Run Script build phase, etc.
 
 # Using SheetPresentation
 
-## Swift
-
 To use SheetPresentation, create a `SheetPresentationManager` and
 set it as the `transitioningDelegate` of the view controller you want to
 present, then set the `modalPresentationStyle` of the view controller to
@@ -65,25 +63,80 @@ viewControllerToPresent.modalPresentationStyle = .custom
 present(viewControllerToPresent, animated: true, completion: nil)
 ```
 
-## Objective-C
+## Presentation Options
 
-SheetPresentation also works with Objective-C:
+To get the most out of SheetPresentation, you’ll need to set some options on
+your `SheetPresentationManager` instances:
 
-```Objective-C
-SheetPresentationManager *manager = [[SheetPresentationManager alloc] init];
+### Corner Options
 
-UIViewController *viewControllerToPresent = …;
-viewControllerToPresent.transitioningDelegate = manager;
-viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
+The corner options specify whether and how the corners of presented views should
+have their corners rounded:
 
-[self presentViewController:viewControllerToPresent
-                   animated:YES
-                 completion:NULL];
-```
+- `.roundAllCorners`, which takes a `CGFloat` corner radius, rounds all corners
+  with the given radius.
+- `.roundSomeCorners`, which takes a `CGFloat` corner radius and a
+  `CACornerMask` to specify which corner(s) should be rounded.
+- `.none` leaves the presented view’s corners around.
 
-## Requirements
+The default value is `.roundAllCorners` with a radius of 10 points.
 
-To correctly compute the height of the presented view controller, it must either
-satisfy Auto Layout constraints for a height using
-`systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)` or have a non-zero
-`preferredContentSize`.
+### Dimming View Alpha
+
+SheetPresentation can place a black dimming view behind the presented view. To
+control its opacity, you can specify a `CGFloat` value. If you specify `nil`,
+then a dimming view will not be placed behind the presented view and touches
+will be forwarded to the presenting view controller if they fall outside the
+presented view.
+
+The default value is 50% opacity.
+
+### Edge Insets
+
+The edge insets control the distance between the presenting view controller and
+the presented view. You can use either `UIEdgeInsets` or
+`NSDirectionalEdgeInsets`. This value is combined with the safe area, so if you
+use an inset that is less than the safe area, the safe area’s inset will be
+used.
+
+The default value is 20 points on all sides.
+
+### Ignored Edges for Margins
+
+You can specify an array of edges to ignore for margins (including the safe
+area) when performing layout. Edges can be either the `DirectionalViewEdge` or
+`FixedViewEdge` type, depending on if you want to use `.leading` and `.trailing`
+(recommended) or `.left` and `.right`.
+
+The default value is an empty array to ignore no edges.
+
+### Presentation Layout
+
+The presentation layout controls how SheetPresentation positions the presented
+view within the presentation container. Specify both horizontal and vertical
+layouts, which can either be `.fill` to fill the container or `.automatic` to
+automatically size the presented view. The automatic layouts must specify either
+vertical or horizontal alignment to control where the presented view is placed
+relative to the container.
+
+The default value is a vertical layout of `.automatic(.bottom)` and a horizontal
+layout of `.fill`.
+
+#### Requirements
+
+To correctly compute the height of the presented view controller when using
+automatic layouts, it must either satisfy Auto Layout constraints for a height
+using `systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)` or have a
+non-zero `preferredContentSize`.
+
+### Animation Behavior
+
+When the presented view controller is presented or dismissed, these options
+control the way that this animation occurs. You can use `.system` to use the
+default UIKit animations, use `.custom` to provide your own animator objects
+that conform to the [`UIViewControllerAnimatedTransitioning`][1] protocol, or
+use `.present` to slide the view controller to or from the given view edge(s).
+
+The default value is `.system`.
+
+[1]: https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning
