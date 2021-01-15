@@ -8,7 +8,7 @@ controller pinned to an edge of the screen like an action sheet.
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-orange.svg)](https://swift.org/package-manager)
 [![License](https://img.shields.io/cocoapods/l/SheetPresentation.svg?style=flat)](https://github.com/detroit-labs/SheetPresentation/blob/master/LICENSE)
-![Platform](https://img.shields.io/cocoapods/p/SheetPresentation.svg?style=flat)
+[![Platform](https://img.shields.io/cocoapods/p/SheetPresentation.svg?style=flat)](https://github.com/detroit-labs/SheetPresentation)
 
 # Installation
 

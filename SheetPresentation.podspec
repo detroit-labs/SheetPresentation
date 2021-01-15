@@ -12,8 +12,7 @@ A UIPresentationController and attendant classes for iOS to present a view contr
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
-  s.author             = { "Jeff Kelley" => "SlaunchaMan@gmail.com" }
-  s.social_media_url   = "https://twitter.com/SlaunchaMan"
+  s.author       = { "Jeff Kelley" => "SlaunchaMan@gmail.com" }
 
   s.platform     = :ios, '10'
 
